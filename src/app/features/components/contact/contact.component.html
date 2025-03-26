@@ -1,0 +1,112 @@
+<div class="max-w-screen-xl mx-auto px-4 md:px-8 pb-4 md:space-y-12">
+    <div>
+        <div class="py-4 text-center">
+            <h1 class="text-center text-3xl md:text-5xl font-bold text-primary">Contáctanos</h1>
+        </div>
+
+        <div class="flex">
+            <p class="flex text-base sm:text-xl text-justify text-black"> <!--dark:text-white-->
+                Si necesitas asistencia con nuestro aplicativo o deseas ponerte en contacto con nosotros, 
+                te invitamos a diligenciar el siguiente formulario. También puedes enviarnos tu consulta 
+                a través de correo electrónico o WhatsApp. ¡Estamos para ayudarte!
+            </p>
+        </div>
+    </div>
+    
+    <div class="grid w-full grid-cols-1 lg:grid-cols-2 gap-2">
+        <div class="flex flex-col items-center w-full">
+            <form class="space-y-2 w-full max-md:my-4 md:px-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div>
+                    <label for="name" class="block font-semibold text-black mb-2"> Nombre <span class="text-red-500">*</span></label> <!--dark:text-white-->
+                    <input id="name" maxlength="80" autocomplete="name"
+                        type="text" 
+                        formControlName="name" 
+                        placeholder="Nombre"
+                        [ngClass]="{
+                            'border-red-500': !form.controls['name'].valid && form.controls['name'].touched,
+                            'border-primary': form.controls['name'].valid && form.controls['name'].touched
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm shadow-lg focus:outline-none"
+                    /> <!--dark:bg-gray-900 dark:border-gray-700 dark:text-white-->
+                </div>
+    
+                <div>
+                    <label for="email" class="block font-semibold text-black mb-2"> Email <span class="text-red-500">*</span></label> <!--dark:text-white-->
+                    <input id="email" maxlength="50" autocomplete="email"
+                        type="email" 
+                        formControlName="email" 
+                        placeholder="correo@email.com"
+                        [ngClass]="{
+                            'border-red-500': !form.controls['email'].valid && form.controls['email'].touched,
+                            'border-primary': form.controls['email'].valid && form.controls['email'].touched
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm shadow-lg focus:outline-none"
+                    /> <!--dark:text-white dark:bg-gray-900 dark:border-gray-700-->
+                </div>
+    
+                <div>
+                    <label for="subject" class="block font-semibold text-black mb-2"> Asunto <span class="text-red-500">*</span></label> <!--dark:text-white-->
+                    <input id="subject" maxlength="50" autocomplete="off"
+                        type="text" 
+                        formControlName="subject" 
+                        placeholder="Asunto"
+                        [ngClass]="{
+                            'border-red-500': !form.controls['subject'].valid && form.controls['subject'].touched,
+                            'border-primary': form.controls['subject'].valid && form.controls['subject'].touched
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm shadow-lg focus:outline-none"
+                    /> <!--dark:text-white dark:bg-gray-900 dark:border-gray-700-->
+                </div>
+    
+                <div>
+                    <label for="message" class="block font-semibold text-black mb-2"> Mensaje <span class="text-red-500">*</span></label> <!--dark:text-white-->
+                    <textarea id="message" maxlength="1000"
+                        rows="4"
+                        formControlName="message" 
+                        placeholder="Mensaje"
+                        [ngClass]="{
+                            'border-red-500': !form.controls['message'].valid && form.controls['message'].touched,
+                            'border-primary': form.controls['message'].valid && form.controls['message'].touched
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm shadow-lg focus:outline-none resize-none"
+                    ></textarea> <!--dark:text-white dark:bg-gray-900 dark:border-gray-700-->
+                </div>
+    
+                <div class="flex items-center mb-4 space-x-4">
+                    <div class="w-full">
+                        <button type="submit" [disabled]="form.invalid" class="flex flex-1 w-full justify-center focus:outline-none text-white bg-primary hover:bg-green-800 font-medium px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-primary disabled:bg-green-400 disabled:opacity-50">Enviar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="md:flex flex-col items-center justify-center max-lg:h-96 md:px-4">
+            <iframe referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4728.9410467862535!2d-74.09346232634744!3d4.67408327622629!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9b63a5717de7%3A0x7942f564a48a7765!2sAndy%20Rubiano%E2%84%A2%20-%20Plantas%20carn%C3%ADvoras!5e0!3m2!1ses-419!2sco!4v1730252434971!5m2!1ses-419!2sco"
+                class="left-0 top-0 h-full w-full" loading="lazy" frameborder="0">
+            </iframe>
+        </div>
+    </div>
+
+    <div class="md:grid w-full md:grid-cols-3 max-md:space-y-8 max-md:my-4">
+        <div class="flex flex-col items-center">
+            <div class="flex items-center justify-center mb-2">
+                <span class="material-icons-outlined text-5xl text-primary">mail</span>
+            </div>
+            <p class="text-2xl font-bold text-dark-black">Email</p> <!--dark:text-white-->
+            <p class="text-lg font-base text-purple-black"><a [href]="'mailto:' + email" class="hover:text-blue-600 overflow-wrap break-words">{{ email }}</a></p> <!--dark:text-white dark:hover:text-blue-600-->
+        </div>
+    
+        <div class="flex flex-col items-center">
+            <div class="flex items-center justify-center mb-2">
+                <span class="material-icons-outlined text-5xl text-primary">call</span>
+            </div>
+            <p class="text-2xl font-bold text-dark-black">WhatsApp</p> <!--dark:text-white-->
+            <a class="text-lg font-base text-purple-black hover:text-blue-600 dark:hover:text-blue-600" href="https://wa.me/573178737226" target="_blank">+57 317 873 7226</a> <!--dark:text-white dark:hover:text-blue-600-->
+        </div>
+    
+        <div class="flex flex-col items-center">
+            <div class="flex items-center justify-center mb-2">
+                <span class="material-icons-outlined text-5xl text-primary">location_on</span>
+            </div>
+            <p class="text-2xl font-bold text-dark-black">Bogotá, Colombia</p> <!--dark:text-white-->
+            <p class="text-lg font-base text-purple-black">Carrera 68G # 65 - 56</p> <!--dark:text-white-->
+        </div>
+    </div>
+</div>

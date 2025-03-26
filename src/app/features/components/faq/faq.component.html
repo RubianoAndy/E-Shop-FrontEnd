@@ -1,0 +1,27 @@
+<div class="px-4 md:px-10 max-w-screen-xl mx-auto">
+    <div class="py-4 text-center">
+        <h1 class="text-center text-3xl md:text-5xl font-bold text-primary">Preguntas frecuentes</h1>
+    </div>
+
+    <div class="w-full">
+        <ul class='w-full h-full overflow-auto'>
+            @for (question of questions; track $index) {
+                <li class="text-black"> <!--dark:text-white-->
+                    <hr class="w-full my-5"/>
+                    <button (click)="toggleQuestion($index)" class="flex items-center w-full text-left px-4 py-2 hover:text-blue-600 cursor-pointer"> <!--dark:hover:text-blue-600-->
+                        <span class="lg:mr-6 mr-4 text-lg md:text-xl font-bold text-primary">Q{{ $index + 1 }}.</span>
+                        <h2 class="text-lg md:text-xl">{{ question.value }}</h2>
+                        <span class="material-icons ml-auto">{{ isQuestionOpen[$index] ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
+                    </button>
+                    
+                    <div [ngClass]="{'max-h-[500px] opacity-100': isQuestionOpen[$index], 'max-h-0 opacity-0': !isQuestionOpen[$index]}" class="transition-all duration-500 overflow-hidden pl-4 gap-2">
+                        <p class="flex items-center w-full text-justify text-base px-4 py-2">
+                            {{ question.answer }}.
+                        </p>
+                    </div>
+                </li>
+            }
+            <hr class="w-full my-5"/>
+        </ul>
+    </div>
+</div>

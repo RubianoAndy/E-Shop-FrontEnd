@@ -24,18 +24,18 @@ export const routes: Routes = [
         path: 'account', loadChildren: () => import('./account/account.routes'),
         canActivate: [authGuard], data: { requiresAuth: true, breadcrumb: 'Cuenta' }
     }, */
-    /* {
+    {
         path: 'faq', loadComponent: () => import('./features/components/faq/faq.component'),
-    }, */
-    /* { 
+    },
+    { 
         path: 'privacy-policy', loadComponent: () => import('./features/components/privacy-policy/privacy-policy.component'),
-    }, */
-    /* { 
+    },
+    { 
         path: 'terms-and-conditions', loadComponent: () => import('./features/components/terms-and-conditions/terms-and-conditions.component')
-    }, */
-    /* {
+    },
+    {
         path: 'contact', loadComponent: () => import('./features/components/contact/contact.component')
-    }, */
+    },
     /* {
         path: 'no-connection', loadComponent: () => import('./shared/components/no-connection/no-connection.component')
     }, */
