@@ -43,17 +43,6 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5 and updated to [Angular CLI](https://github.com/angular/angular-cli) 
 version 19.2.5, [NodeJS](https://nodejs.org/en) version 22.11.0, [NPM](https://nodejs.org/en) version 10.9.0 and [Tailwind CSS](https://tailwindcss.com/) version 4.0.
 
-### Initial install
-
-Once the repository is cloned, go in it and install the initial packages with the following commands:
-
-| Command                                                   | What it does?                            |
-| --------------------------------------------------------- | :--------------------------------------- |
-| `npm install -g @angular/cli@latest`                      | Install Angular in its latest version    |
-| `npm install`                                             | Install node modules dependencies        |
-| `npm install -D tailwindcss postcss autoprefixer`         | Install Tailwindcss dependencies         |
-| `npx tailwindcss init`                                    | Init Tailwindcss                         |
-
 ### Angular project commands
 
 | Command                 | What it does?           |
