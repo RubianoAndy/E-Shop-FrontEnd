@@ -1,0 +1,11 @@
+<button (click)="toggleDarkMode()"
+[ngClass]="{
+    'bg-gray-700 text-secondary hover:bg-gray-500': darkMode,
+    'bg-white text-blue-600 hover:bg-gray-200': !darkMode,
+}" class="flex items-center p-2 rounded focus:outline-none">
+    @if (darkMode) {
+        <span class="material-icons-outlined">light_mode</span>
+    } @else {
+        <span class="material-icons-outlined">dark_mode</span>
+    }
+</button>

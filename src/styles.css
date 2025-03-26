@@ -14,9 +14,9 @@
 }
 
 .bg-primary {
-    color: var(--color-primary);
+    background-color: var(--color-primary);
 }
 
 .bg-secondary {
-    color: var(--color-secondary);
+    background-color: var(--color-secondary);
 }
