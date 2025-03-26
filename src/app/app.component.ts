@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { FooterComponent } from './features/components/shared/components/footer/footer.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 import { filter } from 'rxjs';
 import { environment } from '../environments/environment.development';
 

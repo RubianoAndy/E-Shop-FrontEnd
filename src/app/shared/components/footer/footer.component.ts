@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { environment } from '../../../../../../environments/environment.development';
+import { environment } from '../../../../environments/environment.development';
 import { Subject } from 'rxjs';
 
 @Component({
