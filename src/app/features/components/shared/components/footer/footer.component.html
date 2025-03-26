@@ -1,0 +1,93 @@
+<footer class="bg-gray-100 dark:bg-black border-t dark:border-white">
+    <div class="mx-auto w-full p-6 md:py-8">
+      <div class="md:flex md:justify-between">
+        <div class="flex flex-col items-center mb-6 md:mb-0">
+          <a routerLink="/" class="flex items-center mb-3">
+            <img [src]="logo" class="h-20" alt="Logo" loading="eager" />
+          </a>
+          <span class="text-xl font-semibold text-black dark:text-white text-center">{{ page }}</span>
+        </div>
+  
+        <div class="grid max-sm:grid-cols-1 grid-cols-2 max-sm:flex max-sm:flex-col max-sm:items-center max-sm:space-y-8 max-sm:text-center">
+          <div>
+            <h2 class="mb-4 text-sm font-bold text-primary uppercase">Marco legal</h2>
+  
+            <ul class="text-black dark:text-white text-sm">
+              <li class="mb-4">
+                <a routerLink="/terms-and-conditions" class="hover:text-blue-600">Términos y condiciones</a>
+              </li>
+  
+              <li class="mb-4">
+                <a routerLink="/privacy-policy" class="hover:text-blue-600">Política de privacidad</a>
+              </li>
+  
+              <li>
+                <a routerLink="/faq" class="hover:text-blue-600">Preguntas frecuentes</a>
+              </li>
+            </ul>
+          </div>
+  
+          <div>
+            <h2 class="mb-4 text-sm font-bold text-primary uppercase">Contacto</h2>
+  
+            <ul class="text-black dark:text-white text-sm">
+              <li class="mb-4 flex items-center max-sm:justify-center">
+                <span class="material-icons-outlined mr-4 text-primary w-5 h-5">mail</span>
+                <a [href]="'mailto:' + email" class="hover:text-blue-600 overflow-wrap break-words">{{ email }}</a>
+              </li>
+  
+              <li class="mb-4 flex items-center max-sm:justify-center">
+                <span class="material-icons-outlined mr-4 text-primary w-5 h-5">call</span>
+                <a href="https://wa.me/573178737226" target="_blank" class="hover:text-blue-600">
+                  +57 317 873 7226
+                </a>
+              </li>
+  
+              <li class="flex items-center max-sm:justify-center">
+                <span class="material-icons-outlined mr-4 text-primary w-5 h-5">location_on</span>
+                Bogotá, Colombia
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+        
+      <hr class="sm:mx-auto my-6 lg:my-8 border-gray-300"/>
+  
+      <div class="flex justify-center lg:justify-between items-center flex-wrap gap-6 text-center">
+        <div class="flex flex-wrap space-x-3 max-md:justify-center">
+          <a href="https://www.facebook.com/RubianoAndy" target="_blank">
+            <img src="assets/images/social media/Facebook.png" alt="Facebook" class="w-10 h-10" loading="lazy">
+          </a>
+    
+          <a href="https://www.instagram.com/RubianoAndy" target="_blank">
+            <img src="assets/images/social media/Instagram.png" alt="Instagram" class="w-10 h-10" loading="lazy">
+          </a>
+    
+          <a href="https://www.youtube.com/@RubianoAndy" target="_blank">
+            <img src="assets/images/social media/YouTube.png" alt="YouTube" class="w-10 h-10" loading="lazy">
+          </a>
+    
+          <a href="https://www.x.com/RubianoAndy" target="_blank">
+            <img src="assets/images/social media/X.png" alt="X (Twitter)" class="w-10 h-10" loading="lazy">
+          </a>
+    
+          <a href="https://www.linkedin.com/company/andyrubiano" target="_blank">
+            <img src="assets/images/social media/LinkedIn.png" alt="LinkedIn" class="w-10 h-10" loading="lazy">
+          </a>
+    
+          <a href="https://www.tiktok.com/@RubianoAndy" target="_blank">
+            <img src="assets/images/social media/TikTok.png" alt="TikTok" class="w-10 h-10" loading="lazy">
+          </a>
+    
+          <a href="https://wa.me/573178737226" target="_blank">
+            <img src="assets/images/social media/WhatsApp.png" alt="WhatsApp" class="w-10 h-10" loading="lazy">
+          </a>
+        </div>
+    
+        <p class="text-black dark:text-white text-sm">
+          &copy; {{ currentYear }}. <a href="https://YouTube.com/@RubianoAndy" target="_blank" class="hover:underline hover:text-primary">{{ page }}</a>. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+  </footer>
