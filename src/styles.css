@@ -1,8 +1,18 @@
 @import "tailwindcss";
 
+/* Light mode */
 :root {
     --color-primary: green;
     --color-secondary: #fece3e;
+}
+
+/* Dark mode */
+:root.dark {
+    /* --color-primary: #22c55e;
+    --color-secondary: #fbbf24; */
+
+    --color-primary: red;
+    --color-secondary: blue;
 }
 
 .text-primary {
