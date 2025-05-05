@@ -3,6 +3,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { filter } from 'rxjs';
 import { environment } from '../environments/environment.development';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import { environment } from '../environments/environment.development';
     // AlertComponent,
     // LoadingComponent,
     // HeaderComponent,
-    // NavbarComponent,
+    NavbarComponent,
     FooterComponent,
   ],
   templateUrl: './app.component.html',

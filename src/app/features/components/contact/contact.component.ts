@@ -16,9 +16,9 @@ interface Contact {
 @Component({
     selector: 'app-contact',
     imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        NgClass,
+      FormsModule,
+      ReactiveFormsModule,
+      NgClass,
     ],
     templateUrl: './contact.component.html',
     styleUrl: './contact.component.scss'
