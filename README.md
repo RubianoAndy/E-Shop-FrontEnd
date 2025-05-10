@@ -45,62 +45,62 @@ version 19.2.5, [NodeJS](https://nodejs.org/en) version 22.11.0, [NPM](https://n
 
 ### Angular project commands
 
-| Command                 | What it does?           |
-| ----------------------- | :---------------------- |
-| `ng new project-name`   | Create the project      |
-| `ng g c component-name` | Create a component      |
-| `ng g s service-name`   | Create a service        |
-| `ng g cl class-name`    | Create a class          |
-| `ng g m module-name`    | Create a module         |
-| `ng g p pipe-name`      | Create a pipe           |
-| `ng g d directive-name` | Create a directive      |
-| `ng g g guard-name`     | Create a guard          |
-| `ng g i interface-name` | Create a interface      |
-| `ng g e enum-name`      | Create a enum           |
-| `ng g environments`     | Create the environments |
+| Command                             | What it does?             |
+| ----------------------------------- | :------------------------ |
+| `ng new project-name`               | Creating the project      |
+| `ng g c component-name`             | Creating a component      |
+| `ng g s service-name`               | Creating a service        |
+| `ng g cl class-name`                | Creating a class          |
+| `ng g m module-name`                | Creating a module         |
+| `ng g p pipe-name`                  | Creating a pipe           |
+| `ng g d directive-name`             | Creating a directive      |
+| `ng g g guard-name`                 | Creating a guard          |
+| `ng g i interface-name`             | Creating a interface      |
+| `ng g interceptor interceptor-name` | Creating an interceptor   |
+| `ng g e enum-name`                  | Creating a enum           |
+| `ng g environments`                 | Creating the environments |
 
 ### Server commands
 
-| Command    | What it does?                                              | Additional information                                 |
-| -----------| :--------------------------------------------------------- | :----------------------------------------------------- |
-| `ng help`  | Get more help on the Angular CLI                           | More information in `https://angular.dev/tools/cli`    |
-| `ng e2e`   | Execute the end-to-end tests via a platform of your choice |                                                        |
-| `ng test`  | Execute the unit tests                                     | Test via via Karma in `https://karma-runner.github.io` |
-| `ng build` | Build the project                                          |                                                        |
-| `ng serve` | Run the server                                             | Navigate to `http://localhost:4200/`                   |
+| Command    | What it does?                                                | Additional information                                 |
+| -----------| :----------------------------------------------------------- | :----------------------------------------------------- |
+| `ng help`  | Getting more help on the Angular CLI                         | More information in `https://angular.dev/tools/cli`    |
+| `ng e2e`   | Executing the end-to-end tests via a platform of your choice |                                                        |
+| `ng test`  | Executing the unit tests                                     | Test via via Karma in `https://karma-runner.github.io` |
+| `ng build` | Building the project                                         |                                                        |
+| `ng serve` | Running the server                                           | Navigate to `http://localhost:4200/`                   |
 
 ### How to create a project in Angular?
 
 For documentation purposes, this repository was created as follows:
 
-|  #  | Step                                          | Command or information                        |
-| --- | :-------------------------------------------- | :-------------------------------------------- |
-| 1-  | Install Node.js without Chocolatey            | https://nodejs.org                            |
-| 2-  | Open CMD with a specific path                 | Type CMD in the path and press enter          |
-| 3-  | Install Angular CLI                           | `npm install -g @angular/cli@latest`          |
-| 4-  | Create the project                            | `ng new project-name`                         |
-| 5-  | Select SCSS in stylesheet format              |                                               |
-| 6-  | Select no to enable SSR and SSG/Prerendering  |                                               |
-| 7-  | Install Tailwind (only steps 1, 2 y 3)        | https://tailwindcss.com/docs/installation     |
-| 8-  | Replace in tailwind.config.js                 | Put `content: ["./src/**/*.{html,ts,scss}"],` |
-| 9-  | Intall angular/cdk to obtain the screen size  | `npm install @angular/cdk`                    |
+|  #  | Step                                             | Command or information                        |
+| --- | :----------------------------------------------- | :-------------------------------------------- |
+| 1-  | Installing Node.js without Chocolatey            | https://nodejs.org                            |
+| 2-  | Opening CMD with a specific path                 | Type CMD in the path and press enter          |
+| 3-  | Installing Angular CLI                           | `npm install -g @angular/cli@latest`          |
+| 4-  | Creating the project                             | `ng new project-name`                         |
+| 5-  | Selecting SCSS in stylesheet format              |                                               |
+| 6-  | Selecting no to enable SSR and SSG/Prerendering  |                                               |
+| 7-  | Installing Tailwind (only steps 1, 2 y 3)        | https://tailwindcss.com/docs/installation     |
+| 8-  | Replacing in tailwind.config.js                  | Put `content: ["./src/**/*.{html,ts,scss}"],` |
+| 9-  | Installing angular/cdk to obtain the screen size | `npm install @angular/cdk`                    |
 
 ### How to update a project in Angular to the latest version?
 
 To update Angular to its latest version, you need to enter the project folder and follow these steps:
 
-|  #  | Step                                                     | Command or information                 |
-| --- | :------------------------------------------------------- | :------------------------------------- |
-| 1-  | Install Node.js to the latest version without Chocolatey | https://nodejs.org                     |
-| 2-  | Check node version                                       | `node -v`                              |
-| 3-  | Globally update npm to the latest version (if necessary) | `npm install -g npm@latest`            |
-| 4-  | Check npm version                                        | `npm -v`                               |
-| 5-  | Globally uninstall the Angular CLI                       | `npm uninstall -g @angular/cli`        |
-| 6-  | Globally install the Angular CLI to the latest version   | `npm install -g @angular/cli@latest`   |
-| 7-  | Update Angular project to the latest version             | `ng update @angular/core @angular/cli` |
-| 8-  | Check Angular project version                            | `ng version`                           |
-| 9-  | Run the server                                           | `ng serve`                             |
-| 10- | Review the errors and make the correction                |                                        |
+|  #  | Step                                                        | Command or information                 |
+| --- | :---------------------------------------------------------- | :------------------------------------- |
+| 1-  | Installing Node.js to the latest version without Chocolatey | https://nodejs.org                     |
+| 2-  | Checking node version                                       | `node -v`                              |
+| 3-  | Checking npm version                                        | `npm -v`                               |
+| 4-  | Globally uninstalling the Angular CLI                       | `npm uninstall -g @angular/cli`        |
+| 5-  | Globally installing the Angular CLI to the latest version   | `npm install -g @angular/cli@latest`   |
+| 6-  | Updating Angular project to the latest version              | `ng update @angular/core @angular/cli` |
+| 7-  | Checking Angular project version                            | `ng version`                           |
+| 8-  | Running the server                                          | `ng serve`                             |
+| 9-  | Reviewing the errors and make the correction                |                                        |
 
 ⚠️ **Waring**: Other dependencies may need to be updated and code changes may be required to eliminate errors present in this process.
 
