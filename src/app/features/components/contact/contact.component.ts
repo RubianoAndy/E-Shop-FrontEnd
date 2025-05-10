@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
-// import { AlertService } from '../../../shared/services/alert/alert.service';
+import { AlertService } from '../../../shared/services/alert/alert.service';
 import { NgClass } from '@angular/common';
 import { environment } from '../../../../environments/environment.development';
 // import { ContactService } from '../../services/contact/contact.service';
@@ -32,7 +32,7 @@ export default class ContactComponent implements OnInit {
   constructor (
     private formBuilder: FormBuilder,
     // private contactService: ContactService,
-    // private alertService: AlertService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -78,7 +78,7 @@ export default class ContactComponent implements OnInit {
     var alertBody = null;
 
     /* this.contactService.sendContact(body).subscribe({
-      next: (response) => {
+      next: (response: any) => {
         this.loading = false;
 
         alertBody = {
@@ -90,7 +90,7 @@ export default class ContactComponent implements OnInit {
         this.alertService.showAlert(alertBody);
         this.form.reset();
       },
-      error: response => {
+      error: (response: any) => {
         this.loading = false;
 
         alertBody = {
