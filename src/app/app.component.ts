@@ -11,6 +11,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { AlertComponent } from './shared/components/alert/alert.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
     RouterOutlet,
     AlertComponent,
     LoadingComponent,
-    // HeaderComponent,
+    HeaderComponent,
     NavbarComponent,
     FooterComponent,
   ],

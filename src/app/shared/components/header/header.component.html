@@ -1,0 +1,52 @@
+<header class='border-b dark:border-gray-300 bg-white dark:bg-black max-h-[70px]'>
+    <div class='max-w-screen-2xl mx-auto flex items-center md:justify-center flex-wrap gap-5 relative py-3 px-10'>
+        <a routerLink="/">
+            <img [src]="logo" alt="logo" class='w-24' loading="lazy" />
+        </a>
+
+        @if (!profile) {
+            <div class="space-x-6 md:absolute md:right-5 flex items-center max-md:ml-auto">
+                <div class="flex border-gray-700 dark:border-gray-300 border-l-2 pl-6 py-2 items-center">
+                    <button type="button" routerLink="/sign-in" class="flex flex-1 w-full justify-center text-white bg-primary hover:bg-green-800 font-medium px-4 py-2.5 me-2 dark:bg-green-600 dark:hover:bg-primary dark:focus:ring-green-800">
+                        <span class="material-icons me-2">login</span> Identifícate
+                    </button>
+                </div>
+            </div>
+        } @else {
+            <div class="space-x-6 md:absolute md:right-8 flex items-center max-md:ml-auto group relative">
+                <div class="inline-block border-gray-100 dark:border-white border-l-2 pl-6 py-2">
+                    <button type="button" class="flex" aria-expanded="false" (click)="toggleAccountMenu()">
+                        <img class="w-10 h-10 rounded-lg" [src]="avatar" alt="user photo" loading="lazy">
+                    </button>
+            
+                    <div class="fixed inset-0 z-10 h-full transition-opacity duration-500" [ngClass]="{'opacity-100 visible': isAccountMenuOpen, 'opacity-0 invisible': !isAccountMenuOpen}">
+                        <div class="fixed inset-0 bg-black/50 border-b border-gray-200" (click)="toggleAccountMenu()">
+                        </div>
+                    </div>
+            
+                    <div id="dropdown-user" [ngClass]="{'max-h-[500px] opacity-100': isAccountMenuOpen, 'max-h-0 opacity-0': !isAccountMenuOpen}" 
+                    class="z-10 overflow-hidden transition-all duration-500 absolute right-0 mt-2 text-lg list-none bg-white dark:bg-gray-900 shadow-lg border border-gray-100 dark:border-gray-700">
+                        <div class="px-4 py-3 border-b border-gray-100 dark:border-gray-700" role="none">
+                            <p class="text-sm font-semibold text-primary dark:text-secondary" role="none">{{ profile?.name_1 }} {{ profile?.lastname_1 }}</p>
+                            <p class="text-sm text-gray-900 dark:text-white truncate" role="none">{{ profile?.email || 'Email no disponible' }}</p>
+                        </div>
+            
+                        <ul class="py-1 text-sm text-black dark:text-white" role="none">
+                            <li>
+                                <button routerLink="/account" (click)="toggleAccountMenu()" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left" role="menuitem">
+                                    <span class="material-icons-outlined me-2 text-primary dark:text-secondary">settings</span> Configuración
+                                </button>
+                            </li>
+            
+                            <li>
+                                <button (click)="signOut()" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left" role="menuitem">
+                                    <span class="material-icons me-2 text-primary dark:text-secondary">logout</span> Cerrar sesión
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</header>
