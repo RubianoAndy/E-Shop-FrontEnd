@@ -65,13 +65,9 @@ export class AuthService {
         this.setAccessToken(response.accessToken);
       }),
       catchError((err: any) => {
-        return this.signOut().pipe(
-          catchError(signOutErr => {
-            this.deleteTokens();
-            this.router.navigate(['/']);
-            return of(signOutErr);
-          })
-        );
+        return this.signOut();
+      }),
+      finalize(() => {
       })
     );
   }
