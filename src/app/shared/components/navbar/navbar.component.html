@@ -15,7 +15,7 @@
             </ul>
         </div>
 
-        <div class="flex container items-center justify-end md:justify-between flex-grow pl-12">
+        <div class="flex container items-center justify-end md:justify-between grow pl-12">
             <div class="hidden md:flex items-center space-x-6">
                 @for (navbarOption of navbarOptions; track $index) {
                     <a [routerLink]='navbarOption.url' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black hover:text-white dark:text-white dark:hover:text-blue-600'>
