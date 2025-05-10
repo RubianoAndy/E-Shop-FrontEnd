@@ -9,12 +9,13 @@ import { NetworkService } from './shared/services/network/network.service';
 
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { AlertComponent } from './shared/components/alert/alert.component';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    // AlertComponent,
+    AlertComponent,
     // LoadingComponent,
     // HeaderComponent,
     NavbarComponent,

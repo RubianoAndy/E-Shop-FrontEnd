@@ -1,0 +1,42 @@
+<div aria-live="assertive" class="fixed inset-0 flex flex-col items-center justify-end lg:items-end lg:justify-start p-4 z-50 pointer-events-none space-y-2 transition-all duration-300 ease-in-out">
+    @for (alert of alerts; track $index) {
+        <div class="flex w-full max-w-xs overflow-hidden bg-white dark:bg-gray-900 shadow-lg relative border border-gray-100 dark:border-gray-800 pointer-events-auto transform transition-transform duration-300 ease-in-out">
+            @switch (alert.type) {
+                @case ('okay') {
+                    <div class="bg-primary w-16 shrink-0 flex items-center justify-center">    
+                        <span class="material-icons text-white">check_circle</span>
+                    </div>
+                }
+                @case ('warning') {
+                    <div class="bg-secondary w-16 shrink-0 flex items-center justify-center">    
+                        <span class="material-icons text-black">warning_amber</span>
+                    </div>
+                }
+                @case ('error') {
+                    <div class="bg-red-500 w-16 shrink-0 flex items-center justify-center">    
+                        <span class="material-icons text-white">error</span>
+                    </div>
+                }
+            }
+        
+            <div class="flex flex-col justify-center px-4 py-2">
+                <p class="font-bold text-sm mr-4 mb-1"
+                [ngClass]="{
+                    'text-primary': alert.type === 'okay',
+                    'text-secondary': alert.type === 'warning',
+                    'text-red-500': alert.type === 'error',
+                }">
+                    {{ alert.title }}
+                </p>
+
+                <span class="text-sm text-start text-black dark:text-white">{{ alert.message }}</span>
+            </div>
+
+            <div class="ml-4 flex flex-shrink-0 absolute right-1 top-1">
+                <button (click)="closeAlert(alert)" type="button" class="text-black bg-transparent hover:text-red-500 text-sm w-6 h-6 ms-auto inline-flex justify-center items-center">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+        </div>
+    }
+</div>
