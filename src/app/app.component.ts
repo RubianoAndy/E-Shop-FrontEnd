@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { FooterComponent } from './shared/components/footer/footer.component';
 import { filter } from 'rxjs';
+
 import { environment } from '../environments/environment.development';
+
+import { TitleService } from './shared/services/title/title.service';
+import { NetworkService } from './shared/services/network/network.service';
+
+import { FooterComponent } from './shared/components/footer/footer.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @Component({
@@ -37,8 +42,8 @@ export class AppComponent implements OnInit {
 
   constructor (
     private router: Router,
-    // private titleService: TitleService,
-    // private networkService: NetworkService,
+    private titleService: TitleService,
+    private networkService: NetworkService,
   ) { }
 
   ngOnInit(): void {
@@ -58,7 +63,7 @@ export class AppComponent implements OnInit {
 
   setupTitle() {
     const siteName = environment.siteName;
-    // this.titleService.setTitle(siteName);
+    this.titleService.setTitle(siteName);
   }
 
   setupTheme() {
