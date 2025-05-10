@@ -22,10 +22,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   if (req.url.includes('/refresh-token')) {
     return next(req).pipe(
       catchError((err: any) => {
-        if (err.status === 401) {
-          // authService.signOut();
-          authService.deleteTokens();
-        }
+        /* if (err.status === 401) {
+          authService.signOut();
+          // authService.deleteTokens();
+        } */
 
         return throwError(() => ({
           status: err.status,
@@ -61,9 +61,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
             return next(newRequest);
           }),
           catchError(error => {
-            authService.signOut();
+            // authService.signOut();
             // authService.deleteTokens();
-            // return throwError(() => new Error(error)); // Propaga el error
 
             return throwError(() => ({
               status: error.status,

@@ -46,6 +46,11 @@ export class AuthService {
         this.deleteTokens();
         this.router.navigate(['/']);
       }),
+      catchError((err: any) => {
+        this.deleteTokens();
+        this.router.navigate(['/']);
+        return of(err);
+      }),
       finalize(() => {
         this.loadingService.hide(); // Ocultar loading después de la petición
       })
@@ -55,7 +60,20 @@ export class AuthService {
   refreshToken(): Observable<any> {
     const refreshToken = this.getRefreshToken();
 
-    return this.http.post(`${this.apiUrl}/refresh-token`, { refreshToken });
+    return this.http.post(`${this.apiUrl}/refresh-token`, { refreshToken }).pipe(
+      tap((response: any) => {
+        this.setAccessToken(response.accessToken);
+      }),
+      catchError((err: any) => {
+        return this.signOut().pipe(
+          catchError(signOutErr => {
+            this.deleteTokens();
+            this.router.navigate(['/']);
+            return of(signOutErr);
+          })
+        );
+      })
+    );
   }
 
   saveTokens(accessToken: string, refreshToken: string) {
@@ -90,19 +108,9 @@ export class AuthService {
     const payload = JSON.parse(atob(accessToken.split('.')[1]));
     const expired = payload.exp * 1000;
   
-    if (Date.now() < expired) {
+    if (Date.now() < expired)
       return of(true);
-    } else {
-      return this.refreshToken().pipe(
-        map((response) => {
-          this.setAccessToken(response.accessToken);
-          return true;
-        }),
-        catchError(() => {
-          this.signOut();
-          return of(false);
-        })
-      );
-    }
+    else
+      return this.refreshToken();
   }
 }
