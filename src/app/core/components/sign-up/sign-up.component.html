@@ -1,1 +1,194 @@
-<p>sign-up works!</p>
+<div class="bg-cover bg-center bg-fixed" style="background-image: url('assets/images/auth/Auth.png')">
+    <div class="h-screen flex justify-center items-center">
+        <div class="bg-white mx-4 p-8 shadow-lg w-full max-w-2xl">
+            <div class="text-center border-b border-gray-200">
+                <a routerLink="/" class="mb-4 inline-block">
+                  <img class="w-52 md:w-64 h-auto" [src]="logo" alt="Andy Rubiano logo" loading="lazy">
+                </a>
+            </div>
+            @if (!isRegistered) {
+                <h1 class="text-3xl font-bold my-8 text-center">Crear cuenta</h1>
+
+                <form class="flex flex-col gap-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="flex flex-col md:flex-row space-x-0 md:space-x-4 space-y-4 md:space-y-0">
+                        <div class="w-full">
+                            <label for="name_1" class="block font-semibold text-black mb-2"> Primer nombre <span class="text-red-500">*</span></label>
+                            <input id="name_1" 
+                                type="text" 
+                                formControlName="name_1" autocomplete="off"
+                                placeholder="Primer nombre"
+                                [ngClass]="{
+                                    'border-red-500': !form.controls['name_1'].valid,
+                                    'border-green-500': form.controls['name_1'].valid && form.controls['name_1'].touched
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm shadow-lg focus:outline-hidden"
+                            />
+                        </div>
+    
+                        <div class="w-full">
+                            <label for="lastname_1" class="block font-semibold text-black mb-2"> Primer apellido <span class="text-red-500">*</span></label>
+                            <input id="lastname_1" autocomplete="off"
+                                type="text" 
+                                formControlName="lastname_1" 
+                                placeholder="Primer apellido"
+                                [ngClass]="{
+                                    'border-red-500': !form.controls['lastname_1'].valid,
+                                    'border-green-500': form.controls['lastname_1'].valid && form.controls['lastname_1'].touched
+                                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm shadow-lg focus:outline-hidden"
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email" class="block font-semibold text-black mb-2"> Email <span class="text-red-500">*</span></label>
+                        <input id="email" autocomplete="off"
+                            type="email" 
+                            formControlName="email" 
+                            placeholder="name@email.com"
+                            [ngClass]="{
+                                'border-red-500': !form.controls['email'].valid,
+                                'border-green-500': form.controls['email'].valid && form.controls['email'].touched
+                            }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm shadow-lg focus:outline-hidden"
+                        />
+                    </div>
+    
+                    <div class="relative">
+                        <label class="block font-semibold text-black mb-2" for="password"> Contraseña <span class="text-red-500">*</span></label>
+                        <input id="password" autocomplete="off"
+                            [type]="isPasswordVisible ? 'text' : 'password'" 
+                            formControlName="password" 
+                            placeholder="Contraseña"
+                            (focus)="onPasswordFocus()"
+                            (blur)="onPasswordBlur()"
+                            [ngClass]="{
+                                'border-red-500': !form.controls['password'].valid,
+                                'border-green-500': form.controls['password'].valid && form.controls['password'].touched
+                            }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm shadow-lg focus:outline-hidden"
+                        />
+                        
+                        <button type="button" (click)="togglePasswordVisibility()" class="absolute flex items-center inset-y-0 right-0 px-3 mt-8">
+                            <span class="material-icons">{{ isPasswordVisible ? 'visibility_off' : 'visibility' }}</span>
+                        </button>
+
+                        @if (!form.controls['password'].valid && isPasswordFocused) {
+                            <div class="relative z-10">
+                                <div class="w-full max-w-[280px] p-4 bg-gray-100 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 before:absolute before:-top-2 before:left-6">
+                                    <div class="my-2">
+                                        <div class="flex flex-col items-start text-left text-sm">
+                                            <span>La contraseña debe tener:</span>
+                                            <div class="flex items-center">
+                                                <span class="material-icons mr-2" [ngClass]="passwordCriteria.hasUpperCase ? 'text-green-500' : 'text-red-500'">{{ passwordCriteria.hasUpperCase ? 'check' : 'close' }}</span> Al menos una letra en mayúscula.
+                                            </div>
+
+                                            <div class="flex items-center">
+                                                <span class="material-icons mr-2" [ngClass]="passwordCriteria.hasLowerCase ? 'text-green-500' : 'text-red-500'">{{ passwordCriteria.hasLowerCase ? 'check' : 'close' }}</span> Al menos una letra en minúscula.
+                                            </div>
+
+                                            <div class="flex items-center">
+                                                <span class="material-icons mr-2" [ngClass]="passwordCriteria.hasSpecialChar ? 'text-green-500' : 'text-red-500'">{{ passwordCriteria.hasSpecialChar ? 'check' : 'close' }}</span> Al menos un carácter especial.
+                                            </div>
+
+                                            <div class="flex items-center">
+                                                <span class="material-icons mr-2" [ngClass]="passwordCriteria.hasNumber ? 'text-green-500' : 'text-red-500'">{{ passwordCriteria.hasNumber ? 'check' : 'close' }}</span> Al menos un número.
+                                            </div>
+
+                                            <div class="flex items-center">
+                                                <span class="material-icons mr-2" [ngClass]="passwordCriteria.isValidLength ? 'text-green-500' : 'text-red-500'">{{ passwordCriteria.isValidLength ? 'check' : 'close' }}</span> Entre 8 y 20 caracteres.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+    
+                    <div class="flex items-center w-full">
+                        <p class="text-xs text-justify text-black">
+                            Al hacer clic en <b>Regístrate</b>, aceptas nuestos
+                            <a (click)="openModal('TC')" class="cursor-pointer text-green-600 font-bold hover:text-blue-600 hover:underline">Términos y condiciones</a> y 
+                            <a (click)="openModal('PP')" class="cursor-pointer text-green-600 font-bold hover:text-blue-600 hover:underline">Política de privacidad</a>.
+                        </p>
+                    </div>
+    
+                    <div class="flex items-center mb-4 space-x-4">
+                        <div class="w-full">
+                            <button type="submit" [disabled]="form.invalid || loading" class="flex flex-1 w-full justify-center text-white bg-primary hover:bg-green-800 font-medium px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-primary dark:focus:ring-green-800 disabled:bg-green-400 disabled:opacity-50">Regístrate</button>
+                        </div>
+                    </div>
+    
+                    <div class="flex justify-end mb-4">
+                        <a routerLink="/sign-in" class="text-blue-600 hover:underline ml-auto font-semibold">¿Ya tienes cuenta?</a>
+                    </div>
+                </form>
+            } @else {
+                <h1 class="text-3xl font-bold my-8 text-center">¡Activa tu cuenta!</h1>
+
+                <p class="text-lg mb-8 text-justify">
+                    ¡Hola! Para comenzar a usar nuestra plataforma, necesitamos que actives tu cuenta. Revisa tu correo electrónico 
+                    y haz clic en el enlace que te hemos enviado. Si no encuentras el email, verifica la carpeta de promociones, 
+                    correos no deseados o spam. ¡Estamos felices de tenerte aquí!
+                </p>
+
+                <p class="text-lg mb-8 text-justify">
+                    En caso de presentar inconvenientes, no dudes en contactarnos dando clic 
+                    <a routerLink="/contact" target="_blank" class="font-bold text-green-500 hover:underline hover:text-blue-600">aquí</a>.
+                </p>
+            }
+
+            <div class="flex flex-wrap justify-center space-x-2 pt-4">
+                <!-- URL de descarga de íconos tamaño 48px X 48px https://iconos8.es/icons/set/social-media -->
+                <a href="https://www.facebook.com/RubianoAndy" target="_blank">
+                  <img src="assets/images/social media/Facebook.png" alt="Facebook" style="width: 35px; height: auto;" loading="lazy">
+                </a>
+        
+                <a href="https://www.instagram.com/RubianoAndy" target="_blank">
+                  <img src="assets/images/social media/Instagram.png" alt="Instagram" style="width: 35px; height: auto;" loading="lazy">
+                </a>
+        
+                <a href="https://www.youtube.com/@RubianoAndy" target="_blank">
+                  <img src="assets/images/social media/YouTube.png" alt="YouTube" style="width: 35px; height: auto;" loading="lazy">
+                </a>
+        
+                <a href="https://www.x.com/RubianoAndy" target="_blank">
+                  <img src="assets/images/social media/X.png" alt="X (Twitter)" style="width: 35px; height: auto;" loading="lazy">
+                </a>
+        
+                <a href="https://www.linkedin.com/company/andyrubiano" target="_blank">
+                  <img src="assets/images/social media/LinkedIn.png" alt="LinkedIn" style="width: 35px; height: auto;" loading="lazy">
+                </a>
+        
+                <a href="https://www.tiktok.com/@RubianoAndy" target="_blank">
+                  <img src="assets/images/social media/TikTok.png" alt="TikTok" style="width: 35px; height: auto;" loading="lazy">
+                </a>
+        
+                <a href="https://wa.me/573178737226" target="_blank">
+                  <img src="assets/images/social media/WhatsApp.png" alt="WhatsApp" style="width: 35px; height: auto;" loading="lazy">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (isModalOpen) {
+    <div class="flex fixed inset-0 z-0 items-center justify-center p-4 bg-gray-900 bg-opacity-80" (click)="closeModal()">
+        <div class="relative w-full max-w-2xl bg-white shadow-lg">
+            <div class="flex items-center justify-between p-4 bg-gray-100">
+                @if (modalPart == 'TC') {
+                    <h3 class="text-2xl font-semibold text-black">Términos y condiciones</h3>
+                } @else if (modalPart == 'PP') {
+                    <h3 class="text-2xl font-semibold text-black">Política de privacidad</h3>
+                }
+
+                <button type="button" class="text-black hover:text-red-500 font-bold w-6 h-6 ms-auto inline-flex justify-center items-center" (click)="closeModal()">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+
+            <div class="px-4 pb-4 space-y-4 text-black text-sm h-80 overflow-y-auto">
+                @if (modalPart == 'TC') {
+                    <app-terms-and-conditions-information />
+                } @else if (modalPart == 'PP') {
+                    <app-privacy-policy-information />
+                }
+            </div>
+        </div>
+    </div>
+}
