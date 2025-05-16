@@ -31,7 +31,7 @@ export default class SignInComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
+    // private router: Router,
 
     private authService: AuthService,
     private alertService: AlertService,

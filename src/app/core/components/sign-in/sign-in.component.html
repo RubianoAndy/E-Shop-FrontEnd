@@ -9,7 +9,7 @@
 
             <h1 class="text-3xl font-bold my-8 text-center">Iniciar sesión</h1>
 
-            <form class="space-y-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <form class="flex flex-col gap-4" [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div>
                     <label for="email" class="block font-semibold text-black mb-2"> Email <span class="text-red-500">*</span></label>
                     <input id="email" autocomplete="email"
@@ -19,7 +19,7 @@
                         [ngClass]="{
                             'border-red-500': !form.controls['email'].valid && form.controls['email'].touched,
                             'border-green-500': form.controls['email'].valid && form.controls['email'].touched
-                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm shadow-lg focus:outline-none"
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm shadow-lg focus:outline-hidden"
                     />
                 </div>
 
@@ -32,7 +32,7 @@
                         [ngClass]="{
                             'border-red-500': !form.controls['password'].valid && form.controls['password'].touched,
                             'border-green-500': form.controls['password'].valid && form.controls['password'].touched
-                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm shadow-lg focus:outline-none"
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm shadow-lg focus:outline-hidden"
                     />
                     
                     <button type="button" (click)="togglePasswordVisibility()" class="absolute flex items-center inset-y-0 right-0 px-3 mt-8">
@@ -46,7 +46,7 @@
                     </div>
             
                     <div class="w-1/2">
-                        <button type="button" routerLink="/sign-up" class="flex flex-1 w-full justify-center focus:outline-none text-white bg-red-700 hover:bg-red-800 font-medium px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700">Registrarse</button>
+                        <button type="button" routerLink="/sign-up" class="flex flex-1 w-full justify-center focus:outline-hidden text-white bg-red-700 hover:bg-red-800 font-medium px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700">Registrarse</button>
                     </div>
                 </div>
 
