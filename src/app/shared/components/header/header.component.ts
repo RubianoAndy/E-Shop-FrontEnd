@@ -6,7 +6,7 @@ import { Subject, Subscription } from 'rxjs';
 import { AuthService } from '../../../core/services/auth/auth.service';
 import { AlertService } from '../../services/alert/alert.service';
 import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
-import { AvatarService } from '../../services/avatar/avatar.service';
+import { AvatarService } from '../../../account/services/avatar/avatar.service';
 import { environment } from '../../../../environments/environment.development';
 
 @Component({

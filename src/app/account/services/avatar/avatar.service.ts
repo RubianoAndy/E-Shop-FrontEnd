@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, delay, finalize, Observable } from 'rxjs';
-import { LoadingService } from '../loading/loading.service';
+import { LoadingService } from '../../../shared/services/loading/loading.service';
 import { environment } from '../../../../environments/environment.development';
 
 @Injectable({
