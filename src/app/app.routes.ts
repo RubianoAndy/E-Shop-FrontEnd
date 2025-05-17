@@ -13,10 +13,10 @@ export const routes: Routes = [
         path: 'sign-up', loadComponent: () => import('./core/components/sign-up/sign-up.component'),
         canActivate: [authGuard], data: { requiresAuth: false }
     },
-    /* { 
+    { 
         path: 'recovery-password', loadComponent: () => import('./core/components/recovery-password/recovery-password.component'),
         canActivate: [authGuard], data: { requiresAuth: false }
-    }, */
+    },
     { 
         path: 'activate', loadComponent: () => import('./core/components/activate-account/activate-account.component'),
         canActivate: [authGuard], data: { requiresAuth: false }
