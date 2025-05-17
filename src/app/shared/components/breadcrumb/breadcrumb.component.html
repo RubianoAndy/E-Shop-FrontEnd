@@ -1,0 +1,11 @@
+<ul class="flex flex-row text-sm items-center gap-2 mt-2">
+    @for (breadcrumb of breadcrumbs; track $index) {
+        <li [routerLink]="breadcrumb.url" class="text-black hover:text-blue-600 dark:text-white dark:hover:text-secondary cursor-pointer">
+            {{ breadcrumb.label }}
+        </li>
+
+        @if ($index < breadcrumbs.length - 1) {
+            <span class="material-icons text-primary dark:text-secondary">arrow_forward_ios</span>
+        }
+    }
+</ul>
