@@ -1,8 +1,8 @@
 <button (click)="toggleDarkMode()"
 [ngClass]="{
-    'bg-gray-700 text-secondary hover:bg-gray-500': darkMode,
+    'bg-blue-700 text-secondary hover:bg-blue-800': darkMode,
     'bg-white text-blue-600 hover:bg-gray-200': !darkMode,
-}" class="flex items-center p-2 rounded-sm focus:outline-none cursor-pointer">
+}" class="flex items-center p-2 rounded-sm focus:outline-hidden cursor-pointer">
     @if (darkMode) {
         <span class="material-icons-outlined">light_mode</span>
     } @else {
