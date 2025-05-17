@@ -21,7 +21,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   
   logo = environment.darkLogo;
   roleId: number | null = null;
-  token: string | null = null;
+  accessToken: string | null = null;
 
   adminMenuOptions = [
     { label: 'Categorías', url: '/account/categories', icon: 'apps' },
@@ -42,8 +42,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.token = this.authService.getAccessToken();
-    if (this.token)
+    this.accessToken = this.authService.getAccessToken();
+    if (this.accessToken)
       this.getRole();
 
     this.darkModeService.darkMode$.subscribe(darkMode => {
