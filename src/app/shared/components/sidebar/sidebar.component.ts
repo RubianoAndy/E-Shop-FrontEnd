@@ -4,6 +4,7 @@ import { environment } from '../../../../environments/environment.development';
 import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
 import { RolesService } from '../../../account/services/roles/roles.service';
 import { Subject } from 'rxjs';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -20,6 +21,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   
   logo = environment.darkLogo;
   roleId: number | null = null;
+  token: string | null = null;
 
   adminMenuOptions = [
     { label: 'Categorías', url: '/account/categories', icon: 'apps' },
@@ -36,11 +38,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
     private darkModeService: DarkModeService,
     private changeDetectorRef: ChangeDetectorRef,
     private rolesService: RolesService,
-  ) {
-    this.getRole();
-   }
+    private authService: AuthService,
+  ) { }
 
   ngOnInit(): void {
+    this.token = this.authService.getAccessToken();
+    if (this.token)
+      this.getRole();
 
     this.darkModeService.darkMode$.subscribe(darkMode => {
       this.logo = darkMode ? environment.lightLogo : environment.darkLogo;

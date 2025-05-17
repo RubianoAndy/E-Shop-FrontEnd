@@ -97,9 +97,8 @@ export class AuthService {
   isAuthenticated(): Observable<boolean> {
     const accessToken = this.getAccessToken();
   
-    if (!accessToken) {
+    if (!accessToken)
       return of(false);
-    }
   
     const payload = JSON.parse(atob(accessToken.split('.')[1]));
     const expired = payload.exp * 1000;
