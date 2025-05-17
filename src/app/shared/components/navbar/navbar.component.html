@@ -48,7 +48,7 @@
                     <span class="material-icons inline cursor-pointer text-black hover:text-primary text-3xl">search</span>
                 </span> -->
         
-                <button id="toggleOpen" (click)="toggleMenu()" class="lg:hidden block text-black dark:text-secondary hover:text-blue-600 dark:hover:text-blue-600">
+                <button id="toggleOpen" (click)="toggleMenu()" class="cursor-pointer lg:hidden block text-black dark:text-secondary hover:text-blue-600 dark:hover:text-blue-600">
                     <span class="material-icons text-4xl flex items-center">menu</span>
                 </button>
             </div>
@@ -62,7 +62,7 @@
 
     @if(isMobile) {
         <div [ngClass]="{'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen}" class="lg:hidden fixed left-0 top-0 bottom-0 z-10 transition-transform duration-500">
-            <!-- <app-sidebar [showLogo]="true" (sidebarEmitter)="toggleMenu()" /> -->
+            <app-sidebar [showLogo]="true" (sidebarEmitter)="toggleMenu()" />
         </div>
     }
 </nav>

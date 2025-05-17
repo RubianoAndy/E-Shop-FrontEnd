@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
     RouterLink,
     RouterLinkActive,
     DarkModeToggleComponent,
-    // SidebarComponent,
+    SidebarComponent,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
