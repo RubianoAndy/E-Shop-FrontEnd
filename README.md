@@ -41,7 +41,7 @@
 # EShopFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5 and updated to [Angular CLI](https://github.com/angular/angular-cli) 
-version 19.2.5, [NodeJS](https://nodejs.org/en) version 22.11.0, [NPM](https://nodejs.org/en) version 10.9.0 and [Tailwind CSS](https://tailwindcss.com/) version 4.0.
+version 19.2.12, [NodeJS](https://nodejs.org/en) version 22.11.0, [NPM](https://nodejs.org/en) version 10.9.0 and [Tailwind CSS](https://tailwindcss.com/) version 4.1.
 
 ### Angular project commands
 
@@ -74,17 +74,17 @@ version 19.2.5, [NodeJS](https://nodejs.org/en) version 22.11.0, [NPM](https://n
 
 For documentation purposes, this repository was created as follows:
 
-|  #  | Step                                             | Command or information                        |
-| --- | :----------------------------------------------- | :-------------------------------------------- |
-| 1-  | Installing Node.js without Chocolatey            | https://nodejs.org                            |
-| 2-  | Opening CMD with a specific path                 | Type CMD in the path and press enter          |
-| 3-  | Installing Angular CLI                           | `npm install -g @angular/cli@latest`          |
-| 4-  | Creating the project                             | `ng new project-name`                         |
-| 5-  | Selecting SCSS in stylesheet format              |                                               |
-| 6-  | Selecting no to enable SSR and SSG/Prerendering  |                                               |
-| 7-  | Installing Tailwind (only steps 1, 2 y 3)        | https://tailwindcss.com/docs/installation     |
-| 8-  | Replacing in tailwind.config.js                  | Put `content: ["./src/**/*.{html,ts,scss}"],` |
-| 9-  | Installing angular/cdk to obtain the screen size | `npm install @angular/cdk`                    |
+|  #  | Step                                             | Command or information                                             |
+| --- | :----------------------------------------------- | :----------------------------------------------------------------- |
+| 1-  | Installing Node.js without Chocolatey            | https://nodejs.org                                                 |
+| 2-  | Opening CMD with a specific path                 | Type CMD in the path and press enter                               |
+| 3-  | Installing Angular CLI                           | `npm install -g @angular/cli@latest`                               |
+| 4-  | Creating the project                             | `ng new project-name`                                              |
+| 5-  | Selecting SCSS in stylesheet format              |                                                                    |
+| 6-  | Selecting no to enable SSR and SSG/Prerendering  |                                                                    |
+| 7-  | Installing Tailwind                              | https://tailwindcss.com/docs/installation/framework-guides/angular |
+| 8-  | Replacing in tailwind.config.js                  | Put `content: ["./src/**/*.{html,ts,scss}"],`                      |
+| 9-  | Installing angular/cdk to obtain the screen size | `npm install @angular/cdk`                                         |
 
 ### How to update a project in Angular to the latest version?
 
