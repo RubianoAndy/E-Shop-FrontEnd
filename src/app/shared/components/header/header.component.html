@@ -5,7 +5,7 @@
         </a>
 
         @if (!profile) {
-            <div class="space-x-6 md:absolute md:right-5 flex items-center max-md:ml-auto">
+            <div class="flex flex-row gap-6 md:absolute md:right-5 items-center max-md:ml-auto">
                 <div class="flex border-gray-700 dark:border-gray-300 border-l-2 pl-6 py-2 items-center">
                     <button type="button" routerLink="/sign-in" class="flex flex-1 w-full justify-center text-white bg-primary hover:bg-green-800 font-medium px-4 py-2.5 me-2 cursor-pointer">
                         <span class="material-icons me-2">login</span> Identifícate
@@ -13,7 +13,7 @@
                 </div>
             </div>
         } @else {
-            <div class="space-x-6 md:absolute md:right-8 flex items-center max-md:ml-auto group relative">
+            <div class="flex flex-row gap-6 md:absolute md:right-8 items-center max-md:ml-auto group relative">
                 <div class="inline-block border-gray-100 dark:border-white border-l-2 pl-6 py-2">
                     <button type="button" class="flex" aria-expanded="false" (click)="toggleAccountMenu()">
                         <img class="w-10 h-10 rounded-lg" [src]="avatar" alt="user photo" loading="lazy">

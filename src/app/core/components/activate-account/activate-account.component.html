@@ -1,0 +1,108 @@
+<div class="bg-cover bg-center bg-fixed bg-gray-200" style="background-image: url('assets/images/auth/Activate.png')">
+    <div class="h-screen flex justify-center items-center">
+        @if(isActivated) {
+          <div class="bg-white mx-4 p-8 shadow-lg w-full max-w-2xl">
+            <div class="text-center border-b border-gray-200">
+              <a routerLink="/" class="mb-4 inline-block">
+                <img class="w-52 md:w-64 h-auto" [src]="logo" alt="Andy Rubiano logo" loading="lazy">
+              </a>
+            </div>
+
+            <h1 class="text-3xl font-bold my-8 text-center">¡Cuenta activada exitosamente!</h1>
+
+            <p class="text-lg mb-8 text-center">
+              Te damos la bienvenida, para ingresar a tu cuenta, presiona el siguiente botón:
+            </p>
+
+            <div class="flex flex-row items-center justify-center mb-4 gap-4">
+              <div class="w-1/2">
+                <button type="submit" routerLink="/sign-in" class="flex flex-1 w-full justify-center focus:outline-none text-white bg-primary hover:bg-green-800 font-medium px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-primary disabled:bg-green-400 disabled:opacity-50">Aceder</button>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2 pt-4">
+              <!-- URL de descarga de íconos tamaño 48px X 48px https://iconos8.es/icons/set/social-media -->
+              <a href="https://www.facebook.com/RubianoAndy" target="_blank">
+                <img src="assets/images/social media/Facebook.png" alt="Facebook" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+      
+              <a href="https://www.instagram.com/RubianoAndy" target="_blank">
+                <img src="assets/images/social media/Instagram.png" alt="Instagram" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+      
+              <a href="https://www.youtube.com/@RubianoAndy" target="_blank">
+                <img src="assets/images/social media/YouTube.png" alt="YouTube" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+      
+              <a href="https://www.x.com/RubianoAndy" target="_blank">
+                <img src="assets/images/social media/X.png" alt="X (Twitter)" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+      
+              <a href="https://www.linkedin.com/company/andyrubiano" target="_blank">
+                <img src="assets/images/social media/LinkedIn.png" alt="LinkedIn" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+      
+              <a href="https://www.tiktok.com/@RubianoAndy" target="_blank">
+                <img src="assets/images/social media/TikTok.png" alt="TikTok" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+      
+              <a href="https://wa.me/573178737226" target="_blank">
+                <img src="assets/images/social media/WhatsApp.png" alt="WhatsApp" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+            </div>
+          </div>
+        } @else {
+          <div class="bg-white mx-4 p-8 shadow-lg w-full max-w-2xl">
+            <div class="text-center border-b border-gray-200">
+              <a routerLink="/" class="mb-4 inline-block">
+                <img [src]="logo" alt="Andy Rubiano logo" class="w-52 md:w-64 h-auto" loading="lazy">
+              </a>
+            </div>
+
+            <h1 class="text-3xl font-bold my-8 text-center">¡No pudimos activar tu cuenta!</h1>
+
+            <p class="text-lg mb-8 text-center">
+              El enlace de activación expiró o tal vez perdió validez, por favor contáctanos dando clic 
+              <a routerLink="/contact" class="font-bold text-green-500 hover:underline hover:text-blue-600">aquí</a>.
+            </p>
+
+            <!-- <div class="flex flex-row items-center justify-center mb-4 gap-4">
+              <div class="w-1/2">
+                <button type="submit" routerLink="/sign-in" class="flex flex-1 w-full justify-center focus:outline-none text-white bg-primary hover:bg-green-800 font-medium px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-primary disabled:bg-green-400 disabled:opacity-50">Aceder</button>
+              </div>
+            </div> -->
+  
+            <div class="flex flex-wrap justify-center gap-2 pt-4">
+              <!-- URL de descarga de íconos tamaño 48px X 48px https://iconos8.es/icons/set/social-media -->
+              <a href="https://www.facebook.com/RubianoAndy" target="_blank">
+                <img src="assets/images/social media/Facebook.png" alt="Facebook" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+      
+              <a href="https://www.instagram.com/RubianoAndy" target="_blank">
+                <img src="assets/images/social media/Instagram.png" alt="Instagram" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+      
+              <a href="https://www.youtube.com/@RubianoAndy" target="_blank">
+                <img src="assets/images/social media/YouTube.png" alt="YouTube" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+      
+              <a href="https://www.x.com/RubianoAndy" target="_blank">
+                <img src="assets/images/social media/X.png" alt="X (Twitter)" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+      
+              <a href="https://www.linkedin.com/company/andyrubiano" target="_blank">
+                <img src="assets/images/social media/LinkedIn.png" alt="LinkedIn" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+      
+              <a href="https://www.tiktok.com/@RubianoAndy" target="_blank">
+                <img src="assets/images/social media/TikTok.png" alt="TikTok" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+      
+              <a href="https://wa.me/573178737226" target="_blank">
+                <img src="assets/images/social media/WhatsApp.png" alt="WhatsApp" style="width: 35px; height: auto;" loading="lazy">
+              </a>
+            </div>
+          </div>
+        }
+    </div>
+</div>
