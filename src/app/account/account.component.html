@@ -1,0 +1,12 @@
+<div class="flex" style="height: calc(100vh - 120px);"> <!-- Misma altura que en el app.component.html -->
+  @if(isNotMobile) {
+    <app-sidebar class="max-lg:hidden" />
+  }
+  <div class="flex-1 bg-white dark:bg-gray-950 p-4 overflow-y-auto">
+    <div class="mb-4">
+      <app-breadcrumb />
+    </div>
+
+    <router-outlet />
+  </div>
+</div>

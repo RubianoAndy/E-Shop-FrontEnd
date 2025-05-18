@@ -21,10 +21,10 @@ export const routes: Routes = [
         path: 'activate', loadComponent: () => import('./core/components/activate-account/activate-account.component'),
         canActivate: [authGuard], data: { requiresAuth: false }
     },
-    /* {
+    {
         path: 'account', loadChildren: () => import('./account/account.routes'),
         canActivate: [authGuard], data: { requiresAuth: true, breadcrumb: 'Cuenta' }
-    }, */
+    },
     {
         path: 'faq', loadComponent: () => import('./features/components/faq/faq.component'),
     },
