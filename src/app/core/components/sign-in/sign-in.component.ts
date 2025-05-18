@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
-import { passwordValidator } from '../../../shared/validators/password.validator';
+import { passwordValidator } from '../../../shared/validators/password/password.validator';
 
 import { AuthService } from '../../services/auth/auth.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';

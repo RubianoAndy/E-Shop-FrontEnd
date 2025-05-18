@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { ForgotPasswordService } from '../../services/forgot-password/forgot-password.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
-import { passwordValidator } from '../../../shared/validators/password.validator';
+import { passwordValidator } from '../../../shared/validators/password/password.validator';
 import { environment } from '../../../../environments/environment.development';
 
 @Component({

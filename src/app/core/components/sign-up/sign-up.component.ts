@@ -8,7 +8,7 @@ import { RegisterService } from '../../services/register/register.service';
 
 import { TermsAndConditionsInformationComponent } from '../../../features/components/terms-and-conditions/terms-and-conditions-information/terms-and-conditions-information.component';
 import { PrivacyPolicyInformationComponent } from '../../../features/components/privacy-policy/privacy-policy-information/privacy-policy-information.component';
-import { passwordValidator } from '../../../shared/validators/password.validator';
+import { passwordValidator } from '../../../shared/validators/password/password.validator';
 
 @Component({
   selector: 'app-sign-up',
