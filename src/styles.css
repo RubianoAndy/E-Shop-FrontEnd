@@ -1,24 +1,7 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-:root {
-    --color-primary: green;
-    --color-secondary: #fece3e;
-}
-
-
-.text-primary {
-    color: var(--color-primary);
-}
-
-.text-secondary {
-    color: var(--color-secondary);
-}
-
-.bg-primary {
-    background-color: var(--color-primary);
-}
-
-.bg-secondary {
-    background-color: var(--color-secondary);
+@theme {
+  --color-primary: green;
+  --color-secondary: #fece3e;
 }

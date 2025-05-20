@@ -1,6 +1,6 @@
 <div class="px-4 md:px-10 max-w-screen-xl mx-auto">
     <div class="py-4 text-center">
-        <h1 class="text-center text-3xl md:text-5xl font-bold text-green-800 dark:text-[#fece3e]">Preguntas frecuentes</h1>
+        <h1 class="text-center text-3xl md:text-5xl font-bold text-primary dark:text-secondary">Preguntas frecuentes</h1>
     </div>
 
     <div class="w-full">
@@ -9,7 +9,7 @@
                 <li class="text-black dark:text-white">
                     <hr class="w-full my-5 text-gray-200 dark:text-gray-700"/>
                     <button (click)="toggleQuestion($index)" class="flex items-center w-full text-left px-4 py-2 hover:text-blue-600 cursor-pointer">
-                        <span class="lg:mr-6 mr-4 text-lg md:text-xl font-bold text-green-800 dark:text-[#fece3e]">Q{{ $index + 1 }}.</span>
+                        <span class="lg:mr-6 mr-4 text-lg md:text-xl font-bold text-primary dark:text-secondary">Q{{ $index + 1 }}.</span>
                         <h2 class="text-lg md:text-xl">{{ question.value }}</h2>
                         <span class="material-icons ml-auto">{{ isQuestionOpen[$index] ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
                     </button>

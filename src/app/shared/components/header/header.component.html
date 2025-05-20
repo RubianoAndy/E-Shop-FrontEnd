@@ -7,7 +7,7 @@
         @if (!profile) {
             <div class="flex flex-row gap-6 md:absolute md:right-5 items-center max-md:ml-auto">
                 <div class="flex border-gray-700 dark:border-gray-300 border-l-2 pl-6 py-2 items-center">
-                    <button type="button" routerLink="/sign-in" class="flex flex-1 w-full justify-center text-white bg-green-800 hover:bg-green-800 font-medium px-4 py-2.5 me-2 cursor-pointer">
+                    <button type="button" routerLink="/sign-in" class="flex flex-1 w-full justify-center text-white bg-primary hover:bg-primary font-medium px-4 py-2.5 me-2 cursor-pointer">
                         <span class="material-icons me-2">login</span> Identifícate
                     </button>
                 </div>
@@ -27,20 +27,20 @@
                     <div id="dropdown-user" [ngClass]="{'max-h-[500px] opacity-100': isAccountMenuOpen, 'max-h-0 opacity-0': !isAccountMenuOpen}" 
                     class="z-10 overflow-hidden transition-all duration-500 absolute right-0 mt-2 text-lg list-none bg-white dark:bg-gray-900 shadow-lg border border-gray-100 dark:border-gray-700">
                         <div class="px-4 py-3 border-b border-gray-100 dark:border-gray-700" role="none">
-                            <p class="text-sm font-semibold text-green-800 dark:text-[#fece3e]" role="none">{{ profile?.name_1 }} {{ profile?.lastname_1 }}</p>
+                            <p class="text-sm font-semibold text-primary dark:text-secondary" role="none">{{ profile?.name_1 }} {{ profile?.lastname_1 }}</p>
                             <p class="text-sm text-gray-900 dark:text-white truncate" role="none">{{ profile?.email || 'Email no disponible' }}</p>
                         </div>
             
                         <ul class="py-1 text-sm text-black dark:text-white" role="none">
                             <li>
                                 <button routerLink="/account" (click)="toggleAccountMenu()" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left cursor-pointer" role="menuitem">
-                                    <span class="material-icons-outlined me-2 text-green-800 dark:text-[#fece3e]">settings</span> Configuración
+                                    <span class="material-icons-outlined me-2 text-primary dark:text-secondary">settings</span> Configuración
                                 </button>
                             </li>
             
                             <li>
                                 <button (click)="signOut()" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left cursor-pointer" role="menuitem">
-                                    <span class="material-icons me-2 text-green-800 dark:text-[#fece3e]">logout</span> Cerrar sesión
+                                    <span class="material-icons me-2 text-primary dark:text-secondary">logout</span> Cerrar sesión
                                 </button>
                             </li>
                         </ul>
