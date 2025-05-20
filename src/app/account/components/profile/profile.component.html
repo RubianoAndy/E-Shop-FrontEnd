@@ -1,5 +1,5 @@
 <div class="flex flex-col">
-    <h1 class="text-xl sm:text-3xl font-semibold text-primary dark:text-secondary mb-4">Perfil</h1>
+    <h1 class="text-xl sm:text-3xl font-semibold text-green-800 dark:text-[#fece3e] mb-4">Perfil</h1>
 
     <div class="flex mx-auto items-center relative mb-6">
         <app-avatar />
@@ -17,13 +17,13 @@
     <div class="w-full max-w-2xl mx-auto px-8">
         <hr class="text-gray-200 dark:text-gray-700 w-full my-4">
 
-        <h2 class="text-3xl text-center font-semibold text-primary dark:text-secondary mb-4">Información personal</h2>
+        <h2 class="text-3xl text-center font-semibold text-green-800 dark:text-[#fece3e] mb-4">Información personal</h2>
         <app-personal-information />
 
         <hr class="text-gray-200 dark:text-gray-700 w-full my-4">
 
         <div class="accordion">
-            <div (click)="toggleAccordion('accordion_1')" class="cursor-pointer flex items-center text-2xl text-center font-semibold text-primary dark:text-secondary hover:text-blue-600 dark:hover:text-blue-600 mb-4">
+            <div (click)="toggleAccordion('accordion_1')" class="cursor-pointer flex items-center text-2xl text-center font-semibold text-green-800 dark:text-[#fece3e] hover:text-blue-600 mb-4">
                 <h2>Cambiar contraseña</h2>
                 <span class="material-icons ml-auto">{{ isAccordion1Open ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
             </div>
@@ -36,7 +36,7 @@
         <hr class="text-gray-200 dark:text-gray-700 w-full my-4">
 
         <div class="accordion">
-            <div (click)="toggleAccordion('accordion_2')" class="cursor-pointer flex items-center text-2xl text-center font-semibold text-primary dark:text-secondary hover:text-blue-600 dark:hover:text-blue-600 mb-4">
+            <div (click)="toggleAccordion('accordion_2')" class="cursor-pointer flex items-center text-2xl text-center font-semibold text-green-800 dark:text-[#fece3e] hover:text-blue-600 mb-4">
                 <h2>Información de correspondencia</h2>
                 <span class="material-icons ml-auto">{{ isAccordion2Open ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
             </div>
