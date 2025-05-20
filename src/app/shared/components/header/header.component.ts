@@ -8,6 +8,7 @@ import { AlertService } from '../../services/alert/alert.service';
 import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
 import { AvatarService } from '../../../account/services/avatar/avatar.service';
 import { environment } from '../../../../environments/environment.development';
+import { ProfileService } from '../../../account/services/profile/profile.service';
 
 @Component({
   selector: 'app-header',
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor (
     private authService: AuthService,
-    // private profileService: ProfileService,
+    private profileService: ProfileService,
     private alertService: AlertService,
     private darkModeService: DarkModeService,
     private avatarService: AvatarService,
@@ -41,13 +42,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authService.isAuthenticated().subscribe(isAuthenticated => {
       if (isAuthenticated) {
-        // this.getProfile();
+        this.getProfile();
 
         this.avatarSubscription = this.avatarService.avatar$.subscribe(url =>{
           if(url)
             this.avatar = url;
         });
-        // this.getAvatar();
+        this.getAvatar();
       }
     });
 
@@ -65,13 +66,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  /* getProfile() {
+  getProfile() {
     this.profileService.getProfile().subscribe(
       response => {
         this.profile = response;
       }
     );
-  } */
+  }
 
   signOut() {
     var alertBody = null;
@@ -97,7 +98,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  /* getAvatar() {
+  getAvatar() {
     this.avatarService.getAvatar().subscribe({
       next: blob => {
         const url = URL.createObjectURL(blob);
@@ -107,7 +108,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         console.error('Error al cargar el avatar: ', response);
       }
     });
-  } */
+  }
 
   toggleAccountMenu() {
     this.isAccountMenuOpen = !this.isAccountMenuOpen;

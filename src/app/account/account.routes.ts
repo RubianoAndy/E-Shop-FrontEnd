@@ -13,10 +13,10 @@ const routes: Routes = [{
     {
       path: '', redirectTo: 'profile', pathMatch: 'full'
     },
-    /* {
+    {
       path: 'profile', loadComponent: () => import('./components/profile/profile.component'),
       data: { breadcrumb: 'Perfil' }
-    }, */
+    },
     /* {
       path: 'categories', loadComponent: () => import('./components/categories/categories.component'),
       data: { breadcrumb: 'Categorías', roles: [superAdmin, admin] },
