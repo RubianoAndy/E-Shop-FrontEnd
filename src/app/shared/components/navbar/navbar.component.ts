@@ -1,9 +1,12 @@
 import { NgClass } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+
 import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+
+import { CategoriesService } from '../../../account/services/categories/categories.service';
 
 @Component({
   selector: 'app-navbar',
@@ -34,10 +37,10 @@ export class NavbarComponent implements OnInit {
   ];
 
   constructor (
-    // private categoriesService: CategoriesService,
+    private categoriesService: CategoriesService,
     private breakpointObserver: BreakpointObserver,
   ) {
-    // this.getCategories();
+    this.getCategories();
   }
 
   ngOnInit(): void {
@@ -51,13 +54,13 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  /* async getCategories() {
+  async getCategories() {
     await this.categoriesService.getCategoriesSmall().subscribe(
       (response) => {
         this.categories = response;
       }
     )
-  } */
+  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

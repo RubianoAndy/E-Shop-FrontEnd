@@ -1,6 +1,6 @@
-<nav class='dark:border-b dark:border-white bg-secondary dark:bg-black max-h-[70px]'>
+<nav class='dark:border-b dark:border-white bg-[#fece3e] dark:bg-black max-h-[70px]'>
     <div class="flex max-w-screen-2xl mx-auto max-md:py-2 items-center justify-center">
-        <div class="group relative hidden md:flex px-10 py-4 bg-primary items-center cursor-pointer text-white">
+        <div class="group relative hidden md:flex px-10 py-4 bg-green-800 items-center cursor-pointer text-white">
             <span class="material-icons-outlined mr-2">store</span> categorías
             <span class="material-icons ml-2 transition-transform duration-300 group-hover:rotate-180">keyboard_arrow_down</span>
 
@@ -16,9 +16,9 @@
         </div>
 
         <div class="flex container items-center justify-end md:justify-between grow pl-12">
-            <div class="hidden md:flex items-center space-x-6">
+            <div class="hidden md:flex md:flex-row items-center gap-6">
                 @for (navbarOption of navbarOptions; track $index) {
-                    <a [routerLink]='navbarOption.url' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black hover:text-blue-600'>
+                    <a [routerLink]='navbarOption.url' routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class='block font-semibold text-black dark:text-white hover:text-blue-600'>
                         {{ navbarOption.label }}
                     </a>
                 }
@@ -26,17 +26,17 @@
 
             <div class='flex flex-row items-center justify-center gap-6 pr-8'>
                 <!-- <div class="relative">
-                    <span class="material-icons-outlined inline cursor-pointer text-white hover:text-red-700 text-3xl">favorite</span>
+                    <span class="material-icons-outlined inline cursor-pointer text-white hover:text-red-700 scale-[1.15]">favorite</span>
                     <span class="absolute left-auto -ml-1 top-0 rounded-full bg-red-600 px-1 py-0 text-xs text-white">0</span>
                 </div> -->
 
                 <div class="relative">
-                    <span class="material-icons-outlined inline cursor-pointer text-black hover:text-blue-600 text-3xl">notifications_active</span>
+                    <span class="material-icons-outlined inline cursor-pointer text-black dark:text-white hover:text-blue-600 scale-[1.15]">notifications_active</span>
                     <span class="absolute left-auto -ml-1 top-0 rounded-full bg-red-600 px-1 py-0 text-xs text-white">0</span>
                 </div>
     
                 <div class="relative">
-                    <span class="material-icons-outlined inline cursor-pointer text-black hover:text-blue-600 text-3xl">shopping_cart</span>
+                    <span class="material-icons-outlined inline cursor-pointer text-black dark:text-white hover:text-blue-600 scale-[1.15]">shopping_cart</span>
                     <span class="absolute left-auto -ml-1 top-0 rounded-full bg-red-600 px-1 py-0 text-xs text-white">0</span>
                 </div>
 
@@ -45,10 +45,10 @@
                 </div>
     
                 <!-- <span class="relative lg:hidden block">
-                    <span class="material-icons inline cursor-pointer text-black hover:text-primary text-3xl">search</span>
+                    <span class="material-icons inline cursor-pointer text-black hover:text-green-800 scale-[1.15]">search</span>
                 </span> -->
         
-                <button id="toggleOpen" (click)="toggleMenu()" class="cursor-pointer lg:hidden block text-black dark:text-secondary hover:text-blue-600 dark:hover:text-blue-600">
+                <button id="toggleOpen" (click)="toggleMenu()" class="cursor-pointer lg:hidden block text-black dark:text-[#fece3e] hover:text-blue-600 dark:hover:text-blue-600">
                     <span class="material-icons text-4xl flex items-center">menu</span>
                 </button>
             </div>
