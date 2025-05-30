@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter } from 'rxjs';
 
 interface Breadcrumb {
@@ -11,6 +11,7 @@ interface Breadcrumb {
   selector: 'app-breadcrumb',
   imports: [
     RouterLink,
+    RouterLinkActive,
   ],
   templateUrl: './breadcrumb.component.html',
   styleUrl: './breadcrumb.component.css'

@@ -10,7 +10,7 @@
     <div class="flex-1">
         @if(roleId == 1 || roleId == 2) {
             @if(roleId == 1 || roleId == 2) {
-                <h4 class="text-sm text-blue-600 dark:text-primary font-bold my-4">Super Administración</h4>
+                <h4 class="text-sm text-blue-600 dark:text-secondary font-bold my-4">Super Administración</h4>
                 <ul class="flex flex-col flex-1 gap-4 px-2">
                 @for (superAdminMenuOption of superAdminMenuOptions; track $index) {
                     <li>
@@ -24,7 +24,7 @@
                 <hr class="my-6 border border-primary dark:border-secondary" />
             }
 
-            <h4 class="text-sm text-blue-600 dark:text-primary font-bold mb-4">Administración</h4>
+            <h4 class="text-sm text-blue-600 dark:text-secondary font-bold mb-4">Administración</h4>
             <ul class="flex flex-1 flex-col gap-4 px-2">
                 @for (adminMenuOption of adminMenuOptions; track $index) {
                     <li>

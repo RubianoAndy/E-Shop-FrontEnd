@@ -1,0 +1,9 @@
+.active {
+    color: green;
+    font-weight: 600;  /* semibold */
+    font-style: italic;
+}
+
+:host-context(.dark) .active {
+    color: #fece3e;  /* color secondary */
+}
