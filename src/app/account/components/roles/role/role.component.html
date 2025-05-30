@@ -1,0 +1,19 @@
+<form class="flex flex-col gap-4" [formGroup]="form" (ngSubmit)="onSubmitForm()">
+    <div class="w-full">
+        <label for="name" class="block font-semibold text-primary dark:text-secondary mb-2"> Nombre <span class="text-red-500">*</span></label>
+        <input id="name" type="text" autocomplete="off"
+            formControlName="name" placeholder="Nombre"
+            [ngClass]="{
+                'border-red-500 dark:border-red-500': !form.controls['name'].valid && !form.controls['name'].disabled,
+                'border-green-500 dark:border-green-500': form.controls['name'].valid && form.controls['name'].touched,
+                'cursor-not-allowed': form.controls['name'].disabled
+            }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+        />
+    </div>
+
+    <div class="flex items-center justify-center space-x-4">
+        <div class="w-full md:w-1/3">
+            <button type="submit" [disabled]="form.invalid || loading" class="flex flex-1 w-full cursor-pointer justify-center text-white bg-primary hover:bg-primary font-medium px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-primary disabled:bg-green-400/50">Guardar</button>
+        </div>
+    </div>
+</form>
