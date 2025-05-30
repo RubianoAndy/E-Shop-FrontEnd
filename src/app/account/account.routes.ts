@@ -28,11 +28,11 @@ const routes: Routes = [{
       data: { breadcrumb: 'Roles', roles: [superAdmin] },
       canActivate: [roleGuard],
     }, */
-    /* {
+    {
       path: 'users', loadComponent: () => import('./components/users/users.component'),
       data: { breadcrumb: 'Usuarios', roles: [superAdmin] },
       canActivate: [roleGuard],
-    }, */
+    },
     /* {
       path: 'settings', loadComponent: () => import('./components/settings/settings.component'),
       data: { breadcrumb: 'Configuración' }
