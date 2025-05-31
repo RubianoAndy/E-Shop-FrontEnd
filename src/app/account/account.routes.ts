@@ -33,10 +33,10 @@ const routes: Routes = [{
       data: { breadcrumb: 'Usuarios', roles: [superAdmin] },
       canActivate: [roleGuard],
     },
-    /* {
+    {
       path: 'settings', loadComponent: () => import('./components/settings/settings.component'),
       data: { breadcrumb: 'Configuración' }
-    }, */
+    },
     { 
       path: '**', redirectTo: 'profile', pathMatch: 'full'
     },
