@@ -83,8 +83,7 @@ For documentation purposes, this repository was created as follows:
 | 5-  | Selecting SCSS in stylesheet format              |                                                                    |
 | 6-  | Selecting no to enable SSR and SSG/Prerendering  |                                                                    |
 | 7-  | Installing Tailwind                              | https://tailwindcss.com/docs/installation/framework-guides/angular |
-| 8-  | Replacing in tailwind.config.js                  | Put `content: ["./src/**/*.{html,ts,scss}"],`                      |
-| 9-  | Installing angular/cdk to obtain the screen size | `npm install @angular/cdk`                                         |
+| 8-  | Installing angular/cdk to obtain the screen size | `npm install @angular/cdk`                                         |
 
 ### How to update a project in Angular to the latest version?
 
