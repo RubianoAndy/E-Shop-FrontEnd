@@ -40,8 +40,8 @@
 
 # EShopFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5 and updated to [Angular CLI](https://github.com/angular/angular-cli) 
-version 19.2.12, [NodeJS](https://nodejs.org/en) version 22.11.0, [NPM](https://nodejs.org/en) version 10.9.0 and [Tailwind CSS](https://tailwindcss.com/) version 4.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1 and updated to [Angular CLI](https://github.com/angular/angular-cli) 
+version 19.2.12, [NodeJS](https://nodejs.org/en) version 22.16.0, [NPM](https://nodejs.org/en) version 10.9.0 and [Tailwind CSS](https://tailwindcss.com/) version 4.1.
 
 ### Angular project commands
 
@@ -107,5 +107,5 @@ To update Angular to its latest version, you need to enter the project folder an
 <hr>
 
 <p align="center">
-    &copy; 2025 <a href="https://YouTube.com/@RubianoAndy" target="_blank" class="hover:underline">Andy Rubiano™ - International company</a>. All rights reserved.
+    &copy; 2026 <a href="https://YouTube.com/@RubianoAndy" target="_blank" class="hover:underline">Andy Rubiano™ - International company</a>. All rights reserved.
 </p>
