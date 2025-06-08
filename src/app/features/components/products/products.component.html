@@ -7,13 +7,13 @@
           <p class="text-gray-600 dark:text-gray-400 mt-1">{{ filteredProducts.length }} productos encontrados</p>
         </div>
         <div class="flex items-center gap-4">
-          <button (click)="showFilters = !showFilters" class="cursor-pointer lg:hidden flex items-center gap-2 px-4 py-2 text-sm font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600">
-            <span class="material-icons text-lg">filter_list</span>Filtros
+          <button (click)="showFilters = !showFilters" class="cursor-pointer lg:hidden flex items-center gap-2 px-4 py-2 text-sm font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-white border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <span class="material-icons text-lg">filter_list</span> Filtros
             @if (activeFiltersCount > 0) {
               <span class="px-2 py-1 text-xs bg-primary text-white dark:bg-secondary dark:text-black rounded-full">{{ activeFiltersCount }}</span>
             }
           </button>
-          <select class="cursor-pointer border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-hidden">
+          <select class="cursor-pointer border border-gray-300 dark:border-gray-600 px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-hidden">
             <option>Ordenar por</option>
             <option>Precio: Menor a Mayor</option>
             <option>Precio: Mayor a Menor</option>
