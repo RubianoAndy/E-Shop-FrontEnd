@@ -6,7 +6,7 @@
     <div class="w-full">
         <ul class='w-full h-full overflow-auto'>
             @for (question of questions; track $index) {
-                <li class="text-black dark:text-white">
+                <li class="text-gray-700 dark:text-white">
                     <hr class="w-full my-5 text-gray-200 dark:text-gray-700"/>
                     <button (click)="toggleQuestion($index)" class="flex items-center w-full text-left px-4 py-2 hover:text-blue-600 cursor-pointer">
                         <span class="lg:mr-6 mr-4 text-lg md:text-xl font-bold text-primary dark:text-secondary">Q{{ $index + 1 }}.</span>

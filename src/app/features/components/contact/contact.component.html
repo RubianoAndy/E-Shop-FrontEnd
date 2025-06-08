@@ -5,7 +5,7 @@
         </div>
 
         <div class="flex">
-            <p class="flex text-base sm:text-xl text-justify text-black dark:text-white">
+            <p class="flex text-base sm:text-xl text-justify text-gray-700 dark:text-white">
                 Si necesitas asistencia con nuestro aplicativo o deseas ponerte en contacto con nosotros, 
                 te invitamos a diligenciar el siguiente formulario. También puedes enviarnos tu consulta 
                 a través de correo electrónico o WhatsApp. ¡Estamos para ayudarte!
@@ -25,7 +25,7 @@
                         [ngClass]="{
                             'border-red-500 dark:border-red-500': !form.controls['name'].valid && form.controls['name'].touched,
                             'border-primary dark:border-primary': form.controls['name'].valid && form.controls['name'].touched
-                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-gray-700 text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
                     />
                 </div>
     
@@ -38,7 +38,7 @@
                         [ngClass]="{
                             'border-red-500 dark:border-red-500': !form.controls['email'].valid && form.controls['email'].touched,
                             'border-primary dark:border-primary': form.controls['email'].valid && form.controls['email'].touched
-                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:text-white dark:bg-gray-900 dark:border-gray-700 shadow-lg focus:outline-hidden"
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-gray-700 text-sm dark:text-white dark:bg-gray-900 dark:border-gray-700 shadow-lg focus:outline-hidden"
                     />
                 </div>
     
@@ -51,7 +51,7 @@
                         [ngClass]="{
                             'border-red-500 dark:border-red-500': !form.controls['subject'].valid && form.controls['subject'].touched,
                             'border-primary dark:border-primary': form.controls['subject'].valid && form.controls['subject'].touched
-                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:text-white dark:bg-gray-900 dark:border-gray-700 shadow-lg focus:outline-hidden"
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-gray-700 text-sm dark:text-white dark:bg-gray-900 dark:border-gray-700 shadow-lg focus:outline-hidden"
                     />
                 </div>
     
@@ -64,7 +64,7 @@
                         [ngClass]="{
                             'border-red-500 dark:border-red-500': !form.controls['message'].valid && form.controls['message'].touched,
                             'border-primary dark:border-primary': form.controls['message'].valid && form.controls['message'].touched
-                        }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:text-white dark:bg-gray-900 dark:border-gray-700 shadow-lg focus:outline-hidden resize-none"
+                        }" class="block w-full p-2 bg-white border border-gray-200 text-gray-700 text-sm dark:text-white dark:bg-gray-900 dark:border-gray-700 shadow-lg focus:outline-hidden resize-none"
                     ></textarea>
                 </div>
     
@@ -91,24 +91,24 @@
             <div class="flex items-center justify-center mb-2">
                 <span class="material-icons-outlined scale-[2] text-primary dark:text-secondary">mail</span>
             </div>
-            <p class="text-2xl font-bold text-black dark:text-white">Email</p>
-            <p class="text-lg font-base text-black dark:text-white"><a [href]="'mailto:' + email" class="hover:text-blue-600 overflow-wrap break-words">{{ email }}</a></p>
+            <p class="text-2xl font-bold text-gray-700 dark:text-white">Email</p>
+            <p class="text-lg font-base text-gray-700 dark:text-white"><a [href]="'mailto:' + email" class="hover:text-blue-600 overflow-wrap break-words">{{ email }}</a></p>
         </div>
     
         <div class="flex flex-col items-center">
             <div class="flex items-center justify-center mb-2">
                 <span class="material-icons-outlined scale-[2] text-primary dark:text-secondary">call</span>
             </div>
-            <p class="text-2xl font-bold text-black dark:text-white">WhatsApp</p>
-            <a class="text-lg font-base text-black hover:text-blue-600 dark:text-white" href="https://wa.me/573178737226" target="_blank">+57 317 873 7226</a>
+            <p class="text-2xl font-bold text-gray-700 dark:text-white">WhatsApp</p>
+            <a class="text-lg font-base text-gray-700 hover:text-blue-600 dark:text-white" href="https://wa.me/573178737226" target="_blank">+57 317 873 7226</a>
         </div>
     
         <div class="flex flex-col items-center">
             <div class="flex items-center justify-center mb-2">
                 <span class="material-icons-outlined scale-[2] text-primary dark:text-secondary">location_on</span>
             </div>
-            <p class="text-2xl font-bold text-black dark:text-white">Bogotá, Colombia</p>
-            <p class="text-lg font-base text-black dark:text-white">Carrera 68G # 65 - 56</p>
+            <p class="text-2xl font-bold text-gray-700 dark:text-white">Bogotá, Colombia</p>
+            <p class="text-lg font-base text-gray-700 dark:text-white">Carrera 68G # 65 - 56</p>
         </div>
     </div>
 </div>

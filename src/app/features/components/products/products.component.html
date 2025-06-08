@@ -1,0 +1,219 @@
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+  <div class="bg-white dark:bg-gray-800 shadow-sm">
+    <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="flex flex-col sm:flex-row items-center sm:justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-primary dark:text-secondary">Productos</h1>
+          <p class="text-gray-600 dark:text-gray-400 mt-1">{{ filteredProducts.length }} productos encontrados</p>
+        </div>
+        <div class="flex items-center gap-4">
+          <button (click)="showFilters = !showFilters" class="cursor-pointer lg:hidden flex items-center gap-2 px-4 py-2 text-sm font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600">
+            <span class="material-icons text-lg">filter_list</span>Filtros
+            @if (activeFiltersCount > 0) {
+              <span class="px-2 py-1 text-xs bg-primary text-white dark:bg-secondary dark:text-black rounded-full">{{ activeFiltersCount }}</span>
+            }
+          </button>
+          <select class="cursor-pointer border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-hidden">
+            <option>Ordenar por</option>
+            <option>Precio: Menor a Mayor</option>
+            <option>Precio: Mayor a Menor</option>
+            <option>Más Popular</option>
+            <option>Mejor Valorado</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <div [class.hidden]="!showFilters" class="lg:block lg:w-64">
+        <div class="bg-white dark:bg-gray-800 shadow-sm p-6 sticky top-4">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-semibold text-primary dark:text-secondary">Filtros</h2>
+            @if (activeFiltersCount > 0) {
+              <button (click)="clearFilters()" class="cursor-pointer flex items-center text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-secondary transition-colors">
+                <span class="material-icons text-lg mr-1">close</span>
+                Limpiar
+              </button>
+            }
+          </div>
+
+          <div class="mb-6">
+            <h3 class="font-medium text-black dark:text-white mb-3">Categorías</h3>
+            <div class="flex flex-col gap-2">
+              @for (category of categories; track category) {
+                <div class="flex items-center gap-2">
+                  <input type="checkbox" 
+                    [id]="category"
+                    [checked]="filters.categories.includes(category)"
+                    (change)="handleCategoryChange(category, $event)"
+                    class="cursor-pointer border-gray-300 dark:border-gray-600 text-primary dark:text-secondary"
+                  >
+                  <label [for]="category" class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:text-blue-700 dark:hover:text-blue-400">
+                    {{ category }}
+                  </label>
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <h3 class="font-medium text-gray-900 dark:text-white mb-3">Rango de Precio</h3>
+            <div class="px-2">
+              <!-- Aquí necesitarás implementar un componente de slider personalizado -->
+              <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400">
+                <span>${{ filters.priceRange[0] }}</span>
+                <span>${{ filters.priceRange[1] }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rating Filter -->
+          <div class="mb-6">
+            <h3 class="font-medium text-gray-900 dark:text-white mb-3">Calificación Mínima</h3>
+            <div class="space-y-2">
+              @for (rating of [4, 3, 2, 1]; track rating) {
+                <div class="flex items-center gap-2">
+                  <input type="checkbox"
+                    [id]="'rating-' + rating"
+                    [checked]="filters.minRating === rating"
+                    (change)="handleRatingChange(rating, $event)"
+                    class="rounded-sm border-gray-300 dark:border-gray-600 text-primary dark:text-secondary focus:ring-primary dark:focus:ring-secondary"
+                  >
+                  <label [for]="'rating-' + rating" class="flex items-center cursor-pointer">
+                    <div class="flex mr-2">
+                      @for (star of getStars(rating); track $index) {
+                        <span class="material-icons text-yellow-400" [class.text-opacity-50]="star === 1" [class.text-gray-300]="star === 0">
+                          {{ star === 2 ? 'star' : (star === 1 ? 'star_half' : 'star_border') }}
+                        </span>
+                      }
+                    </div>
+                    <span class="text-sm text-gray-700 dark:text-gray-300">y más</span>
+                  </label>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Special Filters -->
+          <div class="mb-6">
+            <h3 class="font-medium text-gray-900 dark:text-white mb-3">Especiales</h3>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2">
+                <input type="checkbox"
+                       id="new-products"
+                       [(ngModel)]="filters.isNew"
+                       class="rounded border-gray-300 dark:border-gray-600 text-primary dark:text-secondary focus:ring-primary dark:focus:ring-secondary">
+                <label for="new-products" class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
+                  Productos Nuevos
+                </label>
+              </div>
+              <div class="flex items-center gap-2">
+                <input type="checkbox"
+                       id="sale-products"
+                       [(ngModel)]="filters.isSale"
+                       class="rounded border-gray-300 dark:border-gray-600 text-primary dark:text-secondary focus:ring-primary dark:focus:ring-secondary">
+                <label for="sale-products" class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer">
+                  En Oferta
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="flex-1">
+        @if (filteredProducts.length === 0) {
+          <div class="text-center py-12">
+            <span class="material-icons scale-150 text-gray-400 mb-4">filter_alt_off</span>
+            <h3 class="text-lg font-medium text-black dark:text-white mb-2">No se encontraron productos</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">Intenta ajustar tus filtros para ver más resultados</p>
+            <button (click)="clearFilters()" class="cursor-pointer px-4 py-2 bg-primary dark:bg-secondary text-white dark:text-black hover:bg-primary/80 dark:hover:bg-secondary/80 transition-colors">
+              Limpiar filtros
+            </button>
+          </div>
+        } @else {
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @for (product of filteredProducts; track product.id) {
+              <div class="group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                <div class="relative">
+                  <img [src]="product.image"
+                       [alt]="product.name"
+                       class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+
+                  <!-- Badges -->
+                  <div class="absolute top-3 left-3 flex flex-col gap-2">
+                    @if (product.isNew) {
+                      <span class="px-2 py-1 text-xs font-medium bg-green-500 text-white rounded-full">Nuevo</span>
+                    }
+                    @if (product.isSale) {
+                      <span class="px-2 py-1 text-xs font-medium bg-red-500 text-white rounded-full">Oferta</span>
+                    }
+                  </div>
+
+                  <!-- Favorite Button -->
+                  <button (click)="toggleFavorite(product.id); $event.stopPropagation()"
+                          class="absolute top-3 right-3 p-2 bg-white/80 hover:bg-white rounded-full">
+                    <span class="material-icons" [class.text-red-500]="favorites.includes(product.id)" [class.text-gray-600]="!favorites.includes(product.id)">
+                      {{ favorites.includes(product.id) ? 'favorite' : 'favorite_border' }}
+                    </span>
+                  </button>
+
+                  <!-- Quick Add to Cart -->
+                  <div class="absolute inset-x-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-lg hover:bg-opacity-90">
+                      <span class="material-icons">shopping_cart</span>
+                      Agregar al Carrito
+                    </button>
+                  </div>
+                </div>
+
+                <div class="p-4">
+                  <div class="mb-2">
+                    <span class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wide">{{ product.category }}</span>
+                  </div>
+
+                  <h3 class="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">{{ product.name }}</h3>
+
+                  <!-- Rating -->
+                  <div class="flex items-center gap-2 mb-3">
+                    <div class="flex">
+                      @for (star of getStars(product.rating); track $index) {
+                        <span class="material-icons text-yellow-400" [class.text-opacity-50]="star === 1" [class.text-gray-300]="star === 0">
+                          {{ star === 2 ? 'star' : (star === 1 ? 'star_half' : 'star_border') }}
+                        </span>
+                      }
+                    </div>
+                    <span class="text-sm text-gray-600 dark:text-gray-400">
+                      {{ product.rating }} ({{ product.reviews }})
+                    </span>
+                  </div>
+
+                  <!-- Price -->
+                  <div class="flex items-center gap-2">
+                    <span class="text-xl font-bold text-gray-900 dark:text-white">${{ product.price }}</span>
+                    @if (product.originalPrice) {
+                      <span class="text-sm text-gray-500 dark:text-gray-400 line-through">${{ product.originalPrice }}</span>
+                      <span class="text-sm text-green-600 dark:text-green-400 font-medium">
+                        {{ ((product.originalPrice - product.price) / product.originalPrice * 100) | number:'1.0-0' }}% OFF
+                      </span>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- Load More Button -->
+          <div class="text-center mt-12">
+            <button class="px-8 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:border-primary dark:hover:border-secondary hover:text-primary dark:hover:text-secondary transition-colors">
+              Cargar Más Productos
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
