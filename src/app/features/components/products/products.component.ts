@@ -25,7 +25,10 @@ interface Filters {
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule, 
+    FormsModule
+  ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -46,7 +49,7 @@ export default class ProductsComponent {
       name: "Wireless Bluetooth Headphones",
       price: 79.99,
       originalPrice: 99.99,
-      image: "/assets/images/products/placeholder.svg",
+      image: "/assets/images/auth/Auth.png",
       rating: 4.5,
       reviews: 128,
       category: "Electronics",
@@ -56,7 +59,7 @@ export default class ProductsComponent {
       id: 2,
       name: "Premium Cotton T-Shirt",
       price: 29.99,
-      image: "/assets/images/products/placeholder.svg",
+      image: "/assets/images/auth/Auth.png",
       rating: 4.8,
       reviews: 89,
       category: "Clothing",
@@ -67,7 +70,7 @@ export default class ProductsComponent {
       id: 3,
       name: "Premium Cotton T-Shirt",
       price: 29.99,
-      image: "/assets/images/products/placeholder.svg",
+      image: "/assets/images/auth/Auth.png",
       rating: 4.8,
       reviews: 89,
       category: "Clothing",
@@ -77,7 +80,7 @@ export default class ProductsComponent {
       id: 4,
       name: "Premium Cotton T-Shirt",
       price: 29.99,
-      image: "/assets/images/products/placeholder.svg",
+      image: "/assets/images/auth/Auth.png",
       rating: 4.8,
       reviews: 89,
       category: "Clothing",
@@ -87,7 +90,7 @@ export default class ProductsComponent {
       id: 5,
       name: "Premium Cotton T-Shirt",
       price: 29.99,
-      image: "/assets/images/products/placeholder.svg",
+      image: "/assets/images/auth/Auth.png",
       rating: 4.8,
       reviews: 89,
       category: "Clothing",
@@ -97,7 +100,7 @@ export default class ProductsComponent {
       id: 6,
       name: "Premium Cotton T-Shirt",
       price: 29.99,
-      image: "/assets/images/products/placeholder.svg",
+      image: "/assets/images/auth/Auth.png",
       rating: 4.8,
       reviews: 89,
       category: "Clothing",
@@ -110,31 +113,21 @@ export default class ProductsComponent {
 
   get filteredProducts(): Product[] {
     return this.products.filter(product => {
-      // Filter by category
-      if (this.filters.categories.length > 0 && !this.filters.categories.includes(product.category)) {
+      if (this.filters.categories.length > 0 && !this.filters.categories.includes(product.category))
         return false;
-      }
 
-      // Filter by price range
       const price = product.price;
-      if (price < this.filters.priceRange[0] || price > this.filters.priceRange[1]) {
+      if (price < this.filters.priceRange[0] || price > this.filters.priceRange[1])
         return false;
-      }
 
-      // Filter by rating
-      if (product.rating < this.filters.minRating) {
+      if (product.rating < this.filters.minRating)
         return false;
-      }
 
-      // Filter by new products
-      if (this.filters.isNew && !product.isNew) {
+      if (this.filters.isNew && !product.isNew)
         return false;
-      }
 
-      // Filter by sale products
-      if (this.filters.isSale && !product.isSale) {
+      if (this.filters.isSale && !product.isSale)
         return false;
-      }
 
       return true;
     });
@@ -172,6 +165,7 @@ export default class ProductsComponent {
   handlePriceRangeChange(value: [number, number]): void {
     this.filters.priceRange = value;
   }
+  
   handleRatingChange(rating: number, event: Event): void {
     const target = event.target as HTMLInputElement | null;
     if (!target) return;

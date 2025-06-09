@@ -7,13 +7,13 @@
           <p class="text-gray-600 dark:text-gray-400 mt-1">{{ filteredProducts.length }} productos encontrados</p>
         </div>
         <div class="flex items-center gap-4">
-          <button (click)="showFilters = !showFilters" class="cursor-pointer lg:hidden flex items-center gap-2 px-4 py-2 text-sm font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-white border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <button (click)="showFilters = !showFilters" class="cursor-pointer lg:hidden flex items-center gap-2 px-4 py-2 text-sm font-medium bg-white dark:bg-gray-700 text-gray-700 dark:text-white border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-hidden focus:ring-3 focus:ring-primary dark:focus:ring-secondary">
             <span class="material-icons text-lg">filter_list</span> Filtros
             @if (activeFiltersCount > 0) {
               <span class="px-2 py-1 text-xs bg-primary text-white dark:bg-secondary dark:text-black rounded-full">{{ activeFiltersCount }}</span>
             }
           </button>
-          <select class="cursor-pointer border border-gray-300 dark:border-gray-600 px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-hidden">
+          <select class="cursor-pointer border border-gray-300 dark:border-gray-600 px-4 py-2 bg-white dark:bg-gray-700 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-hidden focus:ring-3 focus:ring-primary dark:focus:ring-secondary">
             <option>Ordenar por</option>
             <option>Precio: Menor a Mayor</option>
             <option>Precio: Mayor a Menor</option>
@@ -50,7 +50,7 @@
                     (change)="handleCategoryChange(category, $event)"
                     class="cursor-pointer border-gray-300 dark:border-gray-600 text-primary dark:text-secondary"
                   >
-                  <label [for]="category" class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:text-blue-700 dark:hover:text-blue-400">
+                  <label [for]="category" class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:text-blue-600 transition-all">
                     {{ category }}
                   </label>
                 </div>
@@ -123,7 +123,6 @@
         </div>
       </div>
 
-      <!-- Products Grid -->
       <div class="flex-1">
         @if (filteredProducts.length === 0) {
           <div class="text-center py-12">
@@ -137,37 +136,23 @@
         } @else {
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @for (product of filteredProducts; track product.id) {
-              <div class="group bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+              <div class="group bg-white dark:bg-gray-800 shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
                 <div class="relative">
                   <img [src]="product.image"
-                       [alt]="product.name"
-                       class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300">
+                    [alt]="product.name"
+                    class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  >
 
                   <!-- Badges -->
-                  <div class="absolute top-3 left-3 flex flex-col gap-2">
+                  <div class="absolute top-3 left-3 flex flex-row gap-2">
                     @if (product.isNew) {
-                      <span class="px-2 py-1 text-xs font-medium bg-green-500 text-white rounded-full">Nuevo</span>
+                      <span class="px-2 py-1 text-xs font-medium bg-green-500 text-white">Nuevo</span>
                     }
                     @if (product.isSale) {
-                      <span class="px-2 py-1 text-xs font-medium bg-red-500 text-white rounded-full">Oferta</span>
+                      <span class="px-2 py-1 text-xs font-medium bg-red-500 text-white">Oferta</span>
                     }
-                  </div>
-
-                  <!-- Favorite Button -->
-                  <button (click)="toggleFavorite(product.id); $event.stopPropagation()"
-                          class="absolute top-3 right-3 p-2 bg-white/80 hover:bg-white rounded-full">
-                    <span class="material-icons" [class.text-red-500]="favorites.includes(product.id)" [class.text-gray-600]="!favorites.includes(product.id)">
-                      {{ favorites.includes(product.id) ? 'favorite' : 'favorite_border' }}
-                    </span>
-                  </button>
-
-                  <!-- Quick Add to Cart -->
-                  <div class="absolute inset-x-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-lg hover:bg-opacity-90">
-                      <span class="material-icons">shopping_cart</span>
-                      Agregar al Carrito
-                    </button>
-                  </div>
+                  </div>                    
                 </div>
 
                 <div class="p-4">
@@ -178,7 +163,7 @@
                   <h3 class="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">{{ product.name }}</h3>
 
                   <!-- Rating -->
-                  <div class="flex items-center gap-2 mb-3">
+                  <div class="flex items-center gap-2 mb-2">
                     <div class="flex">
                       @for (star of getStars(product.rating); track $index) {
                         <span class="material-icons text-yellow-400" [class.text-opacity-50]="star === 1" [class.text-gray-300]="star === 0">
@@ -192,7 +177,7 @@
                   </div>
 
                   <!-- Price -->
-                  <div class="flex items-center gap-2">
+                  <div class="flex items-center gap-2 mb-4">
                     <span class="text-xl font-bold text-gray-900 dark:text-white">${{ product.price }}</span>
                     @if (product.originalPrice) {
                       <span class="text-sm text-gray-500 dark:text-gray-400 line-through">${{ product.originalPrice }}</span>
@@ -200,6 +185,24 @@
                         {{ ((product.originalPrice - product.price) / product.originalPrice * 100) | number:'1.0-0' }}% OFF
                       </span>
                     }
+                  </div>
+
+                  <!-- Action Buttons -->
+                  <div class="flex gap-2">                    
+                    <button (click)="toggleFavorite(product.id); $event.stopPropagation()"
+                      class="cursor-pointer flex-none w-12 h-12 flex items-center justify-center"
+                    >
+                      <span class="material-icons scale-[1.5] text-gray-300 dark:text-white hover:text-gray-500 transition-colors" 
+                        [class.!text-red-500]="favorites.includes(product.id)"
+                      >
+                        {{ favorites.includes(product.id) ? 'favorite' : 'favorite_border' }}
+                      </span>
+                    </button>
+
+                    <button class="cursor-pointer flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-primary dark:bg-secondary text-white dark:text-black hover:bg-primary/80 dark:hover:bg-secondary/80 transition-colors">
+                      <span class="material-icons-outlined">shopping_cart</span>
+                      Agregar al Carrito
+                    </button>
                   </div>
                 </div>
               </div>
