@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 
 import { AuthService } from '../../../core/services/auth/auth.service';
@@ -9,12 +9,15 @@ import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
 import { AvatarService } from '../../../account/services/avatar/avatar.service';
 import { environment } from '../../../../environments/environment.development';
 import { ProfileService } from '../../../account/services/profile/profile.service';
+import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 
 @Component({
   selector: 'app-header',
   imports: [
     NgClass,
     RouterLink,
+    RouterLinkActive,
+    DarkModeToggleComponent
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -22,9 +25,9 @@ import { ProfileService } from '../../../account/services/profile/profile.servic
 export class HeaderComponent implements OnInit, OnDestroy {
   logo = environment.darkLogo;
   avatar: string = 'assets/images/avatar/Avatar.png';
+  email = environment.email;
 
   private avatarSubscription: Subscription | undefined;
-
   private unsubscribe$ = new Subject<void>();
   
   isAccountMenuOpen = false;
@@ -54,14 +57,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.darkModeService.darkMode$.subscribe(darkMode => {
       this.logo = darkMode ? environment.lightLogo : environment.darkLogo;
-      this.changeDetectorRef.detectChanges();   // Forzar a la detención del cambio del logo en el ciclo de vida
+      this.changeDetectorRef.detectChanges();
     });
   }
 
   ngOnDestroy(): void {
-    if (this.avatarSubscription)
+    if (this.avatarSubscription) {
       this.avatarSubscription.unsubscribe();
-
+    }
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
@@ -76,7 +79,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   signOut() {
     var alertBody = null;
-
     this.authService.signOut().subscribe({
       next: (response) => {
         alertBody = {
@@ -85,7 +87,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
           message: response.message,
         }
         this.profile = null;
-        // this.alertService.showAlert(alertBody);
       },
       error: (response) => {
         alertBody = {
@@ -102,7 +103,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.avatarService.getAvatar().subscribe({
       next: blob => {
         const url = URL.createObjectURL(blob);
-        this.avatar = url; // Establecer la URL inicial
+        this.avatar = url;
       },
       error: (response) => {
         console.error('Error al cargar el avatar: ', response);

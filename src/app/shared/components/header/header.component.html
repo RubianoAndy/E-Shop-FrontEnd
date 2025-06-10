@@ -1,52 +1,127 @@
-<header class="bg-gray-50 dark:bg-gray-900 max-h-[70px]">
-    <div class="max-w-screen-2xl mx-auto flex items-center md:justify-center flex-wrap gap-5 relative py-3 px-10">
-        <a routerLink="/">
-            <img [src]="logo" alt="logo" class='w-24' loading="lazy" />
+<!-- Top bar -->
+<div class="bg-primary text-white py-2 dark:bg-gray-800">
+    <div class="max-w-screen-2xl mx-auto px-4 flex justify-between items-center text-sm">
+        <div class="flex items-center gap-4">
+            <span>📞 +57 317 873 7226</span>
+            <span>📧 {{email}}</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="hover:text-gray-300 transition-colors">
+                <span class="material-icons">language</span>
+            </button>
+            <app-dark-mode-toggle />
+        </div>
+    </div>
+</div>
+
+<!-- Main header -->
+<header class="bg-white dark:bg-gray-900 shadow-md">
+    <div class="max-w-screen-2xl mx-auto flex items-center justify-between gap-8 py-4 px-4">
+        <!-- Logo -->
+        <a routerLink="/" class="flex-shrink-0">
+            <img [src]="logo" alt="logo" class="w-24" loading="lazy" />
         </a>
 
-        @if (!profile) {
-            <div class="flex flex-row gap-6 md:absolute md:right-5 items-center max-md:ml-auto">
-                <div class="flex border-gray-700 dark:border-gray-300 border-l-2 pl-6 py-2 items-center">
-                    <button type="button" routerLink="/sign-in" class="flex flex-1 w-full justify-center text-white bg-primary hover:bg-primary font-medium px-4 py-2.5 me-2 cursor-pointer">
-                        <span class="material-icons me-2">login</span> Identifícate
-                    </button>
+        <!-- Search -->
+        <div class="flex-grow max-w-2xl hidden md:block">
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <span class="material-icons text-gray-500 dark:text-gray-400">search</span>
                 </div>
+                <input type="text" 
+                    placeholder="Buscar productos..." 
+                    class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-primary dark:focus:ring-secondary">
             </div>
-        } @else {
-            <div class="flex flex-row gap-6 md:absolute md:right-8 items-center max-md:ml-auto group relative">
-                <div class="inline-block border-gray-100 dark:border-white border-l-2 pl-6 py-2">
-                    <button type="button" class="flex cursor-pointer" aria-expanded="false" (click)="toggleAccountMenu()">
-                        <img class="w-10 h-10 rounded-lg" [src]="avatar" alt="user photo" loading="lazy">
+        </div>
+
+        <!-- Icons -->
+        <div class="flex items-center gap-4">
+            <!-- Favorites -->
+            <button class="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
+                <span class="material-icons text-gray-700 dark:text-gray-300">favorite_border</span>
+                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+            </button>
+
+            <!-- Cart -->
+            <button class="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
+                <span class="material-icons text-gray-700 dark:text-gray-300">shopping_cart</span>
+                <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+            </button>
+
+            <!-- User Menu -->
+            @if (!profile) {
+                <button routerLink="/sign-in" class="flex items-center gap-2 text-white bg-primary hover:bg-primary/90 px-4 py-2 rounded-lg transition-colors">
+                    <span class="material-icons">login</span>
+                    <span>Identifícate</span>
+                </button>
+            } @else {
+                <div class="relative">
+                    <button (click)="toggleAccountMenu()" class="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800 p-2 rounded-full">
+                        <img [src]="avatar" alt="User avatar" class="w-8 h-8 rounded-full">
                     </button>
-            
-                    <div class="fixed inset-0 z-10 h-full transition-opacity duration-500" [ngClass]="{'opacity-100 visible': isAccountMenuOpen, 'opacity-0 invisible': !isAccountMenuOpen}">
-                        <div class="fixed inset-0 bg-black/50 border-b border-gray-200" (click)="toggleAccountMenu()">
+                    
+                    <!-- Dropdown backdrop -->
+                    <div class="fixed inset-0 z-10 h-full transition-opacity duration-500" 
+                        [ngClass]="{'opacity-100 visible': isAccountMenuOpen, 'opacity-0 invisible': !isAccountMenuOpen}"
+                        (click)="toggleAccountMenu()">
+                    </div>
+
+                    <!-- Dropdown menu -->
+                    <div class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-20 overflow-hidden transition-all duration-200"
+                         [ngClass]="{'opacity-100 visible translate-y-0': isAccountMenuOpen, 'opacity-0 invisible -translate-y-2': !isAccountMenuOpen}">
+                        <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                            <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ profile?.name_1 }} {{ profile?.lastname_1 }}</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 truncate">{{ profile?.email || 'Email no disponible' }}</p>
+                        </div>
+                        <div class="py-2">
+                            <a routerLink="/account" (click)="toggleAccountMenu()" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
+                                <span class="material-icons mr-3 text-gray-500">person</span>
+                                Mi cuenta
+                            </a>
+                            <a routerLink="/account/settings" (click)="toggleAccountMenu()" class="flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
+                                <span class="material-icons mr-3 text-gray-500">settings</span>
+                                Configuración
+                            </a>
+                            <button (click)="signOut()" class="w-full flex items-center px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
+                                <span class="material-icons mr-3 text-gray-500">logout</span>
+                                Cerrar sesión
+                            </button>
                         </div>
                     </div>
-            
-                    <div id="dropdown-user" [ngClass]="{'max-h-[500px] opacity-100': isAccountMenuOpen, 'max-h-0 opacity-0': !isAccountMenuOpen}" 
-                    class="z-10 overflow-hidden transition-all duration-500 absolute right-0 mt-2 text-lg list-none bg-white dark:bg-gray-900 shadow-lg border border-gray-100 dark:border-gray-700">
-                        <div class="px-4 py-3 border-b border-gray-100 dark:border-gray-700" role="none">
-                            <p class="text-sm font-semibold text-primary dark:text-secondary" role="none">{{ profile?.name_1 }} {{ profile?.lastname_1 }}</p>
-                            <p class="text-sm text-gray-900 dark:text-white truncate" role="none">{{ profile?.email || 'Email no disponible' }}</p>
-                        </div>
-            
-                        <ul class="py-1 text-sm text-black dark:text-white" role="none">
-                            <li>
-                                <button routerLink="/account" (click)="toggleAccountMenu()" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left cursor-pointer" role="menuitem">
-                                    <span class="material-icons-outlined me-2 text-primary dark:text-secondary">settings</span> Configuración
-                                </button>
-                            </li>
-            
-                            <li>
-                                <button (click)="signOut()" class="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 w-full text-left cursor-pointer" role="menuitem">
-                                    <span class="material-icons me-2 text-primary dark:text-secondary">logout</span> Cerrar sesión
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
 </header>
+
+<!-- Navigation -->
+<nav class="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+    <div class="max-w-screen-2xl mx-auto px-4">
+        <ul class="flex items-center gap-8">
+            <li>
+                <button class="flex items-center gap-2 px-4 py-3 text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-secondary transition-colors">
+                    <span class="material-icons">menu</span>
+                    <span>Categorías</span>
+                </button>
+            </li>
+            <li>
+                <a routerLink="/" routerLinkActive="text-primary dark:text-secondary" [routerLinkActiveOptions]="{exact: true}" 
+                   class="px-4 py-3 text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-secondary transition-colors inline-block">
+                    Inicio
+                </a>
+            </li>
+            <li>
+                <a routerLink="/products" routerLinkActive="text-primary dark:text-secondary"
+                   class="px-4 py-3 text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-secondary transition-colors inline-block">
+                    Productos
+                </a>
+            </li>
+            <li>
+                <a routerLink="/contact" routerLinkActive="text-primary dark:text-secondary"
+                   class="px-4 py-3 text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-secondary transition-colors inline-block">
+                    Contacto
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
