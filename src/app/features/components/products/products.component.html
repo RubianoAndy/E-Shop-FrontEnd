@@ -143,28 +143,30 @@
                     class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   >
-
-                  <!-- Badges -->
-                  <div class="absolute top-3 left-3 flex flex-row gap-2">
-                    @if (product.isNew) {
-                      <span class="px-2 py-1 text-xs font-medium bg-green-500 text-white">Nuevo</span>
-                    }
-                    @if (product.isSale) {
-                      <span class="px-2 py-1 text-xs font-medium bg-red-500 text-white">Oferta</span>
-                    }
-                  </div>                    
                 </div>
 
                 <div class="p-4">
+                  @if (product.isNew || product.isSale) {
+                    <div class="flex gap-2 mb-3">
+                      @if (product.isNew) {
+                        <span class="px-2 py-1 text-xs font-medium bg-green-500 text-white rounded">Nuevo</span>
+                      }
+                      @if (product.isSale) {
+                        <span class="px-2 py-1 text-xs font-medium bg-red-500 text-white rounded">Oferta</span>
+                      }
+                    </div>
+                  }
+
                   <div class="mb-2">
                     <span class="text-sm text-gray-500 dark:text-gray-400 uppercase tracking-wide">{{ product.category }}</span>
                   </div>
 
-                  <h3 class="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">{{ product.name }}</h3>
-
-                  <!-- Rating -->
+                  <h3 class="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">{{ product.name }}</h3>                  <!-- Rating -->
                   <div class="flex items-center gap-2 mb-2">
-                    <div class="flex">
+                    <div class="flex items-center">
+                      <span class="text-base font-semibold text-gray-600 dark:text-gray-400 mr-1">
+                        {{ product.rating }}
+                      </span>
                       @for (star of getStars(product.rating); track $index) {
                         <span class="material-icons text-yellow-400" [class.text-opacity-50]="star === 1" [class.text-gray-300]="star === 0">
                           {{ star === 2 ? 'star' : (star === 1 ? 'star_half' : 'star_border') }}
@@ -172,7 +174,7 @@
                       }
                     </div>
                     <span class="text-sm text-gray-600 dark:text-gray-400">
-                      {{ product.rating }} ({{ product.reviews }})
+                      ({{ product.reviews }})
                     </span>
                   </div>
 
