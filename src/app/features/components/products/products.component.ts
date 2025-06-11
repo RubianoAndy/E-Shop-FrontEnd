@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CategoriesService } from '../../../account/services/categories/categories.service';
 
 interface Product {
   id: number;
@@ -10,7 +11,7 @@ interface Product {
   image: string;
   rating: number;
   reviews: number;
-  category: string;
+  category: number;
   isNew?: boolean;
   isSale?: boolean;
 }
@@ -33,6 +34,8 @@ interface Filters {
   styleUrl: './products.component.css'
 })
 export default class ProductsComponent {
+  categories: any[] = [];
+
   favorites: number[] = [];
   showFilters: boolean = false;
   filters: Filters = {
@@ -52,7 +55,7 @@ export default class ProductsComponent {
       image: "/assets/images/auth/Auth.png",
       rating: 4.5,
       reviews: 128,
-      category: "Electronics",
+      category: 1,
       isSale: true,
     },
     {
@@ -62,7 +65,7 @@ export default class ProductsComponent {
       image: "/assets/images/auth/Auth.png",
       rating: 4.8,
       reviews: 89,
-      category: "Clothing",
+      category: 1,
       isNew: true,
       isSale: true,
     },
@@ -73,7 +76,7 @@ export default class ProductsComponent {
       image: "/assets/images/auth/Auth.png",
       rating: 4.8,
       reviews: 89,
-      category: "Clothing",
+      category: 2,
       isNew: true,
     },
     {
@@ -83,7 +86,7 @@ export default class ProductsComponent {
       image: "/assets/images/auth/Auth.png",
       rating: 4.8,
       reviews: 89,
-      category: "Clothing",
+      category: 2,
       isNew: true,
     },
     {
@@ -93,7 +96,7 @@ export default class ProductsComponent {
       image: "/assets/images/auth/Auth.png",
       rating: 4.8,
       reviews: 89,
-      category: "Clothing",
+      category: 3,
       isNew: true,
     },
     {
@@ -103,17 +106,30 @@ export default class ProductsComponent {
       image: "/assets/images/auth/Auth.png",
       rating: 4.8,
       reviews: 89,
-      category: "Clothing",
+      category: 3,
       isNew: true,
     },
   ];
 
-  categories = ["Electronics", "Clothing", "Accessories", "Food & Beverage", "Home & Garden", "Sports & Fitness"];
   maxPrice = Math.max(...this.products.map(p => p.originalPrice || p.price));
+
+  constructor(
+    private categoriesService: CategoriesService,
+  ) {
+    this.getCategories();
+  }
+
+  async getCategories() {
+    await this.categoriesService.getCategoriesSmall().subscribe(
+      (response) => {
+        this.categories = response;
+      }
+    )
+  }
 
   get filteredProducts(): Product[] {
     return this.products.filter(product => {
-      if (this.filters.categories.length > 0 && !this.filters.categories.includes(product.category))
+      if (this.filters.categories.length > 0 && !this.filters.categories.includes(product.category.toString()))
         return false;
 
       const price = product.price;
@@ -149,13 +165,12 @@ export default class ProductsComponent {
       this.favorites.splice(index, 1);
     }
   }
-
-  handleCategoryChange(category: string, event: Event): void {
+  handleCategoryChange(category: any, event: Event): void {
     const checkbox = event.target as HTMLInputElement;
     if (checkbox.checked) {
-      this.filters.categories.push(category);
+      this.filters.categories.push(category.id.toString());
     } else {
-      const index = this.filters.categories.indexOf(category);
+      const index = this.filters.categories.indexOf(category.id.toString());
       if (index !== -1) {
         this.filters.categories.splice(index, 1);
       }

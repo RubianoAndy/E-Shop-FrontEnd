@@ -43,15 +43,14 @@
             <h3 class="font-medium text-black dark:text-white mb-3">Categorías</h3>
             <div class="flex flex-col gap-2">
               @for (category of categories; track category) {
-                <div class="flex items-center gap-2">
-                  <input type="checkbox" 
-                    [id]="category"
-                    [checked]="filters.categories.includes(category)"
+                <div class="flex items-center gap-2">                  <input type="checkbox" 
+                    [id]="'category-' + category.id"
+                    [checked]="filters.categories.includes(category.id.toString())"
                     (change)="handleCategoryChange(category, $event)"
                     class="cursor-pointer border-gray-300 dark:border-gray-600 text-primary dark:text-secondary"
                   >
-                  <label [for]="category" class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:text-blue-600 transition-all">
-                    {{ category }}
+                  <label [for]="'category-' + category.id" class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer hover:text-blue-600 transition-all">
+                    {{ category.name }}
                   </label>
                 </div>
               }
