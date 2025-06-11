@@ -43,7 +43,8 @@
             <h3 class="font-medium text-black dark:text-white mb-3">Categorías</h3>
             <div class="flex flex-col gap-2">
               @for (category of categories; track category) {
-                <div class="flex items-center gap-2">                  <input type="checkbox" 
+                <div class="flex items-center gap-2">
+                  <input type="checkbox" 
                     [id]="'category-' + category.id"
                     [checked]="filters.categories.includes(category.id.toString())"
                     (change)="handleCategoryChange(category, $event)"
@@ -67,30 +68,34 @@
               </div>
             </div>
           </div>
-
+          
           <!-- Rating Filter -->
           <div class="mb-6">
-            <h3 class="font-medium text-gray-900 dark:text-white mb-3">Calificación Mínima</h3>
-            <div class="space-y-2">
-              @for (rating of [4, 3, 2, 1]; track rating) {
-                <div class="flex items-center gap-2">
-                  <input type="checkbox"
-                    [id]="'rating-' + rating"
-                    [checked]="filters.minRating === rating"
-                    (change)="handleRatingChange(rating, $event)"
-                    class="rounded-sm border-gray-300 dark:border-gray-600 text-primary dark:text-secondary focus:ring-primary dark:focus:ring-secondary"
-                  >
-                  <label [for]="'rating-' + rating" class="flex items-center cursor-pointer">
-                    <div class="flex mr-2">
-                      @for (star of getStars(rating); track $index) {
-                        <span class="material-icons text-yellow-400" [class.text-opacity-50]="star === 1" [class.text-gray-300]="star === 0">
-                          {{ star === 2 ? 'star' : (star === 1 ? 'star_half' : 'star_border') }}
-                        </span>
-                      }
-                    </div>
-                    <span class="text-sm text-gray-700 dark:text-gray-300">y más</span>
-                  </label>
+            <h3 class="font-medium text-gray-900 dark:text-white mb-3">Calificación</h3>
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center gap-1">
+                @for (star of [1,2,3,4,5]; track star) {
+                  <button (click)="handleRatingChange(star)"
+                          (mouseenter)="hoverRating = star"
+                          (mouseleave)="hoverRating = 0"
+                          class="cursor-pointer p-1 hover:scale-110 transition-transform">
+                    <span class="material-icons scale-150" 
+                          [class.text-yellow-400]="star <= (hoverRating || filters.minRating)"
+                          [class.text-gray-300]="star > (hoverRating || filters.minRating)">
+                      star
+                    </span>
+                  </button>
+                }
+              </div>
+              @if (filters.minRating > 0) {
+                <div class="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                  <span class="mr-2">{{ filters.minRating }} estrellas o más</span>
+                  <button (click)="handleRatingChange(0)" class="hover:text-primary dark:hover:text-secondary">
+                    <span class="material-icons text-sm align-middle">close</span>
+                  </button>
                 </div>
+              } @else {
+                <span class="text-sm text-gray-600 dark:text-gray-400">Selecciona una calificación</span>
               }
             </div>
           </div>

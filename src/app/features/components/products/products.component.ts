@@ -35,9 +35,9 @@ interface Filters {
 })
 export default class ProductsComponent {
   categories: any[] = [];
-
   favorites: number[] = [];
   showFilters: boolean = false;
+  hoverRating: number = 0;
   filters: Filters = {
     categories: [],
     priceRange: [0, 300],
@@ -180,11 +180,9 @@ export default class ProductsComponent {
   handlePriceRangeChange(value: [number, number]): void {
     this.filters.priceRange = value;
   }
-  
-  handleRatingChange(rating: number, event: Event): void {
-    const target = event.target as HTMLInputElement | null;
-    if (!target) return;
-    this.filters.minRating = target.checked ? rating : 0;
+
+  handleRatingChange(rating: number): void {
+    this.filters.minRating = rating;
   }
 
   clearFilters(): void {
