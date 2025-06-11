@@ -7,8 +7,10 @@ import { AuthService } from '../../../core/services/auth/auth.service';
 import { AlertService } from '../../services/alert/alert.service';
 import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
 import { AvatarService } from '../../../account/services/avatar/avatar.service';
-import { environment } from '../../../../environments/environment.development';
 import { ProfileService } from '../../../account/services/profile/profile.service';
+
+import { environment } from '../../../../environments/environment.development';
+
 import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 
 @Component({
@@ -26,6 +28,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logo = environment.darkLogo;
   avatar: string = 'assets/images/avatar/Avatar.png';
   email = environment.email;
+
+  options = [
+    { label: 'Inicio', url: '/' },
+    { label: 'Faq', url: '/faq' },
+    { label: 'Productos', url: '/products' },
+    { label: 'Contacto', url: '/contact' },
+  ];
 
   private avatarSubscription: Subscription | undefined;
   private unsubscribe$ = new Subject<void>();

@@ -104,24 +104,14 @@
                     <span>Categorías</span>
                 </button>
             </li>
-            <li>
-                <a routerLink="/" routerLinkActive="text-primary dark:text-secondary" [routerLinkActiveOptions]="{exact: true}" 
-                   class="px-4 py-3 text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-secondary transition-colors inline-block">
-                    Inicio
-                </a>
-            </li>
-            <li>
-                <a routerLink="/products" routerLinkActive="text-primary dark:text-secondary"
-                   class="px-4 py-3 text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-secondary transition-colors inline-block">
-                    Productos
-                </a>
-            </li>
-            <li>
-                <a routerLink="/contact" routerLinkActive="text-primary dark:text-secondary"
-                   class="px-4 py-3 text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-secondary transition-colors inline-block">
-                    Contacto
-                </a>
-            </li>
+            @for(option of options; track $index) {
+                <li>
+                    <a [routerLink]="option.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                    class="px-4 py-3 text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-secondary transition-colors inline-block">
+                        {{ option.label }}
+                    </a>
+                </li>
+            }
         </ul>
     </div>
 </nav>
