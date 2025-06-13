@@ -24,9 +24,21 @@ const routes: Routes = [{
       canActivate: [roleGuard],
     },
     {
-      path: 'products', loadComponent: () => import('./components/products/products.component'),
-      data: { breadcrumb: 'Productos', roles: [superAdmin, admin] },
-      canActivate: [roleGuard],
+      path: 'products',
+      children: [
+        {
+          path: '',
+          loadComponent: () => import('./components/products/products.component'),
+          data: { breadcrumb: 'Productos', roles: [superAdmin, admin] },
+          canActivate: [roleGuard],
+        },
+        {
+          path: ':id',
+          loadComponent: () => import('./components/products/product/product.component'),
+          data: { breadcrumb: 'Producto', roles: [superAdmin, admin] },
+          canActivate: [roleGuard],
+        }
+      ],
     },
     {
       path: 'roles', loadComponent: () => import('./components/roles/roles.component'),
