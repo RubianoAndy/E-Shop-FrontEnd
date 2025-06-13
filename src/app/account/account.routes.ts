@@ -39,6 +39,8 @@ const routes: Routes = [{
           canActivate: [roleGuard],
         }
       ],
+      data: { breadcrumb: 'Productos', roles: [superAdmin, admin] },
+      canActivate: [roleGuard],
     },
     {
       path: 'roles', loadComponent: () => import('./components/roles/roles.component'),
