@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CategoriesService } from '../../../account/services/categories/categories.service';
 
@@ -25,15 +25,15 @@ interface Filters {
 }
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-products-list',
   imports: [
-    CommonModule, 
-    FormsModule
+    CommonModule,
+    FormsModule,
   ],
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.css'
+  templateUrl: './products-list.component.html',
+  styleUrl: './products-list.component.css'
 })
-export default class ProductsComponent {
+export default class ProductsListComponent {
   categories: any[] = [];
   favorites: number[] = [];
   showFilters: boolean = false;
