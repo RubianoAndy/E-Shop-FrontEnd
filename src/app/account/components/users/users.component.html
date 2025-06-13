@@ -188,13 +188,13 @@
     </div>
 
     @if (isModalOpen) {
-        <div class="flex fixed inset-0 z-0 items-center justify-center p-4 bg-gray-900/50 dark:bg-white/50">
+        <div class="flex fixed inset-0 z-10 items-center justify-center p-4 bg-gray-900/50 dark:bg-white/50">
             <div class="w-full max-w-3xl bg-white dark:bg-gray-950 shadow-lg">
                 <div class="relative flex items-center p-4 text-primary dark:text-secondary">
                     <h2 class="text-3xl text-center justify-center font-semibold mb-4">Usuario</h2>
 
                     <button type="button" (click)="closeUserInformation()" class="cursor-pointer absolute top-0 right-0 mt-4 mr-4 hover:text-red-500 w-6 h-6 transition duration-200">
-                        <span class="material-icons text-2xl font-bold">close</span>
+                        <span class="material-icons scale-150 font-bold">close</span>
                     </button>
                 </div>
 
