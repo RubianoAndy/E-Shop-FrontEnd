@@ -24,8 +24,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   accessToken: string | null = null;
 
   adminMenuOptions = [
-    { label: 'Categorías', url: '/account/categories', icon: 'category' },
     { label: 'Productos', url: '/account/products', icon: 'shopping_bag' },
+    { label: 'Categorías', url: '/account/categories', icon: 'category' },
   ];
 
   superAdminMenuOptions = [
