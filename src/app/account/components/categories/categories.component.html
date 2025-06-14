@@ -27,7 +27,7 @@
         </div>
         
         <div class="flex flex-col sm:flex-row items-center justify-end w-full md:w-1/3 gap-3">
-            <button type="button" (click)="openCategoryInformation('0')" class="cursor-pointer w-full flex items-center justify-center py-2 px-4 text-sm font-medium text-white bg-primary hover:bg-green-800 transition duration-200">
+            <button type="button" [routerLink]="['/account/categories', 0]" class="cursor-pointer w-full flex items-center justify-center py-2 px-4 text-sm font-medium text-white bg-primary hover:bg-green-800 transition duration-200">
                 <span class="material-icons mr-2">add</span> Nuevo
             </button>
 
@@ -78,8 +78,8 @@
                                     </td>
 
                                     <td class="px-4 py-4 text-sm text-black">
-                                        <button class="cursor-pointer text-blue-600 hover:text-secondary mr-4 transition duration-200" (click)="openCategoryInformation(category.id)"><span class="material-icons-outlined">edit</span></button>
-                                        <button class="cursor-pointer text-red-500 hover:text-secondary transition duration-200" (click)="openDeleteCategory(category.id)"><span class="material-icons-outlined">delete</span></button>
+                                        <button [routerLink]="['/account/categories', category.id]" class="cursor-pointer text-blue-600 hover:text-secondary mr-4 transition duration-200" ><span class="material-icons-outlined">edit</span></button>
+                                        <button (click)="openDeleteCategory(category.id)" class="cursor-pointer text-red-500 hover:text-secondary transition duration-200"><span class="material-icons-outlined">delete</span></button>
                                     </td>
                                 </tr>
                             }

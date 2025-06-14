@@ -19,7 +19,21 @@ const routes: Routes = [{
       data: { breadcrumb: 'Perfil' }
     },
     {
-      path: 'categories', loadComponent: () => import('./components/categories/categories.component'),
+      path: 'categories',
+      children: [
+        {
+          path: '',
+          loadComponent: () => import('./components/categories/categories.component'),
+          data: { breadcrumb: 'Categorías', roles: [superAdmin, admin] },
+          canActivate: [roleGuard],
+        },
+        {
+          path: ':id',
+          loadComponent: () => import('./components/categories/category/category.component'),
+          data: { breadcrumb: 'Categoría', roles: [superAdmin, admin] },
+          canActivate: [roleGuard],
+        },
+      ],
       data: { breadcrumb: 'Categorías', roles: [superAdmin, admin] },
       canActivate: [roleGuard],
     },

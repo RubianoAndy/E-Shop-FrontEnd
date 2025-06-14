@@ -5,10 +5,12 @@ import { SubjectFilter } from '../../interfaces/subject-filter/subject-filter';
 
 import { CategoriesService } from '../../services/categories/categories.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
   imports: [
+    RouterLink,
     DatePipe,
     NgClass,
   ],
@@ -44,7 +46,6 @@ export default class CategoriesComponent implements OnInit {
   endPage: number = 0;
 
   isDeleteModalOpen: boolean = false;
-  isCategoryModalOpen: boolean = false;
 
   categoryId: number | null = null;
 
@@ -153,14 +154,8 @@ export default class CategoriesComponent implements OnInit {
     }
   }
 
-  openCategoryInformation(categoryId: string) {
-    this.categoryId = Number(categoryId);
-    this.isCategoryModalOpen = true;
-  }
-
   closeCategoryInformation() {
     this.categoryId = null;
-    this.isCategoryModalOpen = false;
     this.getCategories();
   }
 
