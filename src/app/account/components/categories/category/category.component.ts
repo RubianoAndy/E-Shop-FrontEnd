@@ -15,7 +15,6 @@ interface Category {
   description?: string;
   image?: CategoryImage;
   isActive: boolean;
-  parentId?: number;
 }
 
 type AccentMap = {
@@ -52,7 +51,6 @@ export default class CategoryComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3)]],
       slug: ['', [Validators.required, Validators.pattern('^[a-z0-9]+(?:-[a-z0-9]+)*$')]],
       description: [''],
-      parentId: [null],
       isActive: [true]
     });
 
@@ -69,7 +67,6 @@ export default class CategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadParentCategories();
     this.route.params.subscribe(params => {
       this.categoryId = +params['id'];
       if (this.categoryId !== 0) {
@@ -78,14 +75,6 @@ export default class CategoryComponent implements OnInit {
     });
   }
 
-  loadParentCategories(): void {
-    // TODO: Implementar carga de categorías padre
-    this.parentCategories = [
-      { id: 1, name: 'Venus Atrapamoscas', slug: 'venus-atrapamoscas', isActive: true },
-      { id: 2, name: 'Nepenthes', slug: 'nepenthes', isActive: true },
-      { id: 3, name: 'Droseras', slug: 'droseras', isActive: true }
-    ];
-  }
 
   loadCategory(): void {
     // TODO: Implementar carga de categoría para edición
