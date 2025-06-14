@@ -11,7 +11,6 @@ interface ProductImage {
 
 @Component({
   selector: 'app-product',
-  standalone: true,
   imports: [
     CommonModule,
     RouterLink,
