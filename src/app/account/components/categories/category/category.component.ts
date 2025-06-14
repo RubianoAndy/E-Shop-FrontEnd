@@ -14,7 +14,6 @@ interface Category {
   slug: string;
   description?: string;
   image?: CategoryImage;
-  isActive: boolean;
 }
 
 type AccentMap = {
@@ -51,7 +50,6 @@ export default class CategoryComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3)]],
       slug: ['', [Validators.required, Validators.pattern('^[a-z0-9]+(?:-[a-z0-9]+)*$')]],
       description: [''],
-      isActive: [true]
     });
 
     // Auto-generate slug from name
