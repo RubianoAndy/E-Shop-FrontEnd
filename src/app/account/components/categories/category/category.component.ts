@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 interface CategoryImage {
   file: File;
@@ -34,28 +34,42 @@ type AccentMap = {
 export default class CategoryComponent implements OnInit {
   categoryId: number = 0;
   categoryImage?: CategoryImage;
-  
-  form: FormGroup;
+
+  form!: FormGroup;
+
   isSubmitting = false;
   imageError = '';
+
+  isDragging = false;
 
   private readonly accentMap: AccentMap = {
     'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'ñ': 'n', 'ü': 'u'
   };
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router
-  ) {
-    this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      slug: ['', [Validators.required, Validators.pattern('^[a-z0-9]+(?:-[a-z0-9]+)*$')]],
-      description: [''],
-      hasImage: [false, [Validators.requiredTrue]]
+  ) { }
+
+  ngOnInit(): void {
+    this.createForm();
+    this.route.params.subscribe(params => {
+      this.categoryId = +params['id'];
+      if (this.categoryId !== 0) {
+        this.loadCategory();
+      }
+    });
+  }
+
+  createForm(data: any = null) {
+    this.form = this.formBuilder.group({
+      name: [data?.name || '', [ Validators.required, Validators.minLength(3), Validators.maxLength(50) ]],
+      slug: [data?.slug || '', [ Validators.required, Validators.pattern('^[a-z0-9]+(?:-[a-z0-9]+)*$'), Validators.maxLength(60) ]],
+      description: [data?.description || '', [ Validators.required, Validators.minLength(20), Validators.maxLength(500) ]],
+      hasImage: [data?.hasImage || false, [ Validators.requiredTrue ]]
     });
 
-    // Auto-generate slug from name
     this.form.get('name')?.valueChanges.subscribe(name => {
       if (name) {
         const slug = name.toLowerCase()
@@ -67,43 +81,72 @@ export default class CategoryComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.categoryId = +params['id'];
-      if (this.categoryId !== 0) {
-        this.loadCategory();
-      }
-    });
-  }
-
   loadCategory(): void {
     // TODO: Implementar carga de categoría para edición
   }
 
+  onDragEnter(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!this.categoryImage) {
+      this.isDragging = true;
+    }
+  }
+
+  onDragLeave(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragging = false;
+  }
+
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    if (!this.categoryImage) {
+      event.dataTransfer!.dropEffect = 'copy';
+    }
+  }
+
+  onDrop(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragging = false;
+    
+    if (this.categoryImage) return;
+
+    const files = event.dataTransfer?.files;
+    if (files?.length) {
+      this.processFile(files[0]);
+    }
+  }
+
   onImageSelected(event: any): void {
     const file = event.target.files?.[0];
-    if (file) {
-      if (file.size > 1024 * 1024) { // 1MB limit
-        this.imageError = 'La imagen no debe superar 1MB';
-        return;
-      }
+    if (file)
+      this.processFile(file);
+  }
 
-      if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-        this.imageError = 'Formato no permitido. Use PNG, JPEG o WEBP';
-        return;
-      }
-      
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.categoryImage = {
-          file: file,
-          preview: e.target?.result as string
-        };
-        this.form.patchValue({ hasImage: true });
-        this.imageError = '';
-      };
-      reader.readAsDataURL(file);
+  private processFile(file: File): void {
+    if (file.size > 1024 * 1024) { // 1MB limit
+      this.imageError = 'La imagen no debe superar 1MB';
+      return;
     }
+
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+      this.imageError = 'Formato no permitido. Use PNG, JPEG o WEBP';
+      return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      this.categoryImage = {
+        file: file,
+        preview: e.target?.result as string
+      };
+      this.form.patchValue({ hasImage: true });
+      this.imageError = '';
+    };
+    reader.readAsDataURL(file);
   }
 
   removeImage(): void {
@@ -118,11 +161,11 @@ export default class CategoryComponent implements OnInit {
     const errors = control.errors;
     if (errors['required']) return 'Este campo es requerido';
     if (errors['minlength']) return `Mínimo ${errors['minlength'].requiredLength} caracteres`;
+    if (errors['maxlength']) return `Máximo ${errors['maxlength'].requiredLength} caracteres`;
     if (errors['pattern']) {
       if (controlName === 'slug') return 'Solo letras minúsculas, números y guiones';
       return 'Formato inválido';
     }
-    if (errors['requiredTrue'] && controlName === 'hasImage') return 'La imagen es requerida';
     return 'Error de validación';
   }
 
@@ -135,9 +178,9 @@ export default class CategoryComponent implements OnInit {
     if (this.form.invalid) {
       Object.keys(this.form.controls).forEach(key => {
         const control = this.form.get(key);
-        if (control?.invalid)
+        if (control?.invalid) {
           control.markAsTouched();
-        
+        }
       });
       return;
     }
