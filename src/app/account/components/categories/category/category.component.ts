@@ -85,11 +85,19 @@ export default class CategoryComponent implements OnInit {
     // TODO: Implementar carga de categoría para edición
   }
 
-  onDragEnter(event: DragEvent): void {
+  /* onDragEnter(event: DragEvent): void {
     event.preventDefault();
     event.stopPropagation();
-    if (!this.categoryImage) {
+    if (!this.categoryImage)
       this.isDragging = true;
+  } */
+
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.isDragging = true;
+    if (!this.categoryImage) {
+      event.dataTransfer!.dropEffect = 'copy';
     }
   }
 
@@ -97,14 +105,6 @@ export default class CategoryComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     this.isDragging = false;
-  }
-
-  onDragOver(event: DragEvent): void {
-    event.preventDefault();
-    event.stopPropagation();
-    if (!this.categoryImage) {
-      event.dataTransfer!.dropEffect = 'copy';
-    }
   }
 
   onDrop(event: DragEvent): void {
@@ -132,8 +132,8 @@ export default class CategoryComponent implements OnInit {
       return;
     }
 
-    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-      this.imageError = 'Formato no permitido. Use PNG, JPEG o WEBP';
+    if (!['image/png', 'image/jpeg', 'image/jpg', 'image/webp'].includes(file.type)) {
+      this.imageError = 'Formato no permitido. Use PNG, JPEG, JPG o WEBP';
       return;
     }
     
@@ -178,9 +178,9 @@ export default class CategoryComponent implements OnInit {
     if (this.form.invalid) {
       Object.keys(this.form.controls).forEach(key => {
         const control = this.form.get(key);
-        if (control?.invalid) {
+        if (control?.invalid)
           control.markAsTouched();
-        }
+        
       });
       return;
     }

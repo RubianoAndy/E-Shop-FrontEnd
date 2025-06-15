@@ -14,15 +14,12 @@
     </div>
 </div>
 
-<!-- Main header -->
 <header class="bg-white dark:bg-gray-900 shadow-md">
     <div class="max-w-screen-2xl mx-auto flex items-center justify-between gap-8 py-4 px-4">
-        <!-- Logo -->
-        <a routerLink="/" class="flex-shrink-0">
+        <a routerLink="/" class="shrink-0">
             <img [src]="logo" alt="logo" class="w-24" />
         </a>
 
-        <!-- Search -->
         <div class="flex-grow max-w-2xl hidden md:block">
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -34,21 +31,17 @@
             </div>
         </div>
 
-        <!-- Icons -->
         <div class="flex items-center gap-4">
-            <!-- Favorites -->
             <button class="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
                 <span class="material-icons text-gray-700 dark:text-gray-300">favorite_border</span>
                 <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
             </button>
 
-            <!-- Cart -->
             <button class="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
                 <span class="material-icons text-gray-700 dark:text-gray-300">shopping_cart</span>
                 <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
             </button>
 
-            <!-- User Menu -->
             @if (!profile) {
                 <button routerLink="/sign-in" class="cursor-pointer flex items-center gap-2 text-white bg-primary hover:bg-primary/80 dark:bg-secondary dark:hover:bg-secondary/80 dark:text-black px-4 py-2 transition-colors">
                     <span class="material-icons">login</span>
@@ -60,13 +53,11 @@
                         <img [src]="avatar" alt="User avatar" class="w-8 h-8 rounded-full">
                     </button>
                     
-                    <!-- Dropdown backdrop -->
                     <div class="fixed inset-0 z-10 h-full transition-opacity duration-500" 
                         [ngClass]="{'opacity-100 visible': isAccountMenuOpen, 'opacity-0 invisible': !isAccountMenuOpen}"
                         (click)="toggleAccountMenu()">
                     </div>
 
-                    <!-- Dropdown menu -->
                     <div class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-20 overflow-hidden transition-all duration-200"
                          [ngClass]="{'opacity-100 visible translate-y-0': isAccountMenuOpen, 'opacity-0 invisible -translate-y-2': !isAccountMenuOpen}">
                         <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
@@ -94,8 +85,7 @@
     </div>
 </header>
 
-<!-- Navigation -->
-<nav class="bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+<nav class="bg-gray-100 dark:bg-gray-800 shadow-md">
     <div class="max-w-screen-2xl mx-auto px-4">
         <ul class="flex items-center gap-8">
             <li>

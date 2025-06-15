@@ -7,22 +7,23 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-1 flex flex-col gap-4">
                 <div class="relative aspect-square"
-                     [class.cursor-pointer]="!categoryImage"
-                     (click)="!categoryImage && fileInput.click()"
-                     (dragenter)="onDragEnter($event)"
-                     (dragleave)="onDragLeave($event)"
-                     (dragover)="onDragOver($event)"
-                     (drop)="onDrop($event)">
+                    [class.cursor-pointer]="!categoryImage"
+                    (click)="!categoryImage && fileInput.click()"
+                    (dragover)="onDragOver($event)"
+                    (dragleave)="onDragLeave($event)"
+                    (drop)="onDrop($event)"
+                >   <!-- (dragenter)="onDragEnter($event)" -->
                     <div class="w-full h-full transition-all duration-200"
-                         [ngClass]="{
-                            'border-2 border-dashed': !categoryImage,
-                            'border-red-500 dark:border-red-500': imageError && !categoryImage,
-                            'border-gray-300 dark:border-gray-600': !imageError && !categoryImage && !isDragging,
-                            'border-primary dark:border-secondary scale-[0.99] bg-primary/5 dark:bg-secondary/5': isDragging && !categoryImage
-                         }">
+                        [ngClass]="{
+                        'border-2 border-dashed': !categoryImage,
+                        'border-red-500 dark:border-red-500': imageError && !categoryImage,
+                        'border-gray-300 dark:border-gray-600': !imageError && !categoryImage && !isDragging,
+                        'border-primary dark:border-secondary scale-[1.02]': isDragging && !categoryImage
+                        }"
+                    >
                         @if (!categoryImage) {
                             <div class="w-full h-full flex flex-col items-center justify-center transition-transform"
-                                 [class.scale-95]="isDragging">
+                                [class.scale-95]="isDragging">
                                 <span class="material-icons scale-200 text-gray-400 mb-2"
                                       [class.text-primary]="isDragging"
                                       [class.dark:text-secondary]="isDragging">
@@ -39,8 +40,8 @@
                             </div>
                         } @else {
                             <img [src]="categoryImage.preview" 
-                                alt="Imagen de Categoría" 
-                                class="w-full h-full object-cover rounded-lg"
+                                alt="Imagen de categoría" 
+                                class="w-full h-full object-cover"
                             >
                             <button type="button"
                                     (click)="removeImage(); $event.stopPropagation()"
