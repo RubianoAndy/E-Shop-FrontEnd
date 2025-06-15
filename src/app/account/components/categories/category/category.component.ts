@@ -11,7 +11,7 @@ interface CategoryImage {
 interface Category {
   id?: number;
   name: string;
-  slug: string;
+  url: string;
   description?: string;
   image?: CategoryImage;
 }
@@ -64,19 +64,19 @@ export default class CategoryComponent implements OnInit {
 
   createForm(data: any = null) {
     this.form = this.formBuilder.group({
-      name: [data?.name || '', [ Validators.required, Validators.minLength(3), Validators.maxLength(50) ]],
-      slug: [data?.slug || '', [ Validators.required, Validators.pattern('^[a-z0-9]+(?:-[a-z0-9]+)*$'), Validators.maxLength(60) ]],
-      description: [data?.description || '', [ Validators.required, Validators.minLength(20), Validators.maxLength(500) ]],
+      name: [data?.name || '', [ Validators.required, Validators.minLength(3), Validators.maxLength(100) ]],
+      url: [data?.url || '', [ Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-z0-9]+(?:-[a-z0-9]+)*$') ]],
+      description: [data?.description || '', [ Validators.required, Validators.minLength(10), Validators.maxLength(500) ]],
       hasImage: [data?.hasImage || false, [ Validators.requiredTrue ]]
     });
 
     this.form.get('name')?.valueChanges.subscribe(name => {
       if (name) {
-        const slug = name.toLowerCase()
+        const url = name.toLowerCase()
           .replace(/[áéíóúñü]/g, (char: string) => this.accentMap[char] || char)
           .replace(/[^a-z0-9]+/g, '-')
           .replace(/^-+|-+$/g, '');
-        this.form.patchValue({ slug }, { emitEvent: false });
+        this.form.patchValue({ url }, { emitEvent: false });
       }
     });
   }
@@ -163,7 +163,7 @@ export default class CategoryComponent implements OnInit {
     if (errors['minlength']) return `Mínimo ${errors['minlength'].requiredLength} caracteres`;
     if (errors['maxlength']) return `Máximo ${errors['maxlength'].requiredLength} caracteres`;
     if (errors['pattern']) {
-      if (controlName === 'slug') return 'Solo letras minúsculas, números y guiones';
+      if (controlName === 'url') return 'Solo letras minúsculas, números y guiones';
       return 'Formato inválido';
     }
     return 'Error de validación';

@@ -87,20 +87,20 @@
                     </div>
 
                     <div>
-                        <label for="slug" class="block text-sm font-semibold text-black dark:text-white mb-1">
+                        <label for="url" class="block text-sm font-semibold text-black dark:text-white mb-1">
                             URL amigable <span class="text-red-500">*</span>
                         </label>
-                        <input id="slug" autocomplete="off"
+                        <input id="url" autocomplete="off"
                             type="text"
-                            formControlName="slug"
+                            formControlName="url"
                             placeholder="Ej: url-amigable"
                             [ngClass]="{
-                                'border-red-500 dark:border-red-500': form.get('slug')?.invalid && form.get('slug')?.touched
+                                'border-red-500 dark:border-red-500': form.get('url')?.invalid && form.get('url')?.touched
                             }"
                             class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600"
                         >
-                        @if (form.get('slug')?.invalid && form.get('slug')?.touched) {
-                            <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('slug') }}</p>
+                        @if (form.get('url')?.invalid && form.get('url')?.touched) {
+                            <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('url') }}</p>
                         }
                     </div>
 
