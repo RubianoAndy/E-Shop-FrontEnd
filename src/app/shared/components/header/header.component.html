@@ -22,12 +22,14 @@
 
         <div class="flex-grow max-w-2xl hidden md:block">
             <div class="relative">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span class="material-icons text-gray-500 dark:text-gray-400">search</span>
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-blue-600 dark:text-secondary">
+                    <span class="material-icons">search</span>
                 </div>
-                <input type="text" 
+                <input id="products" autocomplete="off"
+                    type="text"
                     placeholder="Buscar productos..." 
-                    class="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-primary dark:focus:ring-secondary">
+                    class="block w-full pl-10 p-2 bg-white border border-gray-300 text-black text-sm focus:outline-hidden focus:ring-3 focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-secondary"
+                >
             </div>
         </div>
 
