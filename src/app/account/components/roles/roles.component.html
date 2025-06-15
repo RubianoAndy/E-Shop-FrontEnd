@@ -9,7 +9,7 @@
                 </div>
                 <input id="roleNameFilter" type="text" autocomplete="off" placeholder="Nombre"
                     (input)="roleNameSubject.next($event)"
-                    class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-hidden focus:ring-3 focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary"
+                    class="block w-full pl-10 p-2 bg-white border border-gray-300 text-black text-sm focus:outline-hidden focus:ring-3 focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-secondary"
                 />
             </div>
         </div>
@@ -21,7 +21,7 @@
                 </div>
                 <input id="roleIdFilter" type="number" autocomplete="off" placeholder="ID"
                     (input)="roleIdSubject.next($event)"
-                    class="block w-full pl-10 p-2 bg-white border border-gray-200 text-black text-sm focus:outline-hidden focus:ring-3 focus:ring-primary dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-secondary"
+                    class="block w-full pl-10 p-2 bg-white border border-gray-300 text-black text-sm focus:outline-hidden focus:ring-3 focus:ring-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-secondary"
                 />
             </div>
         </div>
@@ -47,7 +47,7 @@
         <div class="overflow-x-auto">
             <div class="inline-block min-w-full align-middle">
                 <div class="overflow-hidden">
-                    <table class="min-w-full border-b dark:border border-gray-200 dark:border-gray-700">
+                    <table class="min-w-full border-b dark:border border-gray-300 dark:border-gray-700">
                         <thead class="bg-gray-200 dark:bg-black whitespace-nowrap dark:border-b dark:border-gray-700">
                             <tr>
                                 @for (tableFiled of tableFileds; track $index) {
