@@ -10,7 +10,7 @@
                     'border-red-500 dark:border-red-500': !form.controls['name_1'].valid && !form.controls['name_1'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['name_1'].valid && form.controls['name_1'].touched,
                     'cursor-not-allowed': form.controls['name_1'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
         </div>
 
@@ -24,7 +24,7 @@
                     'border-red-500 dark:border-red-500': !form.controls['name_2'].valid && !form.controls['name_2'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['name_2'].valid && form.controls['name_2'].touched,
                     'cursor-not-allowed': form.controls['name_2'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
         </div>
     </div>
@@ -40,7 +40,7 @@
                     'border-red-500 dark:border-red-500': !form.controls['lastname_1'].valid && !form.controls['lastname_1'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['lastname_1'].valid && form.controls['lastname_1'].touched,
                     'cursor-not-allowed': form.controls['lastname_1'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
         </div>
 
@@ -54,7 +54,7 @@
                     'border-red-500 dark:border-red-500': !form.controls['lastname_2'].valid && !form.controls['lastname_2'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['lastname_2'].valid && form.controls['lastname_2'].touched,
                     'cursor-not-allowed': form.controls['lastname_2'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
         </div>
     </div>
@@ -70,7 +70,7 @@
                     'border-red-500 dark:border-red-500': !form.controls['email'].valid && !form.controls['email'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['email'].valid && form.controls['email'].touched,
                     'cursor-not-allowed': form.controls['email'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
         </div>
     </div>
@@ -90,7 +90,7 @@
                         'border-red-500 dark:border-red-500': !form.controls['password'].valid && !form.controls['roleId'].disabled,
                         'border-green-500 dark:border-green-500': form.controls['password'].valid && form.controls['password'].touched,
                         'cursor-not-allowed': form.controls['roleId'].disabled
-                    }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
+                    }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
                 />
                 
                 <button type="button" (click)="togglePasswordVisibility()" class="absolute flex items-center inset-y-0 right-0 px-3 mt-8">
@@ -99,7 +99,7 @@
 
                 @if (isPasswordFocused) {
                     <div class="relative z-10">
-                        <div class="w-full max-w-[280px] p-4 bg-gray-100 dark:bg-gray-700 shadow-lg absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 dark:before:bg-gray-700 before:absolute before:-top-2 before:left-6">
+                        <div class="w-full max-w-[280px] p-4 bg-gray-100 dark:bg-gray-700 absolute top-2 mt-2 before:w-4 before:h-4 before:rotate-45 before:bg-gray-100 dark:before:bg-gray-700 before:absolute before:-top-2 before:left-6">
                             <div class="my-2">
                                 <div class="flex flex-col items-start text-left text-sm text-black dark:text-white">
                                     <span>La contraseña debe tener:</span>
@@ -137,7 +137,7 @@
                     'border-green-500 dark:border-green-500': form.controls['roleId'].valid && form.controls['roleId'].touched,
                     'text-gray-400 dark:text-gray-400': !form.controls['roleId'].value,
                     'cursor-not-allowed': form.controls['roleId'].disabled
-                }" class="block w-full px-1 py-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden">
+                }" class="block w-full px-1 py-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden">
                     <option value="" disabled selected>Rol</option>
                     @for (rolesOption of rolesOptions; track $index) {
                         <option [value]="rolesOption.id" class="text-black dark:text-white">{{ rolesOption.name }}</option>
@@ -156,7 +156,7 @@
                 'border-green-500 dark:border-green-500': form.controls['dniType'].valid && form.controls['dniType'].touched,
                 'text-gray-400 dark:text-gray-400': !form.controls['dniType'].value,
                 'cursor-not-allowed': form.controls['dniType'].disabled
-            }" class="block w-full px-1 py-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden">
+            }" class="block w-full px-1 py-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden">
                 <option value="" disabled selected>Tipo de documento</option>
                 @for (dniOption of dniOptions; track $index) {
                     <option [value]="dniOption.value" class="text-black dark:text-white">{{ dniOption.label }}</option>
@@ -174,7 +174,7 @@
                     'border-red-500 dark:border-red-500': !form.controls['dni'].valid && !form.controls['dni'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['dni'].valid && form.controls['dni'].touched,
                     'cursor-not-allowed': form.controls['dni'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
         </div>
     </div>
@@ -188,7 +188,7 @@
                 'border-green-500 dark:border-green-500': form.controls['prefix'].valid && form.controls['prefix'].touched,
                 'text-gray-400 dark:text-gray-400': !form.controls['prefix'].value,
                 'cursor-not-allowed': form.controls['prefix'].disabled
-            }" class="block w-full px-1 py-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden">
+            }" class="block w-full px-1 py-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden">
                 <option value="" disabled selected>Prefijo</option>
                 @for (prefixOption of prefixOptions; track $index) {
                     <option [value]="prefixOption.prefix" class="text-black dark:text-white">{{ prefixOption.name }} ({{ prefixOption.prefix }})</option>
@@ -206,7 +206,7 @@
                     'border-red-500 dark:border-red-500': !form.controls['mobile'].valid && !form.controls['mobile'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['mobile'].valid && form.controls['mobile'].touched,
                     'cursor-not-allowed': form.controls['mobile'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
         </div>
     </div>

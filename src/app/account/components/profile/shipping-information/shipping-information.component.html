@@ -1,13 +1,13 @@
 <form class="flex flex-col gap-4" [formGroup]="form" (ngSubmit)="onSubmitForm()">
     <div class="flex flex-col md:flex-row gap-4">
         <div class="w-full">
-            <label for="countryId" class="block font-semibold text-primary dark:text-secondary mb-2"> País <span class="text-red-500">*</span></label>
+            <label for="countryId" class="block font-semibold text-black dark:text-white mb-2"> País <span class="text-red-500">*</span></label>
             <select id="countryId" formControlName="countryId" (change)="changeCountry()"
             [ngClass]="{
                 'border-red-500 dark:border-red-500': !form.controls['countryId'].valid,
                 'border-green-500 dark:border-green-500': form.controls['countryId'].valid && form.controls['countryId'].touched,
                 'text-gray-400 dark:text-gray-400': !form.controls['countryId'].value
-            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden">
+            }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden">
                 <option value="" disabled selected>País</option>
                 @for (countriesOption of countriesOptions; track $index) {
                     <option [value]="countriesOption.id" class="text-black dark:text-white">{{ countriesOption.name }}</option>
@@ -16,13 +16,13 @@
         </div>
 
         <div class="w-full">
-            <label for="departmentId" class="block font-semibold text-primary dark:text-secondary mb-2"> Departamento / Provincia / Estado <span class="text-red-500">*</span></label>
+            <label for="departmentId" class="block font-semibold text-black dark:text-white mb-2"> Departamento / Provincia / Estado <span class="text-red-500">*</span></label>
             <select id="departmentId" formControlName="departmentId"
             [ngClass]="{
                 'border-red-500 dark:border-red-500': !form.controls['departmentId'].valid,
                 'border-green-500 dark:border-green-500': form.controls['departmentId'].valid && form.controls['departmentId'].touched,
                 'text-gray-400 dark:text-gray-400': !form.controls['departmentId'].value
-            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden">
+            }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden">
                 <option value="" disabled selected>Departamento / Provincia / Estado</option>
                 @for (departmentsOption of departmentsOptions; track $index) {
                     <option [value]="departmentsOption.id" class="text-black dark:text-white">{{ departmentsOption.name }}</option>
@@ -33,7 +33,7 @@
 
     <div class="flex flex-col md:flex-row gap-4">
         <div class="w-full">
-            <label for="city" class="block font-semibold text-primary dark:text-secondary mb-2"> Ciudad <span class="text-red-500">*</span></label>
+            <label for="city" class="block font-semibold text-black dark:text-white mb-2"> Ciudad <span class="text-red-500">*</span></label>
             <input id="city" autocomplete="address-level2"
                 type="text" 
                 formControlName="city"
@@ -41,12 +41,12 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['city'].valid,
                     'border-green-500 dark:border-green-500': form.controls['city'].valid && form.controls['city'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
         </div>
 
         <div class="w-full">
-            <label for="zipCode" class="block font-semibold text-primary dark:text-secondary mb-2"> Zip / Código postal </label>
+            <label for="zipCode" class="block font-semibold text-black dark:text-white mb-2"> Zip / Código postal </label>
             <input id="zipCode" autocomplete="postal-code" maxlength="8"
                 type="text" 
                 formControlName="zipCode"
@@ -54,14 +54,14 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['zipCode'].valid,
                     'border-green-500 dark:border-green-500': form.controls['zipCode'].valid && form.controls['zipCode'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
         </div>
     </div>
 
     <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
         <div class="w-full">
-            <label for="address" class="block font-semibold text-primary dark:text-secondary mb-2"> Dirección <span class="text-red-500">*</span></label>
+            <label for="address" class="block font-semibold text-black dark:text-white mb-2"> Dirección <span class="text-red-500">*</span></label>
             <input id="address" autocomplete="street-address"
                 type="text" 
                 formControlName="address"
@@ -69,14 +69,14 @@
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['address'].valid,
                     'border-green-500 dark:border-green-500': form.controls['address'].valid && form.controls['address'].touched
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
         </div>
     </div>
 
     <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
         <div class="w-full">
-            <label for="observations" class="block font-semibold text-primary dark:text-secondary mb-2"> Información adicional <span class="text-red-500">*</span></label>
+            <label for="observations" class="block font-semibold text-black dark:text-white mb-2"> Información adicional <span class="text-red-500">*</span></label>
             <textarea id="observations" autocomplete="off" maxlength="500" rows="4" 
                 formControlName="observations" 
                 placeholder="Información adicional"
@@ -84,7 +84,7 @@
                     'border-red-500 dark:border-red-500': !form.controls['observations'].valid,
                     'border-green-500 dark:border-green-500': form.controls['observations'].valid && form.controls['observations'].touched
                 }" 
-                class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden resize-none"
+                class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden resize-none"
             ></textarea>
         </div>
     </div>
