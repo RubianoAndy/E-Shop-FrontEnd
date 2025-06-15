@@ -1,4 +1,7 @@
 .active {
     color: green;
-    font-weight: bold;
+}
+
+:host-context(.dark) .active {
+    color: #fece3e;  /* color secondary */
 }
