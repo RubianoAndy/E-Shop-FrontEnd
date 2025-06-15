@@ -6,9 +6,6 @@
             <span>📧 {{email}}</span>
         </div>
         <div class="flex items-center gap-4">
-            <button class="hover:text-gray-300 transition-colors">
-                <span class="material-icons">language</span>
-            </button>
             <app-dark-mode-toggle />
         </div>
     </div>
@@ -34,13 +31,13 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <button class="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
-                <span class="material-icons text-gray-700 dark:text-gray-300">favorite_border</span>
+            <button class="relative p-2 cursor-pointer group">
+                <span class="material-icons scale-125 text-black dark:text-gray-300 group-hover:text-red-500 transition-colors duration-200">favorite</span>
                 <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
             </button>
 
-            <button class="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full">
-                <span class="material-icons text-gray-700 dark:text-gray-300">shopping_cart</span>
+            <button class="relative p-2 cursor-pointer group">
+                <span class="material-icons scale-125 text-black dark:text-gray-300 group-hover:text-blue-600 transition-colors duration-200">shopping_cart</span>
                 <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
             </button>
 
