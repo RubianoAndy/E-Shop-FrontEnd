@@ -12,6 +12,8 @@ import { ProfileService } from '../../../account/services/profile/profile.servic
 import { environment } from '../../../../environments/environment.development';
 
 import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +21,8 @@ import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.co
     NgClass,
     RouterLink,
     RouterLinkActive,
-    DarkModeToggleComponent
+    DarkModeToggleComponent,
+    SidebarComponent,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -28,6 +31,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logo = environment.darkLogo;
   avatar: string = 'assets/images/avatar/Avatar.png';
   email = environment.email;
+
+  isMobile: boolean = false;
+  isMenuOpen = false;
 
   options = [
     { label: 'Inicio', url: '/' },
@@ -49,6 +55,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private darkModeService: DarkModeService,
     private avatarService: AvatarService,
     private changeDetectorRef: ChangeDetectorRef,
+    private breakpointObserver: BreakpointObserver,
   ) { }
 
   ngOnInit(): void {
@@ -67,6 +74,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.darkModeService.darkMode$.subscribe(darkMode => {
       this.logo = darkMode ? environment.lightLogo : environment.darkLogo;
       this.changeDetectorRef.detectChanges();
+    });
+
+    const customBreakpoints = [
+      '(max-width: 1023px)',    // md o inferiores
+    ];
+    
+    this.breakpointObserver.observe(customBreakpoints)
+      .subscribe(result => {
+        this.isMobile = result.matches;
     });
   }
 
@@ -122,5 +138,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   toggleAccountMenu() {
     this.isAccountMenuOpen = !this.isAccountMenuOpen;
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

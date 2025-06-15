@@ -93,6 +93,7 @@
                     <span>Categorías</span>
                 </button>
             </li>
+
             @for(option of options; track $index) {
                 <li>
                     <a [routerLink]="option.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
@@ -101,6 +102,23 @@
                     </a>
                 </li>
             }
+            
+            <li class="lg:hidden ml-auto">
+                <button id="toggleOpen" (click)="toggleMenu()" class="flex items-center justify-center w-10 h-10 cursor-pointer text-black dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors">
+                    <span class="material-icons">menu</span>
+                </button>
+            </li>
         </ul>
     </div>
+
+    <div class="fixed inset-0 z-10 transition-opacity duration-500" [ngClass]="{'opacity-100 visible': isMenuOpen, 'opacity-0 invisible': !isMenuOpen}">
+        <div class="fixed inset-0 bg-black/50 dark:bg-white/50 border-b border-gray-200" (click)="toggleMenu()">
+        </div>
+    </div>
+
+    @if(isMobile) {
+        <div [ngClass]="{'translate-x-0': isMenuOpen, '-translate-x-full': !isMenuOpen}" class="lg:hidden fixed left-0 top-0 bottom-0 z-10 transition-transform duration-500">
+            <app-sidebar [showLogo]="true" (sidebarEmitter)="toggleMenu()" />
+        </div>
+    }
 </nav>
