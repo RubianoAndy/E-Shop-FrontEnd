@@ -28,7 +28,7 @@
                 <span class="material-icons ml-auto">{{ isAccordion1Open ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
             </div>
 
-            <div [ngClass]="{'max-h-[500px] opacity-100 overflow-visible': isAccordion1Open, 'max-h-0 opacity-0 overflow-hidden': !isAccordion1Open}" class="transition-all duration-500 space-y-2 overflow-hidden">
+            <div [ngClass]="{'max-h-[500px] opacity-100 overflow-visible': isAccordion1Open, 'max-h-0 opacity-0 overflow-hidden': !isAccordion1Open}" class="flex flex-col transition-all duration-500 gap-2 overflow-hidden">
                 <app-change-password />
             </div>
         </div>
@@ -41,7 +41,7 @@
                 <span class="material-icons ml-auto">{{ isAccordion2Open ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
             </div>
 
-            <div [ngClass]="{'max-h-[500px] opacity-100': isAccordion2Open, 'max-h-0 opacity-0': !isAccordion2Open}" class="transition-all duration-500 overflow-hidden space-y-2">
+            <div [ngClass]="{'max-h-[500px] opacity-100': isAccordion2Open, 'max-h-0 opacity-0': !isAccordion2Open}" class="flex flex-col transition-all duration-500 overflow-hidden gap-2">
                 <app-shipping-information />
             </div>
         </div>

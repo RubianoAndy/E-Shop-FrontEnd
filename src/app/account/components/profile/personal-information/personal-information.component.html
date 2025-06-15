@@ -1,7 +1,7 @@
 <form class="flex flex-col gap-4" [formGroup]="form" (ngSubmit)="onSubmitForm()">
     <div class="flex flex-col md:flex-row gap-4">
         <div class="w-full">
-            <label for="name_1" class="block font-semibold text-primary dark:text-secondary mb-2"> Primer nombre <span class="text-red-500">*</span></label>
+            <label for="name_1" class="block font-semibold text-black dark:text-white mb-2"> Primer nombre <span class="text-red-500">*</span></label>
             <input id="name_1" autocomplete="off"
                 type="text" 
                 formControlName="name_1"
@@ -10,12 +10,12 @@
                     'border-red-500 dark:border-red-500': !form.controls['name_1'].valid && !form.controls['name_1'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['name_1'].valid && form.controls['name_1'].touched,
                     'cursor-not-allowed': form.controls['name_1'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
             />
         </div>
 
         <div class="w-full">
-            <label for="name_2" class="block font-semibold text-primary dark:text-secondary mb-2"> Segundo nombre </label>
+            <label for="name_2" class="block font-semibold text-black dark:text-white mb-2"> Segundo nombre </label>
             <input id="name_2" autocomplete="off"
                 type="text" 
                 formControlName="name_2"
@@ -24,14 +24,14 @@
                     'border-red-500 dark:border-red-500': !form.controls['name_2'].valid && !form.controls['name_2'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['name_2'].valid && form.controls['name_2'].touched,
                     'cursor-not-allowed': form.controls['name_2'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
             />
         </div>
     </div>
     
-    <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+    <div class="flex flex-col md:flex-row gap-4">
         <div class="w-full">
-            <label for="lastname_1" class="block font-semibold text-primary dark:text-secondary mb-2"> Primer apellido <span class="text-red-500">*</span></label>
+            <label for="lastname_1" class="block font-semibold text-black dark:text-white mb-2"> Primer apellido <span class="text-red-500">*</span></label>
             <input id="lastname_1" autocomplete="off"
                 type="text" 
                 formControlName="lastname_1"
@@ -40,12 +40,12 @@
                     'border-red-500 dark:border-red-500': !form.controls['lastname_1'].valid && !form.controls['lastname_1'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['lastname_1'].valid && form.controls['lastname_1'].touched,
                     'cursor-not-allowed': form.controls['lastname_1'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
             />
         </div>
 
         <div class="w-full">
-            <label for="lastname_2" class="block font-semibold text-primary dark:text-secondary mb-2"> Segundo apellido </label>
+            <label for="lastname_2" class="block font-semibold text-black dark:text-white mb-2"> Segundo apellido </label>
             <input id="lastname_2" autocomplete="off"
                 type="text" 
                 formControlName="lastname_2" 
@@ -54,14 +54,14 @@
                     'border-red-500 dark:border-red-500': !form.controls['lastname_2'].valid && !form.controls['lastname_2'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['lastname_2'].valid && form.controls['lastname_2'].touched,
                     'cursor-not-allowed': form.controls['lastname_2'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
             />
         </div>
     </div>
 
-    <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+    <div class="flex flex-col md:flex-row gap-4">
         <div class="w-full">
-            <label for="email" class="block font-semibold text-primary dark:text-secondary mb-2"> Email <span class="text-red-500">*</span></label>
+            <label for="email" class="block font-semibold text-black dark:text-white mb-2"> Email <span class="text-red-500">*</span></label>
             <input id="email" autocomplete="off"
                 type="email" 
                 formControlName="email" 
@@ -70,15 +70,15 @@
                     'border-red-500 dark:border-red-500': !form.controls['email'].valid && !form.controls['email'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['email'].valid && form.controls['email'].touched,
                     'cursor-not-allowed': form.controls['email'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
             />
         </div>
     </div>
 
     @if(userId() >= 0) {
-        <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+        <div class="flex flex-col md:flex-row gap-4">
             <div class="w-full relative">
-                <label for="password" class="block font-semibold text-primary dark:text-secondary mb-2"> Contraseña <span class="text-red-500">*</span></label>
+                <label for="password" class="block font-semibold text-black dark:text-white mb-2"> Contraseña <span class="text-red-500">*</span></label>
                 <input id="password" autocomplete="off"
                     [type]="isPasswordVisible ? 'text' : 'password'" 
                     formControlName="password" 
@@ -90,7 +90,7 @@
                         'border-red-500 dark:border-red-500': !form.controls['password'].valid && !form.controls['roleId'].disabled,
                         'border-green-500 dark:border-green-500': form.controls['password'].valid && form.controls['password'].touched,
                         'cursor-not-allowed': form.controls['roleId'].disabled
-                    }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+                    }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
                 />
                 
                 <button type="button" (click)="togglePasswordVisibility()" class="absolute flex items-center inset-y-0 right-0 px-3 mt-8">
@@ -130,14 +130,14 @@
             </div>
 
             <div class="w-full">
-                <label for="roleId" class="block font-semibold text-primary dark:text-secondary mb-2"> Rol <span class="text-red-500">*</span></label>
+                <label for="roleId" class="block font-semibold text-black dark:text-white mb-2"> Rol <span class="text-red-500">*</span></label>
                 <select id="roleId" formControlName="roleId"
                 [ngClass]="{
                     'border-red-500 dark:border-red-500': !form.controls['roleId'].valid && !form.controls['roleId'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['roleId'].valid && form.controls['roleId'].touched,
                     'text-gray-400 dark:text-gray-400': !form.controls['roleId'].value,
                     'cursor-not-allowed': form.controls['roleId'].disabled
-                }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden">
+                }" class="block w-full px-1 py-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden">
                     <option value="" disabled selected>Rol</option>
                     @for (rolesOption of rolesOptions; track $index) {
                         <option [value]="rolesOption.id" class="text-black dark:text-white">{{ rolesOption.name }}</option>
@@ -147,16 +147,16 @@
         </div>
     }
 
-    <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+    <div class="flex flex-col md:flex-row gap-4">
         <div class="w-full">
-            <label for="dniType" class="block font-semibold text-primary dark:text-secondary mb-2"> Tipo de documento <span class="text-red-500">*</span></label>
+            <label for="dniType" class="block font-semibold text-black dark:text-white mb-2"> Tipo de documento <span class="text-red-500">*</span></label>
             <select id="dniType" formControlName="dniType"
             [ngClass]="{
                 'border-red-500 dark:border-red-500': !form.controls['dniType'].valid && !form.controls['dniType'].disabled,
                 'border-green-500 dark:border-green-500': form.controls['dniType'].valid && form.controls['dniType'].touched,
                 'text-gray-400 dark:text-gray-400': !form.controls['dniType'].value,
                 'cursor-not-allowed': form.controls['dniType'].disabled
-            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden">
+            }" class="block w-full px-1 py-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden">
                 <option value="" disabled selected>Tipo de documento</option>
                 @for (dniOption of dniOptions; track $index) {
                     <option [value]="dniOption.value" class="text-black dark:text-white">{{ dniOption.label }}</option>
@@ -165,7 +165,7 @@
         </div>
 
         <div class="w-full">
-            <label for="dni" class="block font-semibold text-primary dark:text-secondary mb-2"> Documento de identificación <span class="text-red-500">*</span></label>
+            <label for="dni" class="block font-semibold text-black dark:text-white mb-2"> Documento de identificación <span class="text-red-500">*</span></label>
             <input id="dni" autocomplete="off"
                 type="text" 
                 formControlName="dni" 
@@ -174,21 +174,21 @@
                     'border-red-500 dark:border-red-500': !form.controls['dni'].valid && !form.controls['dni'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['dni'].valid && form.controls['dni'].touched,
                     'cursor-not-allowed': form.controls['dni'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
             />
         </div>
     </div>
 
-    <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+    <div class="flex flex-col md:flex-row gap-4">
         <div class="w-full">
-            <label for="prefix" class="block font-semibold text-primary dark:text-secondary mb-2"> Prefijo <span class="text-red-500">*</span></label>
+            <label for="prefix" class="block font-semibold text-black dark:text-white mb-2"> Prefijo <span class="text-red-500">*</span></label>
             <select id="prefix" formControlName="prefix"
             [ngClass]="{
                 'border-red-500 dark:border-red-500': !form.controls['prefix'].valid && !form.controls['prefix'].disabled,
                 'border-green-500 dark:border-green-500': form.controls['prefix'].valid && form.controls['prefix'].touched,
                 'text-gray-400 dark:text-gray-400': !form.controls['prefix'].value,
                 'cursor-not-allowed': form.controls['prefix'].disabled
-            }" class="block w-full px-1 py-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden">
+            }" class="block w-full px-1 py-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden">
                 <option value="" disabled selected>Prefijo</option>
                 @for (prefixOption of prefixOptions; track $index) {
                     <option [value]="prefixOption.prefix" class="text-black dark:text-white">{{ prefixOption.name }} ({{ prefixOption.prefix }})</option>
@@ -197,7 +197,7 @@
         </div>
 
         <div class="w-full">
-            <label for="mobile" class="block font-semibold text-primary dark:text-secondary mb-2"> Número de celular <span class="text-red-500">*</span></label>
+            <label for="mobile" class="block font-semibold text-black dark:text-white mb-2"> Número de celular <span class="text-red-500">*</span></label>
             <input id="mobile" autocomplete="off"
                 type="text" 
                 formControlName="mobile" 
@@ -206,12 +206,12 @@
                     'border-red-500 dark:border-red-500': !form.controls['mobile'].valid && !form.controls['mobile'].disabled,
                     'border-green-500 dark:border-green-500': form.controls['mobile'].valid && form.controls['mobile'].touched,
                     'cursor-not-allowed': form.controls['mobile'].disabled
-                }" class="block w-full p-2 bg-white border border-gray-200 text-black text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white shadow-lg focus:outline-hidden"
+                }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white shadow-lg focus:outline-hidden"
             />
         </div>
     </div>
 
-    <div class="flex items-center justify-center space-x-4">
+    <div class="flex flex-row items-center justify-center gap-4">
         <div class="w-full md:w-1/3">
             <button type="submit" [disabled]="form.invalid || loading" class="flex flex-1 cursor-pointer w-full justify-center text-white bg-green-600 hover:bg-primary font-medium px-5 py-2.5 me-2 mb-2 disabled:bg-green-600/50 dark:disabled:bg-green-200/50">
                 Guardar
