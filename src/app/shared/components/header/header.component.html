@@ -5,9 +5,6 @@
             <span>📞 +57 317 873 7226</span>
             <span>📧 {{email}}</span>
         </div>
-        <div class="flex items-center gap-4">
-            <app-dark-mode-toggle />
-        </div>
     </div>
 </div>
 
@@ -95,19 +92,22 @@
             </li>
 
             @for(option of options; track $index) {
-                <li class="hidden md:block">
+                <li class="hidden lg:block">
                     <a [routerLink]="option.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
                     class="px-4 py-3 text-gray-700 dark:text-gray-200 hover:text-primary dark:hover:text-secondary transition-colors inline-block">
                         {{ option.label }}
                     </a>
                 </li>
             }
-            
-            <li class="md:hidden ml-auto">
-                <button id="toggleOpen" (click)="toggleMenu()" class="flex items-center justify-center w-10 h-10 cursor-pointer text-black dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors">
-                    <span class="material-icons">menu</span>
-                </button>
-            </li>
+              <div class="flex items-center gap-2 ml-auto">
+                <app-dark-mode-toggle />
+                
+                <li class="lg:hidden">
+                    <button id="toggleOpen" (click)="toggleMenu()" class="flex items-center justify-center w-10 h-10 cursor-pointer text-black dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition-colors">
+                        <span class="material-icons">menu</span>
+                    </button>
+                </li>
+            </div>
         </ul>
     </div>
 
