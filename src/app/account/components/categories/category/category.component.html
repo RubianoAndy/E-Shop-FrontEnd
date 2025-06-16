@@ -13,9 +13,9 @@
                     (dragleave)="onDragLeave($event)"
                     (drop)="onDrop($event)"
                 >   <!-- (dragenter)="onDragEnter($event)" -->
-                    <div class="w-full h-full transition-all duration-200"
+                    <div class="w-full h-full transition-transform duration-200 backface-visible transform-gpu"
                         [ngClass]="{
-                        'border-2 border-dashed': !categoryImage,
+                        'border-2 border-dashed hover:scale-[1.02]': !categoryImage,
                         'border-red-500 dark:border-red-500': imageError && !categoryImage,
                         'border-gray-300 dark:border-gray-600': !imageError && !categoryImage && !isDragging,
                         'border-primary dark:border-secondary scale-[1.02]': isDragging && !categoryImage
