@@ -33,6 +33,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
     { label: 'Usuarios', url: '/account/users', icon: 'person' },
   ];
 
+  navigationMenuOptions = [
+    { label: 'Inicio', url: '/', icon: 'home' },
+    { label: 'Productos', url: '/products', icon: 'inventory_2' },
+    { label: 'Nosotros', url: '/about', icon: 'info' },
+    { label: 'Contacto', url: '/contact', icon: 'mail' },
+  ];
+
+  isNavigationOpen = false;
+
   private unsubscribe$ = new Subject<void>();
 
   constructor (
@@ -71,5 +80,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
         console.error(response);
       }
     })
+  }
+
+  toggleNavigation() {
+    this.isNavigationOpen = !this.isNavigationOpen;
   }
 }
