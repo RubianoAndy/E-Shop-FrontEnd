@@ -46,10 +46,10 @@ export class CategoriesService {
     );
   }
 
-  add(name: string): Observable<any> {
+  add(body: any, image: any): Observable<any> {
     this.loadingService.show();
 
-    return this.http.post(`${this.apiUrl}/category`, { name }).pipe(
+    return this.http.post(`${this.apiUrl}/category`, body).pipe(
       finalize(() => {
         this.loadingService.hide();
       })

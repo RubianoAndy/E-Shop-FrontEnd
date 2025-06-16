@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { AlertService } from '../../../../shared/services/alert/alert.service';
+import { CategoriesService } from '../../../services/categories/categories.service';
+
 interface CategoryImage {
   file: File;
   preview: string;
@@ -12,8 +15,9 @@ interface Category {
   id?: number;
   name: string;
   url: string;
-  description?: string;
-  image?: CategoryImage;
+  description: string;
+  observations?: string;
+  // image: CategoryImage;
 }
 
 type AccentMap = {
@@ -49,7 +53,9 @@ export default class CategoryComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService,
+    private categoriesService: CategoriesService,
   ) { }
 
   ngOnInit(): void {
@@ -67,6 +73,7 @@ export default class CategoryComponent implements OnInit {
       name: [data?.name || '', [ Validators.required, Validators.minLength(3), Validators.maxLength(100) ]],
       url: [data?.url || '', [ Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-z0-9]+(?:-[a-z0-9]+)*$') ]],
       description: [data?.description || '', [ Validators.required, Validators.minLength(10), Validators.maxLength(500) ]],
+      observations: [data?.observations || '', [ Validators.minLength(10), Validators.maxLength(500) ]],
       hasImage: [data?.hasImage || false, [ Validators.requiredTrue ]]
     });
 
@@ -169,22 +176,46 @@ export default class CategoryComponent implements OnInit {
     return 'Error de validación';
   }
 
-  async onSubmit(): Promise<void> {
-    if (!this.categoryImage) {
-      this.imageError = 'Debe seleccionar una imagen';
-      return;
-    }
+  onSubmit() {
+    var body = {
+      name: this.form.value.name,
+      url: this.form.value.url,
+      description: this.form.value.description,
+      observations: this.form.value.observations,
+    };
 
-    if (this.form.invalid) {
-      Object.keys(this.form.controls).forEach(key => {
-        const control = this.form.get(key);
-        if (control?.invalid)
-          control.markAsTouched();
-        
-      });
-      return;
-    }
+    if (this.form.valid && body)
+      this.createCategory(body);
+  }
 
+  createCategory(body: Category): void {
+    this.isSubmitting = true;
+    var alertBody = null;
+
+    this.categoriesService.add(body, this.categoryImage?.file).subscribe({
+      next: (response) => {
+        alertBody = {
+          type: 'okay',
+          title: '¡Felicidades!',
+          message: response.message,
+        };
+        this.alertService.showAlert(alertBody);
+        this.router.navigate(['/account/categories']);
+      }, error: (response) => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.error.message,
+        };
+        this.alertService.showAlert(alertBody);
+      },
+      complete: () => {
+        this.isSubmitting = false;
+      }
+    });
+  }
+
+  /* async onSubmit(): Promise<void> {
     this.isSubmitting = true;
     try {
       const formData = this.form.value;
@@ -206,5 +237,5 @@ export default class CategoryComponent implements OnInit {
     } finally {
       this.isSubmitting = false;
     }
-  }
+  } */
 }
