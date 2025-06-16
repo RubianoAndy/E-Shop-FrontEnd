@@ -100,7 +100,6 @@ export class ShippingInformationComponent implements OnInit {
 
     this.correspondenceService.editOrCreate(body).subscribe({
       next: (response) => {
-        this.loading = false;
         // this.getDepartments(response.countryId);
         this.edit = {
           ...response,
@@ -118,7 +117,6 @@ export class ShippingInformationComponent implements OnInit {
         this.alertService.showAlert(alertBody);
       },
       error: response => {
-        this.loading = false;
         alertBody = {
           type: 'error',
           title: '¡Error!',
@@ -126,6 +124,9 @@ export class ShippingInformationComponent implements OnInit {
         };
 
         this.alertService.showAlert(alertBody);
+      },
+      complete: () => {
+        this.loading = false;
       }
     });
   }
