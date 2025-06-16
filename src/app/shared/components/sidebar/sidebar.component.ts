@@ -1,9 +1,12 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Subject } from 'rxjs';
+
 import { environment } from '../../../../environments/environment.development';
+import { navigation } from '../../utils/navigation/navigation';
+
 import { DarkModeService } from '../../services/dark-mode/dark-mode.service';
 import { RolesService } from '../../../account/services/roles/roles.service';
-import { Subject } from 'rxjs';
 import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
@@ -33,12 +36,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     { label: 'Usuarios', url: '/account/users', icon: 'person' },
   ];
 
-  navigationMenuOptions = [
-    { label: 'Inicio', url: '/', icon: 'home' },
-    { label: 'Productos', url: '/products', icon: 'inventory_2' },
-    { label: 'Nosotros', url: '/about', icon: 'info' },
-    { label: 'Contacto', url: '/contact', icon: 'mail' },
-  ];
+  navigationMenuOptions = navigation;
 
   isNavigationOpen = false;
 

@@ -10,6 +10,7 @@ import { AvatarService } from '../../../account/services/avatar/avatar.service';
 import { ProfileService } from '../../../account/services/profile/profile.service';
 
 import { environment } from '../../../../environments/environment.development';
+import { navigation } from '../../utils/navigation/navigation';
 
 import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -35,12 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isMobile: boolean = false;
   isMenuOpen = false;
 
-  options = [
-    { label: 'Inicio', url: '/' },
-    { label: 'Faq', url: '/faq' },
-    { label: 'Productos', url: '/products' },
-    { label: 'Contacto', url: '/contact' },
-  ];
+  options = navigation;
 
   private avatarSubscription: Subscription | undefined;
   private unsubscribe$ = new Subject<void>();
