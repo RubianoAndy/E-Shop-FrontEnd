@@ -18,21 +18,18 @@ const routes: Routes = [{
       path: 'profile', loadComponent: () => import('./components/profile/profile.component'),
       data: { breadcrumb: 'Perfil' }
     },
-    {
+    {      
       path: 'categories',
       children: [
         {
           path: '',
           loadComponent: () => import('./components/categories/categories.component'),
-          data: { breadcrumb: 'Categorías', roles: [superAdmin, admin] },
-          canActivate: [roleGuard],
         },
         {
           path: ':id',
           loadComponent: () => import('./components/categories/category/category.component'),
           data: { breadcrumb: 'Categoría', roles: [superAdmin, admin] },
-          canActivate: [roleGuard],
-        },
+        }
       ],
       data: { breadcrumb: 'Categorías', roles: [superAdmin, admin] },
       canActivate: [roleGuard],
@@ -43,14 +40,11 @@ const routes: Routes = [{
         {
           path: '',
           loadComponent: () => import('./components/products/products.component'),
-          data: { breadcrumb: 'Productos', roles: [superAdmin, admin] },
-          canActivate: [roleGuard],
         },
         {
           path: ':id',
           loadComponent: () => import('./components/products/product/product.component'),
           data: { breadcrumb: 'Producto', roles: [superAdmin, admin] },
-          canActivate: [roleGuard],
         }
       ],
       data: { breadcrumb: 'Productos', roles: [superAdmin, admin] },
