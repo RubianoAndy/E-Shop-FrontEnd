@@ -16,7 +16,7 @@ import { AuthService } from '../../../core/services/auth/auth.service';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent implements OnInit, OnDestroy {
-  @Input() showLogo: boolean = false;
+  @Input() isMobile: boolean = false;
   @Output() sidebarEmitter = new EventEmitter<void>();
   
   logo = environment.darkLogo;
