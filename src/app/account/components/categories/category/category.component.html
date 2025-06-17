@@ -123,6 +123,25 @@
                             <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('description') }}</p>
                         }
                     </div>
+
+                    <div class="md:col-span-2">
+                        <label for="observations" class="block text-sm font-semibold text-black dark:text-white mb-1">
+                            Observaciones
+                        </label>
+                        <textarea id="observations" autocomplete="off"
+                            rows="4"
+                            formControlName="observations"
+                            placeholder="Observaciones"
+                            [ngClass]="{
+                                'border-red-500 dark:border-red-500': form.get('observations')?.invalid && form.get('observations')?.touched
+                            }"
+                            class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden resize-none border-gray-300 dark:border-gray-600"
+                        >
+                        </textarea>
+                        @if (form.get('observations')?.invalid && form.get('observations')?.touched) {
+                            <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('observations') }}</p>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
