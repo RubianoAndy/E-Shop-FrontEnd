@@ -46,10 +46,19 @@ export class CategoriesService {
     );
   }
 
-  add(body: any, image: any): Observable<any> {
+  add(body: any, image: File | undefined): Observable<any> {
     this.loadingService.show();
 
-    return this.http.post(`${this.apiUrl}/category`, body).pipe(
+    const formData = new FormData();
+    
+    Object.keys(body).forEach(key => {
+      formData.append(key, body[key]);
+    });
+
+    if (image)
+      formData.append('image', image);
+
+    return this.http.post(`${this.apiUrl}/category`, formData).pipe(
       finalize(() => {
         this.loadingService.hide();
       })

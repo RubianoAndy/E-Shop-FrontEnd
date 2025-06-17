@@ -116,7 +116,7 @@ export class ShippingInformationComponent implements OnInit {
 
         this.alertService.showAlert(alertBody);
       },
-      error: response => {
+      error: (response) => {
         alertBody = {
           type: 'error',
           title: '¡Error!',

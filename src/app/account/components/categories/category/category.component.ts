@@ -187,12 +187,11 @@ export default class CategoryComponent implements OnInit {
     if (this.form.valid && body)
       this.createCategory(body);
   }
-
   createCategory(body: Category): void {
     this.isSubmitting = true;
     var alertBody = null;
-
-    this.categoriesService.add(body, this.categoryImage?.file).subscribe({
+    
+    this.categoriesService.add(body, this.categoryImage!.file).subscribe({
       next: (response) => {
         alertBody = {
           type: 'okay',
@@ -201,7 +200,8 @@ export default class CategoryComponent implements OnInit {
         };
         this.alertService.showAlert(alertBody);
         this.router.navigate(['/account/categories']);
-      }, error: (response) => {
+      }, 
+      error: (response) => {
         alertBody = {
           type: 'error',
           title: '¡Error!',
