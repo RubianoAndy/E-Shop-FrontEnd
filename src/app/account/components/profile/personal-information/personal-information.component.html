@@ -7,11 +7,13 @@
                 formControlName="name_1"
                 placeholder="Primer nombre"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['name_1'].valid && !form.controls['name_1'].disabled,
-                    'border-green-500 dark:border-green-500': form.controls['name_1'].valid && form.controls['name_1'].touched,
-                    'cursor-not-allowed': form.controls['name_1'].disabled
+                    'border-red-500 dark:border-red-500': form.get('name_1')?.invalid,
+                    'cursor-not-allowed': form.get('name_1')?.disabled
                 }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
+            @if (form.get('name_1')?.invalid && form.get('name_1')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('name_1') }}</p>
+            }
         </div>
 
         <div class="w-full">
@@ -21,11 +23,13 @@
                 formControlName="name_2"
                 placeholder="Segundo nombre"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['name_2'].valid && !form.controls['name_2'].disabled,
-                    'border-green-500 dark:border-green-500': form.controls['name_2'].valid && form.controls['name_2'].touched,
-                    'cursor-not-allowed': form.controls['name_2'].disabled
+                    'border-red-500 dark:border-red-500': form.get('name_2')?.invalid,
+                    'cursor-not-allowed': form.get('name_2')?.disabled
                 }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
+            @if (form.get('name_2')?.invalid && form.get('name_2')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('name_2') }}</p>
+            }
         </div>
     </div>
     
@@ -37,11 +41,13 @@
                 formControlName="lastname_1"
                 placeholder="Primer apellido"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['lastname_1'].valid && !form.controls['lastname_1'].disabled,
-                    'border-green-500 dark:border-green-500': form.controls['lastname_1'].valid && form.controls['lastname_1'].touched,
-                    'cursor-not-allowed': form.controls['lastname_1'].disabled
+                    'border-red-500 dark:border-red-500': form.get('lastname_1')?.invalid,
+                    'cursor-not-allowed': form.get('lastname_1')?.disabled
                 }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
+            @if (form.get('lastname_1')?.invalid && form.get('lastname_1')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('lastname_1') }}</p>
+            }
         </div>
 
         <div class="w-full">
@@ -51,11 +57,13 @@
                 formControlName="lastname_2" 
                 placeholder="Segundo apellido"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['lastname_2'].valid && !form.controls['lastname_2'].disabled,
-                    'border-green-500 dark:border-green-500': form.controls['lastname_2'].valid && form.controls['lastname_2'].touched,
-                    'cursor-not-allowed': form.controls['lastname_2'].disabled
+                    'border-red-500 dark:border-red-500': form.get('lastname_2')?.invalid,
+                    'cursor-not-allowed': form.get('lastname_2')?.disabled
                 }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
+            @if (form.get('lastname_2')?.invalid && form.get('lastname_2')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('lastname_2') }}</p>
+            }
         </div>
     </div>
 
@@ -67,11 +75,13 @@
                 formControlName="email" 
                 placeholder="Email"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['email'].valid && !form.controls['email'].disabled,
-                    'border-green-500 dark:border-green-500': form.controls['email'].valid && form.controls['email'].touched,
-                    'cursor-not-allowed': form.controls['email'].disabled
+                    'border-red-500 dark:border-red-500': form.get('email')?.invalid,
+                    'cursor-not-allowed': form.get('email')?.disabled
                 }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
+            @if (form.get('email')?.invalid && form.get('email')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('email') }}</p>
+            }
         </div>
     </div>
 
@@ -87,9 +97,8 @@
                     (blur)="onPasswordBlur()"
                     (input)="onPasswordChange($event)"
                     [ngClass]="{
-                        'border-red-500 dark:border-red-500': !form.controls['password'].valid && !form.controls['roleId'].disabled,
-                        'border-green-500 dark:border-green-500': form.controls['password'].valid && form.controls['password'].touched,
-                        'cursor-not-allowed': form.controls['roleId'].disabled
+                        'border-red-500 dark:border-red-500': !form.get('password')?.valid && !form.get('password')?.disabled,
+                        'cursor-not-allowed': form.get('password')?.disabled
                     }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
                 />
                 
@@ -133,16 +142,17 @@
                 <label for="roleId" class="block font-semibold text-black dark:text-white mb-2"> Rol <span class="text-red-500">*</span></label>
                 <select id="roleId" formControlName="roleId"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['roleId'].valid && !form.controls['roleId'].disabled,
-                    'border-green-500 dark:border-green-500': form.controls['roleId'].valid && form.controls['roleId'].touched,
-                    'text-gray-400 dark:text-gray-400': !form.controls['roleId'].value,
-                    'cursor-not-allowed': form.controls['roleId'].disabled
+                    'border-red-500 dark:border-red-500': form.get('roleId')?.invalid,
+                    'cursor-not-allowed': form.get('roleId')?.disabled
                 }" class="block w-full px-1 py-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden">
                     <option value="" disabled selected>Rol</option>
                     @for (rolesOption of rolesOptions; track $index) {
                         <option [value]="rolesOption.id" class="text-black dark:text-white">{{ rolesOption.name }}</option>
                     }
                 </select>
+                @if (form.get('roleId')?.invalid && form.get('roleId')?.touched) {
+                    <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('roleId') }}</p>
+                }
             </div>
         </div>
     }
@@ -152,16 +162,17 @@
             <label for="dniType" class="block font-semibold text-black dark:text-white mb-2"> Tipo de documento <span class="text-red-500">*</span></label>
             <select id="dniType" formControlName="dniType"
             [ngClass]="{
-                'border-red-500 dark:border-red-500': !form.controls['dniType'].valid && !form.controls['dniType'].disabled,
-                'border-green-500 dark:border-green-500': form.controls['dniType'].valid && form.controls['dniType'].touched,
-                'text-gray-400 dark:text-gray-400': !form.controls['dniType'].value,
-                'cursor-not-allowed': form.controls['dniType'].disabled
+                'border-red-500 dark:border-red-500': form.get('dniType')?.invalid,
+                'cursor-not-allowed': form.get('dniType')?.disabled
             }" class="block w-full px-1 py-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden">
                 <option value="" disabled selected>Tipo de documento</option>
                 @for (dniOption of dniOptions; track $index) {
                     <option [value]="dniOption.value" class="text-black dark:text-white">{{ dniOption.label }}</option>
                 }
             </select>
+            @if (form.get('dniType')?.invalid && form.get('dniType')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('dniType') }}</p>
+            }
         </div>
 
         <div class="w-full">
@@ -171,11 +182,13 @@
                 formControlName="dni" 
                 placeholder="Documento de identificación"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['dni'].valid && !form.controls['dni'].disabled,
-                    'border-green-500 dark:border-green-500': form.controls['dni'].valid && form.controls['dni'].touched,
-                    'cursor-not-allowed': form.controls['dni'].disabled
+                    'border-red-500 dark:border-red-500': form.get('dni')?.invalid,
+                    'cursor-not-allowed': form.get('dni')?.disabled
                 }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
+            @if (form.get('dni')?.invalid && form.get('dni')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('dni') }}</p>
+            }
         </div>
     </div>
 
@@ -184,16 +197,17 @@
             <label for="prefix" class="block font-semibold text-black dark:text-white mb-2"> Prefijo <span class="text-red-500">*</span></label>
             <select id="prefix" formControlName="prefix"
             [ngClass]="{
-                'border-red-500 dark:border-red-500': !form.controls['prefix'].valid && !form.controls['prefix'].disabled,
-                'border-green-500 dark:border-green-500': form.controls['prefix'].valid && form.controls['prefix'].touched,
-                'text-gray-400 dark:text-gray-400': !form.controls['prefix'].value,
-                'cursor-not-allowed': form.controls['prefix'].disabled
+                'border-red-500 dark:border-red-500': form.get('prefix')?.invalid,
+                'cursor-not-allowed': form.get('prefix')?.disabled
             }" class="block w-full px-1 py-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden">
                 <option value="" disabled selected>Prefijo</option>
                 @for (prefixOption of prefixOptions; track $index) {
                     <option [value]="prefixOption.prefix" class="text-black dark:text-white">{{ prefixOption.name }} ({{ prefixOption.prefix }})</option>
                 }
             </select>
+            @if (form.get('prefix')?.invalid && form.get('prefix')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('prefix') }}</p>
+            }
         </div>
 
         <div class="w-full">
@@ -203,19 +217,19 @@
                 formControlName="mobile" 
                 placeholder="Número de celular"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['mobile'].valid && !form.controls['mobile'].disabled,
-                    'border-green-500 dark:border-green-500': form.controls['mobile'].valid && form.controls['mobile'].touched,
-                    'cursor-not-allowed': form.controls['mobile'].disabled
+                    'border-red-500 dark:border-red-500': form.get('mobile')?.invalid,
+                    'cursor-not-allowed': form.get('mobile')?.disabled
                 }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
+            @if (form.get('mobile')?.invalid && form.get('mobile')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('mobile') }}</p>
+            }
         </div>
     </div>
 
-    <div class="flex flex-row items-center justify-center gap-4">
-        <div class="w-full md:w-1/3">
-            <button type="submit" [disabled]="form.invalid || loading" class="flex flex-1 cursor-pointer w-full justify-center text-white bg-green-600 hover:bg-primary font-medium px-5 py-2.5 me-2 mb-2 disabled:bg-green-600/50 dark:disabled:bg-green-200/50">
-                Guardar
-            </button>
-        </div>
+    <div class="flex justify-center w-full">
+        <button type="submit" [disabled]="form.invalid || loading" class="px-6 py-2 bg-primary dark:bg-secondary text-white dark:text-black hover:bg-primary/80 dark:hover:bg-secondary/80 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+            Guardar
+        </button>
     </div>
 </form>

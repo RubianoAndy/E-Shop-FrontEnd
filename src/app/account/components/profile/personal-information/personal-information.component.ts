@@ -359,4 +359,19 @@ export class PersonalInformationComponent implements OnInit {
       .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(' ');
   }
+
+  getErrorMessage(controlName: string): string {
+    const control = this.form.get(controlName);
+    if (!control?.errors || !control.touched) return '';
+
+    const errors = control.errors;
+    if (errors['required']) return 'Este campo es requerido';
+    if (errors['minlength']) return `Mínimo ${errors['minlength'].requiredLength} caracteres`;
+    if (errors['maxlength']) return `Máximo ${errors['maxlength'].requiredLength} caracteres`;
+    if (errors['pattern']) {
+      if (controlName === 'url') return 'Solo letras minúsculas, números y guiones';
+      return 'Formato inválido';
+    }
+    return 'Error de validación';
+  }
 }

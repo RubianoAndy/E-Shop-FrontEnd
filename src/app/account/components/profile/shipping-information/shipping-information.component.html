@@ -4,30 +4,32 @@
             <label for="countryId" class="block font-semibold text-black dark:text-white mb-2"> País <span class="text-red-500">*</span></label>
             <select id="countryId" formControlName="countryId" (change)="changeCountry()"
             [ngClass]="{
-                'border-red-500 dark:border-red-500': !form.controls['countryId'].valid,
-                'border-green-500 dark:border-green-500': form.controls['countryId'].valid && form.controls['countryId'].touched,
-                'text-gray-400 dark:text-gray-400': !form.controls['countryId'].value
+                'border-red-500 dark:border-red-500': form.get('countryId')?.invalid
             }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden">
                 <option value="" disabled selected>País</option>
                 @for (countriesOption of countriesOptions; track $index) {
                     <option [value]="countriesOption.id" class="text-black dark:text-white">{{ countriesOption.name }}</option>
                 }
             </select>
+            @if (form.get('countryId')?.invalid && form.get('countryId')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('countryId') }}</p>
+            }
         </div>
 
         <div class="w-full">
             <label for="departmentId" class="block font-semibold text-black dark:text-white mb-2"> Departamento / Provincia / Estado <span class="text-red-500">*</span></label>
             <select id="departmentId" formControlName="departmentId"
             [ngClass]="{
-                'border-red-500 dark:border-red-500': !form.controls['departmentId'].valid,
-                'border-green-500 dark:border-green-500': form.controls['departmentId'].valid && form.controls['departmentId'].touched,
-                'text-gray-400 dark:text-gray-400': !form.controls['departmentId'].value
+                'border-red-500 dark:border-red-500': form.get('departmentId')?.invalid
             }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden">
                 <option value="" disabled selected>Departamento / Provincia / Estado</option>
                 @for (departmentsOption of departmentsOptions; track $index) {
                     <option [value]="departmentsOption.id" class="text-black dark:text-white">{{ departmentsOption.name }}</option>
                 }
             </select>
+            @if (form.get('departmentId')?.invalid && form.get('departmentId')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('departmentId') }}</p>
+            }
         </div>
     </div>
 
@@ -39,10 +41,12 @@
                 formControlName="city"
                 placeholder="Ciudad"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['city'].valid,
-                    'border-green-500 dark:border-green-500': form.controls['city'].valid && form.controls['city'].touched
+                    'border-red-500 dark:border-red-500': form.get('city')?.invalid
                 }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
+            @if (form.get('city')?.invalid && form.get('city')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('city') }}</p>
+            }
         </div>
 
         <div class="w-full">
@@ -52,10 +56,12 @@
                 formControlName="zipCode"
                 placeholder="Zip / Código postal"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['zipCode'].valid,
-                    'border-green-500 dark:border-green-500': form.controls['zipCode'].valid && form.controls['zipCode'].touched
+                    'border-red-500 dark:border-red-500': form.get('zipCode')?.invalid
                 }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
+            @if (form.get('zipCode')?.invalid && form.get('zipCode')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('zipCode') }}</p>
+            }
         </div>
     </div>
 
@@ -67,10 +73,12 @@
                 formControlName="address"
                 placeholder="Dirección"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['address'].valid,
-                    'border-green-500 dark:border-green-500': form.controls['address'].valid && form.controls['address'].touched
+                    'border-red-500 dark:border-red-500': form.get('address')?.invalid
                 }" class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden"
             />
+            @if (form.get('address')?.invalid && form.get('address')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('address') }}</p>
+            }
         </div>
     </div>
 
@@ -81,19 +89,19 @@
                 formControlName="observations" 
                 placeholder="Información adicional"
                 [ngClass]="{
-                    'border-red-500 dark:border-red-500': !form.controls['observations'].valid,
-                    'border-green-500 dark:border-green-500': form.controls['observations'].valid && form.controls['observations'].touched
+                    'border-red-500 dark:border-red-500': form.get('observations')?.invalid
                 }" 
                 class="block w-full p-2 bg-white border border-gray-300 text-black text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:outline-hidden resize-none"
             ></textarea>
+            @if (form.get('observations')?.invalid && form.get('observations')?.touched) {
+                <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('observations') }}</p>
+            }
         </div>
     </div>
 
-    <div class="flex items-center justify-center space-x-4">
-        <div class="w-full md:w-1/3">
-            <button type="submit" [disabled]="form.invalid || loading" class="flex flex-1 cursor-pointer w-full justify-center text-white bg-green-600 hover:bg-primary font-medium px-5 py-2.5 me-2 mb-2 disabled:bg-green-600/50 dark:disabled:bg-green-200/50">
-                Guardar
-            </button>
-        </div>
+    <div class="flex justify-center w-full">
+        <button type="submit" [disabled]="form.invalid || loading" class="px-6 py-2 bg-primary dark:bg-secondary text-white dark:text-black hover:bg-primary/80 dark:hover:bg-secondary/80 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+            Guardar
+        </button>
     </div>
 </form>
