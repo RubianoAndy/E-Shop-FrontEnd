@@ -61,12 +61,17 @@
                         <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700 whitespace-nowrap">
                             @for (category of categoriesRecords; track $index) {
                                 <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    <td class="flex flex-col items-center gap-6 p-4 mr-12 text-sm text-black dark:text-white whitespace-nowrap">
+                                    <td class="px-4 py-4 text-sm text-black dark:text-white">
                                         {{ category.id }}
                                     </td>
 
-                                    <td class="px-4 py-4 text-sm text-black dark:text-white">
-                                        {{ category.name }}
+                                    <td class="flex flex-row items-center gap-6 p-4 mr-12 text-sm text-black dark:text-white whitespace-nowrap">
+                                        <img class="w-10 h-10" [src]="loadCategoryImage(category.id)" alt="categoryImage" loading="lazy">
+                                        <div class="text-sm font-normal">
+                                            <div class="text-base font-semibold text-primary dark:text-secondary">
+                                                {{ category.name }}
+                                            </div>
+                                        </div>
                                     </td>
 
                                     <td class="px-4 py-4 text-sm text-black dark:text-white">

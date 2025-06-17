@@ -26,6 +26,8 @@ export default class CategoriesComponent implements OnInit {
     'Acciones'
   ];
 
+  categoryImage: Map<number, string> = new Map();
+
   categoriesRecords: any[] = [];
 
   page: number = 1;
@@ -111,6 +113,10 @@ export default class CategoriesComponent implements OnInit {
       error: () => {
       }
     });
+  }
+
+  loadCategoryImage(categoryId: number): string {
+    return this.categoryImage.get(categoryId) || 'assets/images/avatar/Avatar.png';
   }
 
   changePage(pageNumber: number) {

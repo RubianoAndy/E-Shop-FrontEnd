@@ -27,7 +27,7 @@ export default class UsersComponent implements OnInit {
 
   roles: any[] = [];
 
-  tableFileds: string[] = ['Nombre', 'Email', 'Rol', 'Estado', 'Fecha de creación', 'Acciones'];
+  tableFileds: string[] = ['Id', 'Nombre', 'Email', 'Rol', 'Estado', 'Fecha de creación', 'Acciones'];
   usersRecords: any[] = [];
 
   page: number = 1;
