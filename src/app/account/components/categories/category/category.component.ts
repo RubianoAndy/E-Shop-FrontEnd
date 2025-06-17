@@ -184,9 +184,10 @@ export default class CategoryComponent implements OnInit {
       observations: this.form.value.observations,
     };
 
-    if (this.form.valid && body)
+    if (this.form.valid && body && this.categoryImage!.file)
       this.createCategory(body);
   }
+
   createCategory(body: Category): void {
     this.isSubmitting = true;
     var alertBody = null;
