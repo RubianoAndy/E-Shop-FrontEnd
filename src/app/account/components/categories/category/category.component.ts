@@ -134,8 +134,8 @@ export default class CategoryComponent implements OnInit {
   }
 
   private processFile(file: File): void {
-    if (file.size > 1024 * 1024) { // 1MB limit
-      this.imageError = 'La imagen no debe superar 1MB';
+    if (file.size > 2 * 1024 * 1024) { // 2 MB limit
+      this.imageError = 'La imagen no debe superar 2 MB';
       return;
     }
 
