@@ -103,4 +103,13 @@ export class CategoriesService {
       })
     );
   }
+
+  getCategoryImage(categoryId: any): Observable<Blob> {
+    this.loadingService.show();
+    return this.http.get(`${this.apiUrl}/category-image/${categoryId}`, { responseType: 'blob' }).pipe(
+      finalize(() => {
+        this.loadingService.hide(); // Ocultar loading después de la petición
+      })
+    );
+  }
 }

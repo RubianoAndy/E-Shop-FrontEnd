@@ -26,7 +26,7 @@ export default class CategoriesComponent implements OnInit {
     'Acciones'
   ];
 
-  categoryImage: Map<number, string> = new Map();
+  images: Map<number, string> = new Map();
 
   categoriesRecords: any[] = [];
 
@@ -109,14 +109,32 @@ export default class CategoriesComponent implements OnInit {
         this.endRecord = Math.min(this.page * this.pageSize, this.totalRecords);
 
         this.calculatePageRange();
+        this.loadImages();
       },
       error: () => {
       }
     });
   }
 
-  loadCategoryImage(categoryId: number): string {
-    return this.categoryImage.get(categoryId) || 'assets/images/avatar/Avatar.png';
+  loadImages() {
+    this.categoriesRecords.forEach(category => {
+      if (!this.images.has(category.id))
+        this.getCategoryImage(category.id);
+    });
+  }
+
+  getCategoryImage(categoryId: number) {
+    this.categoriesService.getCategoryImage(categoryId).subscribe({
+      next: (blob) => {
+        const avatarUrl = URL.createObjectURL(blob);
+        this.images.set(categoryId, avatarUrl);
+      },
+      error: () => { }
+    });
+  }
+  
+  loadimages(categoryId: number): string | undefined {
+    return this.images.get(categoryId);
   }
 
   changePage(pageNumber: number) {
