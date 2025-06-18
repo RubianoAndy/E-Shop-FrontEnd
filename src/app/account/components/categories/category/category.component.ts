@@ -17,7 +17,8 @@ interface Category {
   url: string;
   description: string;
   observations?: string;
-  // image: CategoryImage;
+  image?: string;
+  imageUrl?: string;
 }
 
 type AccentMap = {
@@ -40,6 +41,7 @@ export default class CategoryComponent implements OnInit {
   categoryImage?: CategoryImage;
 
   form!: FormGroup;
+  edit: any;
 
   isSubmitting = false;
   imageError = '';
@@ -60,11 +62,11 @@ export default class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+
     this.route.params.subscribe(params => {
       this.categoryId = +params['id'];
-      if (this.categoryId !== 0) {
-        this.loadCategory();
-      }
+      if (this.categoryId > 0)
+        this.getCategory(this.categoryId);
     });
   }
 
@@ -88,8 +90,43 @@ export default class CategoryComponent implements OnInit {
     });
   }
 
-  loadCategory(): void {
-    // TODO: Implementar carga de categoría para edición
+  getCategory(categoryId: number): void {
+    this.categoriesService.get(categoryId).subscribe({
+      next: (response) => {
+        const category = response.category;
+
+        this.edit = {
+          ...category,
+          hasImage: !!category.image
+        };
+        
+        this.createForm(this.edit);
+
+        if (category.image) {
+          this.categoriesService.getCategoryImage(categoryId).subscribe({
+            next: (blob) => {
+              const avatarUrl = URL.createObjectURL(blob);
+              this.categoryImage = {
+                file: new File([blob], category.image, { type: blob.type }),
+                preview: avatarUrl
+              };
+            },
+            error: () => {
+              this.categoryImage = undefined;
+            }
+          });
+        } else {
+          this.categoryImage = undefined;
+        }
+      },
+      error: (error) => {
+        this.alertService.showAlert({
+          type: 'error',
+          title: '¡Error!',
+          message: error.error.message || 'Error al cargar la categoría'
+        });
+      }
+    });
   }
 
   /* onDragEnter(event: DragEvent): void {
@@ -177,15 +214,14 @@ export default class CategoryComponent implements OnInit {
   }
 
   onSubmit() {
-    var body = {
-      name: this.form.value.name,
-      url: this.form.value.url,
-      description: this.form.value.description,
-      observations: this.form.value.observations,
-    };
+    var body = this.form.value;
 
-    if (this.form.valid && body && this.categoryImage!.file)
-      this.createCategory(body);
+    if (this.form.valid && body && this.categoryImage!.file) {
+      if (this.categoryId > 0)
+        this.editCategory(body);
+      else
+        this.createCategory(body);
+    }
   }
 
   createCategory(body: Category): void {
@@ -216,27 +252,31 @@ export default class CategoryComponent implements OnInit {
     });
   }
 
-  /* async onSubmit(): Promise<void> {
+  editCategory(body: Category): void {
     this.isSubmitting = true;
-    try {
-      const formData = this.form.value;
-      const category: Category = {
-        ...formData,
-        image: this.categoryImage
-      };
+    var alertBody = null;
 
-      if (this.categoryId === 0) {
-        // TODO: Crear nueva categoría
-      } else {
-        // TODO: Actualizar categoría existente
+    this.categoriesService.edit(this.categoryId, body, this.categoryImage?.file).subscribe({
+      next: (response) => {
+        alertBody = {
+          type: 'okay',
+          title: '¡Felicidades!',
+          message: response.message,
+        };
+        this.alertService.showAlert(alertBody);
+        this.router.navigate(['/account/categories']);
+      },
+      error: (response) => {
+        alertBody = {
+          type: 'error',
+          title: '¡Error!',
+          message: response.error.message,
+        };
+        this.alertService.showAlert(alertBody);
+      },
+      complete: () => {
+        this.isSubmitting = false;
       }
-
-      await this.router.navigate(['/account/categories']);
-    } catch (error) {
-      console.error('Error al guardar la categoría:', error);
-      // TODO: Mostrar mensaje de error
-    } finally {
-      this.isSubmitting = false;
-    }
-  } */
+    });
+  }
 }

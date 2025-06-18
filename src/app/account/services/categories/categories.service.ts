@@ -55,7 +55,7 @@ export class CategoriesService {
       formData.append(key, body[key]);
     });
 
-    if (image)
+    if (image && body.hasImage)
       formData.append('image', image);
 
     return this.http.post(`${this.apiUrl}/category`, formData).pipe(
@@ -65,12 +65,21 @@ export class CategoriesService {
     );
   }
 
-  edit(categoryId: any, name: string): Observable<any> {
+  edit(categoryId: any, body: any, image: File | undefined): Observable<any> {
     this.loadingService.show();
 
-    return this.http.put(`${this.apiUrl}/category/${categoryId}`, { name }).pipe(
+    const formData = new FormData();
+    
+    Object.keys(body).forEach(key => {
+      formData.append(key, body[key]);
+    });
+
+    if (image && body.hasImage)
+      formData.append('image', image);
+
+    return this.http.put(`${this.apiUrl}/category/${categoryId}`, formData).pipe(
       finalize(() => {
-        this.loadingService.hide(); // Ocultar loading después de la petición
+        this.loadingService.hide();
       })
     );
   }
