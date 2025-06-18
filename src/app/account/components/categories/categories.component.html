@@ -66,7 +66,7 @@
                                     </td>
 
                                     <td class="flex flex-row items-center gap-6 p-4 mr-12 text-sm text-black dark:text-white whitespace-nowrap">
-                                        <img class="w-10 h-10" [src]="loadimages(category.id)" alt="categoryImage" loading="lazy">
+                                        <img class="w-10 h-10" [src]="loadImages(category.id)" alt="categoryImage" loading="lazy">
                                         <div class="text-sm font-normal">
                                             <div class="text-base font-semibold text-primary dark:text-secondary">
                                                 {{ category.name }}
@@ -131,4 +131,36 @@
             </ul>
         </div>
     </div>
+
+    @if (isDeleteModalOpen) {
+        <div class="flex fixed inset-0 z-0 items-center justify-center p-4 bg-gray-900/50 dark:bg-white/50">
+            <div class="w-full max-w-md bg-white dark:bg-gray-950 shadow-lg">
+                <div class="relative flex items-center p-4 text-primary dark:text-secondary">
+                    <button type="button" (click)="closeDeleteCategory()" class="cursor-pointer absolute top-0 right-0 mt-4 mr-4 hover:text-red-500 w-6 h-6">
+                        <span class="material-icons scale-150 font-bold">close</span>
+                    </button>
+                </div>
+
+                <div class="p-4 text-black h-60 overflow-y-auto">
+                    <div class="flex flex-col items-center gap-4">
+                        <span class="material-icons-outlined text-red-500 scale-[2.5] my-4">error_outline</span>
+                        
+                        <h3 class="text-xl text-black dark:text-secondary">
+                            ¿Deseas eliminar esta categoría?
+                        </h3>
+
+                        <div class="flex justify-center gap-4">
+                            <button type="button" (click)="deleteCategory()" class="cursor-pointer flex px-5 py-2.5 bg-primary hover:bg-green-800 text-white shadow-lg">
+                                <span class="material-icons-outlined mr-2">check</span> ¡Sí!
+                            </button>
+        
+                            <button type="button" (click)="closeDeleteCategory()" class="cursor-pointer flex px-5 py-2.5 bg-red-500 hover:bg-red-800 text-white shadow-lg">
+                                <span class="material-icons-outlined mr-2">close</span> ¡No!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>

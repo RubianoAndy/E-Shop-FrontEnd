@@ -109,14 +109,14 @@ export default class CategoriesComponent implements OnInit {
         this.endRecord = Math.min(this.page * this.pageSize, this.totalRecords);
 
         this.calculatePageRange();
-        this.loadImages();
+        this.getImages();
       },
       error: () => {
       }
     });
   }
 
-  loadImages() {
+  getImages() {
     this.categoriesRecords.forEach(category => {
       if (!this.images.has(category.id))
         this.getCategoryImage(category.id);
@@ -133,7 +133,7 @@ export default class CategoriesComponent implements OnInit {
     });
   }
   
-  loadimages(categoryId: number): string | undefined {
+  loadImages(categoryId: number): string | undefined {
     return this.images.get(categoryId);
   }
 

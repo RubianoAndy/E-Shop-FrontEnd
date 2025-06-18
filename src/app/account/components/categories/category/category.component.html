@@ -44,8 +44,9 @@
                                 class="w-full h-full object-cover"
                             >
                             <button type="button"
-                                    (click)="removeImage(); $event.stopPropagation()"
-                                    class="absolute top-2 right-2 flex items-center justify-center w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg transition-colors">
+                                (click)="removeImage(); $event.stopPropagation()"
+                                class="cursor-pointer absolute top-2 right-2 flex items-center justify-center w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg transition-colors"
+                            >
                                 <span class="material-icons scale-75">close</span>
                             </button>
                         }
