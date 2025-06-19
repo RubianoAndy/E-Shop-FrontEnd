@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CategoriesService } from '../../../services/categories/categories.service';
 
 interface ProductImage {
   file: File;
@@ -44,7 +45,7 @@ export default class ProductComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    // Agrega tus servicios aquí si los necesitas
+    private categoriesService: CategoriesService,
   ) { }
 
   ngOnInit(): void {
@@ -77,7 +78,19 @@ export default class ProductComponent implements OnInit {
   }
 
   loadCategories(): void {
-    // Implementa la lógica para cargar las categorías
+    this.categoriesService.getCategoriesSmall().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+        if (this.productId > 0) {
+          const productCategory = this.categories.find(c => c.id === this.form.get('categoryId')?.value);
+          if (productCategory)
+            this.form.patchValue({ categoryId: productCategory.id });
+        }
+      },
+      error: (error) => {
+        console.error('Error al cargar las categorías', error);
+      }
+    });
   }
 
   onDragOver(event: DragEvent): void {
