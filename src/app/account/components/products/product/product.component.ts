@@ -50,12 +50,13 @@ export default class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+
     this.route.params.subscribe(params => {
       this.productId = +params['id'];
-      if (this.productId > 0) {
+      if (this.productId > 0)
         this.getProduct(this.productId);
-      }
     });
+    
     this.loadCategories();
   }
 
