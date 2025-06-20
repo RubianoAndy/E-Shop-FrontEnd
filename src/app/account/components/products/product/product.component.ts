@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule, FormArray } from '@angular/forms';
 import { CategoriesService } from '../../../services/categories/categories.service';
+import { productPriceDiscountValidator } from '../../../validators/product-price-discount/product-price-discount.validator';
 
 interface ProductImage {
   file: File;
@@ -97,7 +98,7 @@ export default class ProductComponent implements OnInit {
       price: [size?.price ?? '', [Validators.required, Validators.min(1)]],
       discountPrice: [size?.discountPrice ?? '', [Validators.min(0)]],
       isActive: [size?.isActive ?? true]
-    }));
+    }, { validators: productPriceDiscountValidator() }));
   }
 
   removeSize(index: number) {
@@ -225,8 +226,8 @@ export default class ProductComponent implements OnInit {
       this.currentImageIndex = index;
   }
 
-  getErrorMessage(controlName: string): string {
-    const control = this.form.get(controlName);
+  getErrorMessage(controlName: string, group?: FormGroup): string {
+    const control = group ? group.get(controlName) : this.form.get(controlName);
     if (!control?.errors || !control.touched) return '';
     const errors = control.errors;
     if (errors['required']) return 'Este campo es requerido';
@@ -234,6 +235,7 @@ export default class ProductComponent implements OnInit {
     if (errors['maxlength']) return `Máximo ${errors['maxlength'].requiredLength} caracteres`;
     if (errors['pattern']) return 'Formato inválido';
     if (errors['min']) return `El valor debe ser mayor o igual a ${errors['min'].min}`;
+    if (group && group.errors?.['discountGreaterOrEqual']) return 'El precio debe ser mayor al precio con descuento';
     return 'Error de validación';
   }
 
