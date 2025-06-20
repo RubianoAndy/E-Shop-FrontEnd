@@ -31,19 +31,28 @@
                 </p>
               </div>
             } @else {
-              <img [src]="productImages[0].preview" alt="Imagen de producto" class="w-full h-full object-cover">
-              <button type="button" (click)="removeImage(0); $event.stopPropagation()" class="cursor-pointer absolute top-2 right-2 flex items-center justify-center w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg transition-colors">
+              <img [src]="productImages[currentImageIndex].preview" alt="Imagen de producto" class="w-full h-full object-cover">
+              <button type="button" (click)="removeImage(currentImageIndex); $event.stopPropagation()" class="cursor-pointer absolute top-2 right-2 flex items-center justify-center w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg transition-colors">
                 <span class="material-icons scale-75">close</span>
               </button>
+              <button *ngIf="productImages.length > 1" type="button" (click)="prevImage(); $event.stopPropagation()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-700 rounded-full p-1 shadow hover:bg-primary/20">
+                <span class="material-icons">chevron_left</span>
+              </button>
+              <button *ngIf="productImages.length > 1" type="button" (click)="nextImage(); $event.stopPropagation()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-700 rounded-full p-1 shadow hover:bg-primary/20">
+                <span class="material-icons">chevron_right</span>
+              </button>
+              <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+                <span *ngFor="let img of productImages; let i = index" class="w-2 h-2 rounded-full" [ngClass]="i === currentImageIndex ? 'bg-primary dark:bg-secondary' : 'bg-gray-300 dark:bg-gray-600'"></span>
+              </div>
             }
           </div>
-          <input #fileInput type="file" class="hidden" accept="image/png, image/jpeg, image/jpg, image/webp" (change)="onImagesSelected($event)">
+          <input #fileInput type="file" class="hidden" accept="image/png, image/jpeg, image/jpg, image/webp" (change)="onImagesSelected($event)" multiple>
         </div>
         <div class="flex flex-col gap-1">
           @if (imageError) {
             <p class="text-xs text-red-500">{{ imageError }}</p>
           }
-          <p class="text-xs text-gray-500 dark:text-gray-400">Formato: PNG, JPEG, JPG, WEBP (max. 2 MB)</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Formato: PNG, JPEG, JPG, WEBP (max. 2 MB, máx. 10 imágenes)</p>
         </div>
       </div>
       <div class="lg:col-span-2 flex flex-col gap-6">

@@ -40,6 +40,7 @@ export default class ProductComponent implements OnInit {
   imageError = '';
   isDragging = false;
   categories: any[] = [];
+  currentImageIndex: number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -127,7 +128,13 @@ export default class ProductComponent implements OnInit {
   }
 
   private processFiles(files: FileList): void {
+    if (this.productImages.length + files.length > 10) {
+      this.imageError = 'Solo puedes subir hasta 10 imágenes.';
+      return;
+    }
+    
     Array.from(files).forEach((file: File) => {
+      if (this.productImages.length >= 10) return;
       if (file.size > 2 * 1024 * 1024) {
         this.imageError = 'La imagen no debe superar 2 MB';
         return;
@@ -148,8 +155,27 @@ export default class ProductComponent implements OnInit {
     });
   }
 
+  setCurrentImage(index: number): void {
+    this.currentImageIndex = index;
+  }
+
+  nextImage(): void {
+    if (this.productImages.length > 0) {
+      this.currentImageIndex = (this.currentImageIndex + 1) % this.productImages.length;
+    }
+  }
+
+  prevImage(): void {
+    if (this.productImages.length > 0) {
+      this.currentImageIndex = (this.currentImageIndex - 1 + this.productImages.length) % this.productImages.length;
+    }
+  }
+
   removeImage(index: number): void {
     this.productImages.splice(index, 1);
+    if (this.currentImageIndex >= this.productImages.length) {
+      this.currentImageIndex = Math.max(0, this.productImages.length - 1);
+    }
   }
 
   getErrorMessage(controlName: string): string {
