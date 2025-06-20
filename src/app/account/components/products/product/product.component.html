@@ -187,9 +187,9 @@
                     </div>
 
                     <div class="w-full md:flex-1">
-                      <label [for]="'discountPrice-' + i" class="block text-sm font-semibold text-black dark:text-white mb-1">Descuento</label>
+                      <label [for]="'discountPrice-' + i" class="block text-sm font-semibold text-black dark:text-white mb-1">Precio con descuento</label>
                       <input [id]="'discountPrice-' + i" autocomplete="off" 
-                        type="number" formControlName="discountPrice" min="0" step="100" placeholder="Descuento"
+                        type="number" formControlName="discountPrice" min="0" step="100" placeholder="Precio con descuento"
                         [ngClass]="{
                           'border-red-500 dark:border-red-500': (sizeGroup.get('discountPrice')?.invalid && sizeGroup.get('discountPrice')?.touched) || sizeGroup.errors?.['discountGreaterOrEqual']
                         }"
