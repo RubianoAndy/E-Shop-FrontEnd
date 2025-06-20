@@ -104,6 +104,30 @@
               <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('discountPrice') }}</p>
             }
           </div>
+          <div>
+            <label for="sizeId" class="block text-sm font-semibold text-black dark:text-white mb-1">Tamaño <span class="text-red-500">*</span></label>
+            <select id="sizeId" formControlName="sizeId" [ngClass]="{'border-red-500 dark:border-red-500': form.get('sizeId')?.invalid && form.get('sizeId')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
+              <option value="">Selecciona un tamaño</option>
+              @for (size of sizeOptions; track size.id) {
+                <option [value]="size.id">{{ size.name }}</option>
+              }
+            </select>
+            @if (form.get('sizeId')?.invalid && form.get('sizeId')?.touched) {
+              <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('sizeId') }}</p>
+            }
+          </div>
+          <div>
+            <label for="warrantyId" class="block text-sm font-semibold text-black dark:text-white mb-1">Garantía <span class="text-red-500">*</span></label>
+            <select id="warrantyId" formControlName="warrantyId" [ngClass]="{'border-red-500 dark:border-red-500': form.get('warrantyId')?.invalid && form.get('warrantyId')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
+              <option value="">Selecciona una garantía</option>
+              @for (warranty of warrantyOptions; track warranty.id) {
+                <option [value]="warranty.id">{{ warranty.name }}</option>
+              }
+            </select>
+            @if (form.get('warrantyId')?.invalid && form.get('warrantyId')?.touched) {
+              <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('warrantyId') }}</p>
+            }
+          </div>
           <div class="md:col-span-2">
             <label for="description" class="block text-sm font-semibold text-black dark:text-white mb-1">Descripción <span class="text-red-500">*</span></label>
             <textarea id="description" autocomplete="off" rows="4" formControlName="description" placeholder="Descripción" [ngClass]="{'border-red-500 dark:border-red-500': form.get('description')?.invalid && form.get('description')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden resize-none border-gray-300 dark:border-gray-600"></textarea>

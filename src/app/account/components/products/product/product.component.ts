@@ -42,6 +42,21 @@ export default class ProductComponent implements OnInit {
   categories: any[] = [];
   currentImageIndex: number = 0;
 
+  sizeOptions = [
+    { id: 1, name: 'Pequeño' },
+    { id: 2, name: 'Mediano' },
+    { id: 3, name: 'Grande' },
+    { id: 4, name: 'XL' },
+    { id: 5, name: 'XXL' }
+  ];
+  warrantyOptions = [
+    { id: 1, name: 'Sin garantía' },
+    { id: 2, name: '3 meses' },
+    { id: 3, name: '6 meses' },
+    { id: 4, name: '1 año' },
+    { id: 5, name: '2 años' }
+  ];
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -66,9 +81,11 @@ export default class ProductComponent implements OnInit {
       name: [data?.name || '', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
       sku: [data?.sku || '', [Validators.required, Validators.maxLength(30)]],
       categoryId: [data?.categoryId || '', [Validators.required]],
-      stock: [data?.stock || 0, [Validators.required, Validators.min(0)]],
-      price: [data?.price || 0, [Validators.required, Validators.min(0)]],
-      discountPrice: [data?.discountPrice || 0, [Validators.min(0)]],
+      stock: [data?.stock ?? '', [Validators.required, Validators.min(0)]],
+      price: [data?.price ?? '', [Validators.required, Validators.min(0)]],
+      discountPrice: [data?.discountPrice ?? '', [Validators.min(0)]],
+      sizeId: [data?.sizeId || '', [Validators.required]],
+      warrantyId: [data?.warrantyId || '', [Validators.required]],
       description: [data?.description || '', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
       observations: [data?.observations || '', [Validators.maxLength(500)]],
       hasImage: [data?.hasImage || false, [Validators.requiredTrue]]
@@ -115,44 +132,58 @@ export default class ProductComponent implements OnInit {
     event.stopPropagation();
     this.isDragging = false;
     const files = event.dataTransfer?.files;
-    if (files?.length) {
+    if (files?.length)
       this.processFiles(files);
-    }
   }
 
   onImagesSelected(event: any): void {
     const files = event.target.files;
-    if (files) {
+    if (files)
       this.processFiles(files);
-    }
+  }
+
+  private updateHasImageControl(): void {
+    this.form.get('hasImage')?.setValue(this.productImages.length > 0);
+    this.form.get('hasImage')?.markAsTouched();
   }
 
   private processFiles(files: FileList): void {
     if (this.productImages.length + files.length > 10) {
       this.imageError = 'Solo puedes subir hasta 10 imágenes.';
+      this.updateHasImageControl();
       return;
     }
-    
+
     Array.from(files).forEach((file: File) => {
       if (this.productImages.length >= 10) return;
+
       if (file.size > 2 * 1024 * 1024) {
         this.imageError = 'La imagen no debe superar 2 MB';
+        this.updateHasImageControl();
         return;
       }
+
       if (!['image/png', 'image/jpeg', 'image/jpg', 'image/webp'].includes(file.type)) {
         this.imageError = 'Formato no permitido. Use PNG, JPEG, JPG o WEBP';
+        this.updateHasImageControl();
         return;
       }
+
       const reader = new FileReader();
+
       reader.onload = (e) => {
         this.productImages.push({
           file: file,
           preview: e.target?.result as string
         });
         this.imageError = '';
+        this.updateHasImageControl();
       };
+
       reader.readAsDataURL(file);
     });
+
+    setTimeout(() => this.updateHasImageControl(), 0);
   }
 
   setCurrentImage(index: number): void {
@@ -160,22 +191,22 @@ export default class ProductComponent implements OnInit {
   }
 
   nextImage(): void {
-    if (this.productImages.length > 0) {
+    if (this.productImages.length > 0)
       this.currentImageIndex = (this.currentImageIndex + 1) % this.productImages.length;
-    }
   }
 
   prevImage(): void {
-    if (this.productImages.length > 0) {
+    if (this.productImages.length > 0)
       this.currentImageIndex = (this.currentImageIndex - 1 + this.productImages.length) % this.productImages.length;
-    }
   }
 
   removeImage(index: number): void {
     this.productImages.splice(index, 1);
-    if (this.currentImageIndex >= this.productImages.length) {
+
+    if (this.currentImageIndex >= this.productImages.length)
       this.currentImageIndex = Math.max(0, this.productImages.length - 1);
-    }
+    
+    this.updateHasImageControl();
   }
 
   getErrorMessage(controlName: string): string {
