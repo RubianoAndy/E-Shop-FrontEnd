@@ -100,8 +100,14 @@
       <div class="lg:col-span-2 flex flex-col gap-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label for="name" class="block text-sm font-semibold text-black dark:text-white mb-1">Nombre del producto <span class="text-red-500">*</span></label>
-            <input id="name" autocomplete="off" type="text" formControlName="name" placeholder="Nombre" [ngClass]="{'border-red-500 dark:border-red-500': form.get('name')?.invalid && form.get('name')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
+            <label for="name" class="block text-sm font-semibold text-black dark:text-white mb-1">Nombre <span class="text-red-500">*</span></label>
+            <input id="name" autocomplete="off" 
+              type="text" formControlName="name" placeholder="Nombre" 
+              [ngClass]="{
+                'border-red-500 dark:border-red-500': form.get('name')?.invalid && form.get('name')?.touched
+              }"
+              class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600"
+            >
             @if (form.get('name')?.invalid && form.get('name')?.touched) {
               <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('name') }}</p>
             }
@@ -109,14 +115,27 @@
 
           <div>
             <label for="sku" class="block text-sm font-semibold text-black dark:text-white mb-1">SKU <span class="text-red-500">*</span></label>
-            <input id="sku" autocomplete="off" type="text" formControlName="sku" placeholder="SKU" [ngClass]="{'border-red-500 dark:border-red-500': form.get('sku')?.invalid && form.get('sku')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
+            <input id="sku" autocomplete="off" 
+              type="text" formControlName="sku" placeholder="SKU" 
+              [ngClass]="{
+                'border-red-500 dark:border-red-500': form.get('sku')?.invalid && form.get('sku')?.touched
+              }" 
+              class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600"
+            >
             @if (form.get('sku')?.invalid && form.get('sku')?.touched) {
               <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('sku') }}</p>
             }
           </div>
+
           <div>
             <label for="categoryId" class="block text-sm font-semibold text-black dark:text-white mb-1">Categoría <span class="text-red-500">*</span></label>
-            <select id="categoryId" formControlName="categoryId" [ngClass]="{'border-red-500 dark:border-red-500': form.get('categoryId')?.invalid && form.get('categoryId')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
+            <select id="categoryId" autocomplete="off"
+              formControlName="categoryId" 
+              [ngClass]="{
+                'border-red-500 dark:border-red-500': form.get('categoryId')?.invalid && form.get('categoryId')?.touched
+              }" 
+              class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600"
+            >
               <option value="" selected disabled>Seleccionar</option>
               @for (category of categories; track category.id) {
                 <option [value]="category.id">{{ category.name }}</option>
@@ -128,13 +147,15 @@
           </div>
 
           <div class="md:col-span-2">
-            <label class="block text-sm font-semibold text-black dark:text-white mb-2">Tamaños y precios <span class="text-red-500">*</span></label>
+            <h2 class="block text-sm font-semibold text-black dark:text-white mb-2">Tamaños y precios <span class="text-red-500">*</span></h2>
             <div formArrayName="sizes" class="flex flex-col gap-4">
               @for (sizeGroup of sizes.controls; let i = $index; track sizeGroup) {
                 <div [formGroupName]="i" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end border border-gray-300 dark:border-gray-600 px-3 py-5 relative">
                   <div>
-                    <label class="text-sm font-semibold text-black dark:text-white mb-1">Tamaño</label>
-                    <select formControlName="sizeId" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600">
+                    <label [for]="'sizeId-' + i" class="text-sm font-semibold text-black dark:text-white mb-1">Tamaño <span class="text-red-500">*</span></label>
+                    <select [id]="'sizeId-' + i" autocomplete="off" formControlName="sizeId"
+                      class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600"
+                    >
                       <option value="" selected disabled>Seleccionar</option>
                       @for (size of sizeOptions; track size.id) {
                         <option [value]="size.id">{{ size.name }}</option>
@@ -143,18 +164,27 @@
                   </div>
 
                   <div>
-                    <label class="block text-sm font-semibold text-black dark:text-white mb-1">Stock</label>
-                    <input type="number" formControlName="stock" min="0" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600" placeholder="Stock">
+                    <label [for]="'stock-' + i" class="block text-sm font-semibold text-black dark:text-white mb-1">Stock <span class="text-red-500">*</span></label>
+                    <input [id]="'stock-' + i" min="0" autocomplete="off"
+                      type="number" formControlName="stock" placeholder="Stock"
+                      class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600"
+                    >
                   </div>
 
                   <div>
-                    <label class="block text-sm font-semibold text-black dark:text-white mb-1">Precio original</label>
-                    <input type="number" formControlName="price" min="0" step="0.01" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600" placeholder="Precio">
+                    <label [for]="'price-' + i" class="block text-sm font-semibold text-black dark:text-white mb-1">Precio <span class="text-red-500">*</span></label>
+                    <input [id]="'price-' + i" min="0" step="100" autocomplete="off"
+                      type="number" formControlName="price" placeholder="Precio"
+                      class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600"
+                    >
                   </div>
 
                   <div>
-                    <label class="block text-sm font-semibold text-black dark:text-white mb-1">Precio con descuento</label>
-                    <input type="number" formControlName="discountPrice" min="0" step="0.01" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600" placeholder="Descuento">
+                    <label [for]="'discountPrice-' + i" class="block text-sm font-semibold text-black dark:text-white mb-1">Precio con descuento</label>
+                    <input [id]="'discountPrice-' + i" autocomplete="off" 
+                      type="number" formControlName="discountPrice" min="0" step="100" placeholder="Descuento"
+                      class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600"
+                    >
                   </div>
                   
                   @if (sizes.length > 1) {
@@ -167,6 +197,9 @@
                   
                 </div>
               }
+              @if (form.get('sizes')?.invalid && form.get('sizes')?.touched) {
+                <p class="mt-1 text-xs text-red-500">Debes completar correctamente todos los tamaños y precios.</p>
+              }
               <button type="button" (click)="addSize()" class="cursor-pointer mt-2 px-4 py-2 bg-primary dark:bg-secondary text-white dark:text-black hover:bg-primary/80 dark:hover:bg-secondary/80 transition-colors w-fit">
                 <span class="material-icons align-middle mr-1">add</span> Agregar tamaño
               </button>
@@ -175,7 +208,13 @@
 
           <div class="md:col-span-2">
             <label for="description" class="block text-sm font-semibold text-black dark:text-white mb-1">Descripción <span class="text-red-500">*</span></label>
-            <textarea id="description" autocomplete="off" rows="4" formControlName="description" placeholder="Descripción" [ngClass]="{'border-red-500 dark:border-red-500': form.get('description')?.invalid && form.get('description')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden resize-none border-gray-300 dark:border-gray-600"></textarea>
+            <textarea id="description" autocomplete="off" 
+              rows="4" formControlName="description" placeholder="Descripción" 
+              [ngClass]="{
+                'border-red-500 dark:border-red-500': form.get('description')?.invalid && form.get('description')?.touched
+              }"
+              class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden resize-none border-gray-300 dark:border-gray-600">
+            </textarea>
             @if (form.get('description')?.invalid && form.get('description')?.touched) {
               <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('description') }}</p>
             }
@@ -183,7 +222,13 @@
 
           <div class="md:col-span-2">
             <label for="observations" class="block text-sm font-semibold text-black dark:text-white mb-1">Observaciones</label>
-            <textarea id="observations" autocomplete="off" rows="4" formControlName="observations" placeholder="Observaciones" [ngClass]="{'border-red-500 dark:border-red-500': form.get('observations')?.invalid && form.get('observations')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden resize-none border-gray-300 dark:border-gray-600"></textarea>
+            <textarea id="observations" autocomplete="off" 
+              rows="4" formControlName="observations" placeholder="Observaciones" 
+              [ngClass]="{
+                'border-red-500 dark:border-red-500': form.get('observations')?.invalid && form.get('observations')?.touched
+              }" 
+              class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden resize-none border-gray-300 dark:border-gray-600">
+            </textarea>
             @if (form.get('observations')?.invalid && form.get('observations')?.touched) {
               <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('observations') }}</p>
             }
@@ -192,9 +237,12 @@
       </div>
     </div>
     <div class="flex items-center justify-end gap-4 mt-8">
-      <button type="button" routerLink="/account/products" [disabled]="isSubmitting" class="px-4 py-2 bg-red-600 text-white hover:bg-red-700 transition-colors cursor-pointer">Cancelar</button>
+      <button type="button" routerLink="/account/products" [disabled]="isSubmitting" class="px-4 py-2 bg-red-600 text-white hover:bg-red-700 transition-colors cursor-pointer">
+        Cancelar
+      </button>
+      
       <button type="submit" [disabled]="form.invalid || isSubmitting" class="px-6 py-2 bg-primary dark:bg-secondary text-white dark:text-black hover:bg-primary/80 dark:hover:bg-secondary/80 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
-        {{ isSubmitting ? 'Guardando...' : 'Guardar' }}
+        Guardar
       </button>
     </div>
   </form>
