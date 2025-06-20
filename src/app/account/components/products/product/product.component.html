@@ -8,9 +8,9 @@
         <div class="relative aspect-square"
             [class.cursor-pointer]="!productImages.length"
             (click)="!productImages.length && fileInput.click()"
-            (dragover)="onDragOver($event)"
-            (dragleave)="onDragLeave($event)"
-            (drop)="onDrop($event)">
+            (dragover)="!productImages.length && onDragOver($event)"
+            (dragleave)="!productImages.length && onDragLeave($event)"
+            (drop)="!productImages.length && onDrop($event)">
           <div class="w-full h-full transition-transform duration-200 backface-visible transform-gpu"
               [ngClass]="{
                 'border-2 border-dashed hover:scale-[1.02]': !productImages.length,
@@ -23,10 +23,10 @@
                 <span class="material-icons scale-200 text-gray-400 mb-2" [class.text-primary]="isDragging" [class.dark:text-secondary]="isDragging">cloud_upload</span>
                 <p class="text-sm text-gray-600 dark:text-gray-400 text-center">
                   @if (isDragging) {
-                    Suelta la imagen aquí
+                    Suelta la(s) imagen(imágenes) aquí
                   } @else {
-                    Arrastra una imagen o<br>
-                    <span class="text-primary dark:text-secondary">selecciona un archivo</span>
+                    Arrastra una o varias imágenes o<br>
+                    <span class="text-primary dark:text-secondary">selecciona los archivos</span>
                   }
                 </p>
               </div>
@@ -92,7 +92,7 @@
           <div>
             <label for="categoryId" class="block text-sm font-semibold text-black dark:text-white mb-1">Categoría <span class="text-red-500">*</span></label>
             <select id="categoryId" formControlName="categoryId" [ngClass]="{'border-red-500 dark:border-red-500': form.get('categoryId')?.invalid && form.get('categoryId')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
-              <option value="">Selecciona una categoría</option>
+              <option value="" selected disabled>Seleccionar</option>
               @for (category of categories; track category.id) {
                 <option [value]="category.id">{{ category.name }}</option>
               }
@@ -125,7 +125,7 @@
           <div>
             <label for="sizeId" class="block text-sm font-semibold text-black dark:text-white mb-1">Tamaño <span class="text-red-500">*</span></label>
             <select id="sizeId" formControlName="sizeId" [ngClass]="{'border-red-500 dark:border-red-500': form.get('sizeId')?.invalid && form.get('sizeId')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
-              <option value="">Selecciona un tamaño</option>
+              <option value="" selected disabled>Seleccionar</option>
               @for (size of sizeOptions; track size.id) {
                 <option [value]="size.id">{{ size.name }}</option>
               }
@@ -135,15 +135,15 @@
             }
           </div>
           <div>
-            <label for="warrantyId" class="block text-sm font-semibold text-black dark:text-white mb-1">Garantía <span class="text-red-500">*</span></label>
-            <select id="warrantyId" formControlName="warrantyId" [ngClass]="{'border-red-500 dark:border-red-500': form.get('warrantyId')?.invalid && form.get('warrantyId')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
-              <option value="">Selecciona una garantía</option>
+            <label for="warranty" class="block text-sm font-semibold text-black dark:text-white mb-1">Garantía <span class="text-red-500">*</span></label>
+            <select id="warranty" formControlName="warranty" [ngClass]="{'border-red-500 dark:border-red-500': form.get('warranty')?.invalid && form.get('warranty')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
+              <option value="" selected disabled>Seleccionar</option>
               @for (warranty of warrantyOptions; track warranty.id) {
                 <option [value]="warranty.id">{{ warranty.name }}</option>
               }
             </select>
-            @if (form.get('warrantyId')?.invalid && form.get('warrantyId')?.touched) {
-              <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('warrantyId') }}</p>
+            @if (form.get('warranty')?.invalid && form.get('warranty')?.touched) {
+              <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('warranty') }}</p>
             }
           </div>
           <div class="md:col-span-2">

@@ -78,17 +78,17 @@ export default class ProductComponent implements OnInit {
 
   createForm(data: any = null) {
     this.form = this.formBuilder.group({
-      name: [data?.name || '', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-      sku: [data?.sku || '', [Validators.required, Validators.maxLength(30)]],
-      categoryId: [data?.categoryId || '', [Validators.required]],
-      stock: [data?.stock ?? '', [Validators.required, Validators.min(0)]],
-      price: [data?.price ?? '', [Validators.required, Validators.min(0)]],
-      discountPrice: [data?.discountPrice ?? '', [Validators.min(0)]],
-      sizeId: [data?.sizeId || '', [Validators.required]],
-      warrantyId: [data?.warrantyId || '', [Validators.required]],
-      description: [data?.description || '', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]],
-      observations: [data?.observations || '', [Validators.maxLength(500)]],
-      hasImage: [data?.hasImage || false, [Validators.requiredTrue]]
+      name: [data?.name || '', [ Validators.required, Validators.minLength(3), Validators.maxLength(100) ]],
+      sku: [data?.sku || '', [ Validators.required, Validators.minLength(8), Validators.maxLength(30) ]],
+      categoryId: [data?.categoryId || '', [ Validators.required, Validators.minLength(1) ]],
+      stock: [data?.stock ?? '', [ Validators.required, Validators.min(1) ]],
+      price: [data?.price ?? '', [ Validators.required, Validators.min(1) ]],
+      discountPrice: [data?.discountPrice ?? '', [ Validators.min(0) ]],
+      sizeId: [data?.sizeId || '', [ Validators.required, Validators.minLength(1) ]],
+      warranty: [data?.warranty || '', [ Validators.required, Validators.minLength(1) ]],
+      description: [data?.description || '', [ Validators.required, Validators.minLength(10), Validators.maxLength(500) ]],
+      observations: [data?.observations || '', [ Validators.maxLength(500) ]],
+      hasImage: [data?.hasImage || false, [ Validators.requiredTrue ]]
     });
   }
 
