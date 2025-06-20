@@ -76,7 +76,6 @@ export default class ProductComponent implements OnInit {
   createForm(data: any = null) {
     this.form = this.formBuilder.group({
       name: [data?.name || '', [ Validators.required, Validators.minLength(3), Validators.maxLength(100) ]],
-      sku: [data?.sku || '', [ Validators.required, Validators.minLength(8), Validators.maxLength(30) ]],
       categoryId: [data?.categoryId || '', [ Validators.required, Validators.minLength(1) ]],
       sizes: this.formBuilder.array([]),
       description: [data?.description || '', [ Validators.required, Validators.minLength(10), Validators.maxLength(500) ]],
@@ -93,9 +92,11 @@ export default class ProductComponent implements OnInit {
   addSize(size: any = null) {
     this.sizes.push(this.formBuilder.group({
       sizeId: [size?.sizeId || '', [Validators.required]],
+      sku: [size?.sku || '', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
       stock: [size?.stock ?? '', [Validators.required, Validators.min(1)]],
       price: [size?.price ?? '', [Validators.required, Validators.min(1)]],
       discountPrice: [size?.discountPrice ?? '', [Validators.min(0)]],
+      isActive: [size?.isActive ?? true]
     }));
   }
 
