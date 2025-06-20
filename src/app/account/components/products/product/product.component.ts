@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule, FormArray } from '@angular/forms';
 import { CategoriesService } from '../../../services/categories/categories.service';
 
 interface ProductImage {
@@ -76,20 +76,40 @@ export default class ProductComponent implements OnInit {
     this.loadCategories();
   }
 
+  // Getter para el FormArray de tamaños
+  get sizes(): FormArray {
+    return this.form.get('sizes') as FormArray;
+  }
+
   createForm(data: any = null) {
     this.form = this.formBuilder.group({
       name: [data?.name || '', [ Validators.required, Validators.minLength(3), Validators.maxLength(100) ]],
       sku: [data?.sku || '', [ Validators.required, Validators.minLength(8), Validators.maxLength(30) ]],
       categoryId: [data?.categoryId || '', [ Validators.required, Validators.minLength(1) ]],
-      stock: [data?.stock ?? '', [ Validators.required, Validators.min(1) ]],
-      price: [data?.price ?? '', [ Validators.required, Validators.min(1) ]],
-      discountPrice: [data?.discountPrice ?? '', [ Validators.min(0) ]],
-      sizeId: [data?.sizeId || '', [ Validators.required, Validators.minLength(1) ]],
+      sizes: this.formBuilder.array([]),
       warranty: [data?.warranty || '', [ Validators.required, Validators.minLength(1) ]],
       description: [data?.description || '', [ Validators.required, Validators.minLength(10), Validators.maxLength(500) ]],
       observations: [data?.observations || '', [ Validators.maxLength(500) ]],
       hasImage: [data?.hasImage || false, [ Validators.requiredTrue ]]
     });
+    
+    if (data?.sizes?.length)
+      data.sizes.forEach((size: any) => this.addSize(size));
+    else
+      this.addSize();
+  }
+
+  addSize(size: any = null) {
+    this.sizes.push(this.formBuilder.group({
+      sizeId: [size?.sizeId || '', [Validators.required]],
+      stock: [size?.stock ?? '', [Validators.required, Validators.min(1)]],
+      price: [size?.price ?? '', [Validators.required, Validators.min(1)]],
+      discountPrice: [size?.discountPrice ?? '', [Validators.min(0)]],
+    }));
+  }
+
+  removeSize(index: number) {
+    this.sizes.removeAt(index);
   }
 
   getProduct(productId: number): void {
@@ -116,9 +136,8 @@ export default class ProductComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     this.isDragging = true;
-    if (!this.productImages.length) {
+    if (!this.productImages.length)
       event.dataTransfer!.dropEffect = 'copy';
-    }
   }
 
   onDragLeave(event: DragEvent): void {

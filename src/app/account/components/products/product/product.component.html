@@ -101,38 +101,42 @@
               <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('categoryId') }}</p>
             }
           </div>
-          <div>
-            <label for="stock" class="block text-sm font-semibold text-black dark:text-white mb-1">Stock <span class="text-red-500">*</span></label>
-            <input id="stock" autocomplete="off" type="number" formControlName="stock" placeholder="0" min="0" [ngClass]="{'border-red-500 dark:border-red-500': form.get('stock')?.invalid && form.get('stock')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
-            @if (form.get('stock')?.invalid && form.get('stock')?.touched) {
-              <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('stock') }}</p>
-            }
-          </div>
-          <div>
-            <label for="price" class="block text-sm font-semibold text-black dark:text-white mb-1">Precio original <span class="text-red-500">*</span></label>
-            <input id="price" autocomplete="off" type="number" formControlName="price" placeholder="0" min="0" step="0.01" [ngClass]="{'border-red-500 dark:border-red-500': form.get('price')?.invalid && form.get('price')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
-            @if (form.get('price')?.invalid && form.get('price')?.touched) {
-              <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('price') }}</p>
-            }
-          </div>
-          <div>
-            <label for="discountPrice" class="block text-sm font-semibold text-black dark:text-white mb-1">Precio con descuento</label>
-            <input id="discountPrice" autocomplete="off" type="number" formControlName="discountPrice" placeholder="0" min="0" step="0.01" [ngClass]="{'border-red-500 dark:border-red-500': form.get('discountPrice')?.invalid && form.get('discountPrice')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
-            @if (form.get('discountPrice')?.invalid && form.get('discountPrice')?.touched) {
-              <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('discountPrice') }}</p>
-            }
-          </div>
-          <div>
-            <label for="sizeId" class="block text-sm font-semibold text-black dark:text-white mb-1">Tamaño <span class="text-red-500">*</span></label>
-            <select id="sizeId" formControlName="sizeId" [ngClass]="{'border-red-500 dark:border-red-500': form.get('sizeId')?.invalid && form.get('sizeId')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
-              <option value="" selected disabled>Seleccionar</option>
-              @for (size of sizeOptions; track size.id) {
-                <option [value]="size.id">{{ size.name }}</option>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-semibold text-black dark:text-white mb-2">Tamaños y precios <span class="text-red-500">*</span></label>
+            <div formArrayName="sizes" class="flex flex-col gap-4">
+              @for (sizeGroup of sizes.controls; let i = $index; track sizeGroup) {
+                <div [formGroupName]="i" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end border border-gray-300 dark:border-gray-600 p-3 relative">
+                  <div>
+                    <label class="block text-xs font-semibold mb-1">Tamaño</label>
+                    <select formControlName="sizeId" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600">
+                      <option value="" selected disabled>Seleccionar</option>
+                      @for (size of sizeOptions; track size.id) {
+                        <option [value]="size.id">{{ size.name }}</option>
+                      }
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold mb-1">Stock</label>
+                    <input type="number" formControlName="stock" min="0" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600" placeholder="Stock">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold mb-1">Precio original</label>
+                    <input type="number" formControlName="price" min="0" step="0.01" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600" placeholder="Precio">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold mb-1">Precio con descuento</label>
+                    <input type="number" formControlName="discountPrice" min="0" step="0.01" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600" placeholder="Descuento">
+                  </div>
+                  <button type="button" (click)="removeSize(i)" *ngIf="sizes.length > 1"
+                    class="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center shadow transition-colors">
+                    <span class="material-icons scale-75">close</span>
+                  </button>
+                </div>
               }
-            </select>
-            @if (form.get('sizeId')?.invalid && form.get('sizeId')?.touched) {
-              <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('sizeId') }}</p>
-            }
+              <button type="button" (click)="addSize()" class="mt-2 px-4 py-2 bg-primary dark:bg-secondary text-white dark:text-black rounded hover:bg-primary/80 dark:hover:bg-secondary/80 transition-colors w-fit">
+                <span class="material-icons align-middle mr-1">add</span> Agregar tamaño
+              </button>
+            </div>
           </div>
           <div>
             <label for="warranty" class="block text-sm font-semibold text-black dark:text-white mb-1">Garantía <span class="text-red-500">*</span></label>
