@@ -45,34 +45,58 @@
                     >
                   }
                 </div>
+
                 <button type="button" (click)="removeImage(currentImageIndex); $event.stopPropagation()" class="cursor-pointer absolute top-2 right-2 flex items-center justify-center w-7 h-7 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg transition-colors z-10">
                   <span class="material-icons scale-75">close</span>
                 </button>
+
                 @if (productImages.length > 1) {
-                  <button type="button" (click)="prevImage(); $event.stopPropagation()" class="absolute left-2 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-700 rounded-full p-1 shadow hover:bg-primary/20 z-10">
-                    <span class="material-icons">chevron_left</span>
+                  <button type="button" (click)="prevImage(); $event.stopPropagation()"
+                    class="absolute cursor-pointer left-2 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10
+                      bg-white/40 dark:bg-gray-900/40 shadow-xl rounded-full transition-all duration-200 hover:scale-110 
+                      active:scale-95 hover:bg-white/70 dark:hover:bg-gray-900/70 group">
+                    <span class="material-icons text-primary dark:text-secondary group-hover:text-primary/80 dark:group-hover:text-secondary/80 transition-colors scale-200">chevron_left</span>
                   </button>
-                  <button type="button" (click)="nextImage(); $event.stopPropagation()" class="absolute right-2 top-1/2 -translate-y-1/2 bg-white dark:bg-gray-700 rounded-full p-1 shadow hover:bg-primary/20 z-10">
-                    <span class="material-icons">chevron_right</span>
+                  <button type="button" (click)="nextImage(); $event.stopPropagation()"
+                    class="absolute cursor-pointer right-2 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10
+                      bg-white/40 dark:bg-gray-900/40 shadow-xl rounded-full transition-all duration-200 hover:scale-110 
+                      active:scale-95 hover:bg-white/70 dark:hover:bg-gray-900/70 group">
+                    <span class="material-icons text-primary dark:text-secondary group-hover:text-primary/80 dark:group-hover:text-secondary/80 transition-colors scale-200">chevron_right</span>
                   </button>
                 }
-                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-                  @for (img of productImages; track $index) {
-                    <span class="w-2 h-2 rounded-full" [ngClass]="$index === currentImageIndex ? 'bg-primary dark:bg-secondary' : 'bg-gray-300 dark:bg-gray-600'"></span>
+
+                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                  @for (img of productImages; let i = $index; track $index) {
+                    <button type="button"
+                      (click)="goToImage(i)"
+                      class="w-3 h-3 rounded-full transition transform duration-200
+                        focus:outline-hidden
+                        hover:scale-125 hover:opacity-80
+                        border-2 border-transparent
+                        flex items-center justify-center
+                        cursor-pointer"
+                      [ngClass]="i === currentImageIndex
+                        ? 'bg-primary dark:bg-secondary shadow-md'
+                        : 'bg-gray-300 dark:bg-gray-600'"
+                      
+                    ></button>
                   }
                 </div>
               </div>
             }
           </div>
+
           <input #fileInput type="file" class="hidden" accept="image/png, image/jpeg, image/jpg, image/webp" (change)="onImagesSelected($event)" multiple>
         </div>
+
         <div class="flex flex-col gap-1">
           @if (imageError) {
             <p class="text-xs text-red-500">{{ imageError }}</p>
           }
-          <p class="text-xs text-gray-500 dark:text-gray-400">Formato: PNG, JPEG, JPG, WEBP (max. 2 MB, máx. 10 imágenes)</p>
+          <p class="text-xs text-black dark:text-white">Formato: PNG, JPEG, JPG, WEBP (max. 2 MB, máx. 10 imágenes)</p>
         </div>
       </div>
+
       <div class="lg:col-span-2 flex flex-col gap-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -82,6 +106,7 @@
               <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('name') }}</p>
             }
           </div>
+
           <div>
             <label for="sku" class="block text-sm font-semibold text-black dark:text-white mb-1">SKU <span class="text-red-500">*</span></label>
             <input id="sku" autocomplete="off" type="text" formControlName="sku" placeholder="SKU" [ngClass]="{'border-red-500 dark:border-red-500': form.get('sku')?.invalid && form.get('sku')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
@@ -101,13 +126,14 @@
               <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('categoryId') }}</p>
             }
           </div>
+
           <div class="md:col-span-2">
             <label class="block text-sm font-semibold text-black dark:text-white mb-2">Tamaños y precios <span class="text-red-500">*</span></label>
             <div formArrayName="sizes" class="flex flex-col gap-4">
               @for (sizeGroup of sizes.controls; let i = $index; track sizeGroup) {
-                <div [formGroupName]="i" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end border border-gray-300 dark:border-gray-600 p-3 relative">
+                <div [formGroupName]="i" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end border border-gray-300 dark:border-gray-600 px-3 py-5 relative">
                   <div>
-                    <label class="block text-xs font-semibold mb-1">Tamaño</label>
+                    <label class="text-sm font-semibold text-black dark:text-white mb-1">Tamaño</label>
                     <select formControlName="sizeId" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600">
                       <option value="" selected disabled>Seleccionar</option>
                       @for (size of sizeOptions; track size.id) {
@@ -115,41 +141,38 @@
                       }
                     </select>
                   </div>
+
                   <div>
-                    <label class="block text-xs font-semibold mb-1">Stock</label>
+                    <label class="block text-sm font-semibold text-black dark:text-white mb-1">Stock</label>
                     <input type="number" formControlName="stock" min="0" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600" placeholder="Stock">
                   </div>
+
                   <div>
-                    <label class="block text-xs font-semibold mb-1">Precio original</label>
+                    <label class="block text-sm font-semibold text-black dark:text-white mb-1">Precio original</label>
                     <input type="number" formControlName="price" min="0" step="0.01" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600" placeholder="Precio">
                   </div>
+
                   <div>
-                    <label class="block text-xs font-semibold mb-1">Precio con descuento</label>
+                    <label class="block text-sm font-semibold text-black dark:text-white mb-1">Precio con descuento</label>
                     <input type="number" formControlName="discountPrice" min="0" step="0.01" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white border-gray-300 dark:border-gray-600" placeholder="Descuento">
                   </div>
-                  <button type="button" (click)="removeSize(i)" *ngIf="sizes.length > 1"
-                    class="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center shadow transition-colors">
-                    <span class="material-icons scale-75">close</span>
-                  </button>
+                  
+                  @if (sizes.length > 1) {
+                    <button type="button" (click)="removeSize(i)"
+                      class="cursor-pointer absolute top-1 right-1 text-black dark:text-white hover:text-red-600 w-7 h-7 flex items-center justify-center transition-colors"
+                    >
+                      <span class="material-icons scale-125">close</span>
+                    </button>
+                  }
+                  
                 </div>
               }
-              <button type="button" (click)="addSize()" class="mt-2 px-4 py-2 bg-primary dark:bg-secondary text-white dark:text-black rounded hover:bg-primary/80 dark:hover:bg-secondary/80 transition-colors w-fit">
+              <button type="button" (click)="addSize()" class="cursor-pointer mt-2 px-4 py-2 bg-primary dark:bg-secondary text-white dark:text-black hover:bg-primary/80 dark:hover:bg-secondary/80 transition-colors w-fit">
                 <span class="material-icons align-middle mr-1">add</span> Agregar tamaño
               </button>
             </div>
           </div>
-          <div>
-            <label for="warranty" class="block text-sm font-semibold text-black dark:text-white mb-1">Garantía <span class="text-red-500">*</span></label>
-            <select id="warranty" formControlName="warranty" [ngClass]="{'border-red-500 dark:border-red-500': form.get('warranty')?.invalid && form.get('warranty')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden border-gray-300 dark:border-gray-600">
-              <option value="" selected disabled>Seleccionar</option>
-              @for (warranty of warrantyOptions; track warranty.id) {
-                <option [value]="warranty.id">{{ warranty.name }}</option>
-              }
-            </select>
-            @if (form.get('warranty')?.invalid && form.get('warranty')?.touched) {
-              <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('warranty') }}</p>
-            }
-          </div>
+
           <div class="md:col-span-2">
             <label for="description" class="block text-sm font-semibold text-black dark:text-white mb-1">Descripción <span class="text-red-500">*</span></label>
             <textarea id="description" autocomplete="off" rows="4" formControlName="description" placeholder="Descripción" [ngClass]="{'border-red-500 dark:border-red-500': form.get('description')?.invalid && form.get('description')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden resize-none border-gray-300 dark:border-gray-600"></textarea>
@@ -157,6 +180,7 @@
               <p class="mt-1 text-xs text-red-500">{{ getErrorMessage('description') }}</p>
             }
           </div>
+
           <div class="md:col-span-2">
             <label for="observations" class="block text-sm font-semibold text-black dark:text-white mb-1">Observaciones</label>
             <textarea id="observations" autocomplete="off" rows="4" formControlName="observations" placeholder="Observaciones" [ngClass]="{'border-red-500 dark:border-red-500': form.get('observations')?.invalid && form.get('observations')?.touched}" class="w-full p-2 border bg-white dark:bg-gray-700 text-black dark:text-white focus:outline-hidden resize-none border-gray-300 dark:border-gray-600"></textarea>

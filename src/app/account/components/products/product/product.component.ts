@@ -49,13 +49,6 @@ export default class ProductComponent implements OnInit {
     { id: 4, name: 'XL' },
     { id: 5, name: 'XXL' }
   ];
-  warrantyOptions = [
-    { id: 1, name: 'Sin garantía' },
-    { id: 2, name: '3 meses' },
-    { id: 3, name: '6 meses' },
-    { id: 4, name: '1 año' },
-    { id: 5, name: '2 años' }
-  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -76,7 +69,6 @@ export default class ProductComponent implements OnInit {
     this.loadCategories();
   }
 
-  // Getter para el FormArray de tamaños
   get sizes(): FormArray {
     return this.form.get('sizes') as FormArray;
   }
@@ -87,7 +79,6 @@ export default class ProductComponent implements OnInit {
       sku: [data?.sku || '', [ Validators.required, Validators.minLength(8), Validators.maxLength(30) ]],
       categoryId: [data?.categoryId || '', [ Validators.required, Validators.minLength(1) ]],
       sizes: this.formBuilder.array([]),
-      warranty: [data?.warranty || '', [ Validators.required, Validators.minLength(1) ]],
       description: [data?.description || '', [ Validators.required, Validators.minLength(10), Validators.maxLength(500) ]],
       observations: [data?.observations || '', [ Validators.maxLength(500) ]],
       hasImage: [data?.hasImage || false, [ Validators.requiredTrue ]]
@@ -226,6 +217,11 @@ export default class ProductComponent implements OnInit {
       this.currentImageIndex = Math.max(0, this.productImages.length - 1);
     
     this.updateHasImageControl();
+  }
+
+  goToImage(index: number): void {
+    if (index >= 0 && index < this.productImages.length)
+      this.currentImageIndex = index;
   }
 
   getErrorMessage(controlName: string): string {
