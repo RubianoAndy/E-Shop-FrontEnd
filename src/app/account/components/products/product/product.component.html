@@ -46,10 +46,12 @@
                   <span class="material-icons">chevron_right</span>
                 </button>
               }
-              
-              <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-                <span *ngFor="let img of productImages; let i = index" class="w-2 h-2 rounded-full" [ngClass]="i === currentImageIndex ? 'bg-primary dark:bg-secondary' : 'bg-gray-300 dark:bg-gray-600'"></span>
-              </div>
+
+              @for (img of productImages; track $index) {
+                <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+                  <span class="w-2 h-2 rounded-full" [ngClass]="$index === currentImageIndex ? 'bg-primary dark:bg-secondary' : 'bg-gray-300 dark:bg-gray-600'"></span>
+                </div> 
+              }
             }
           </div>
           <input #fileInput type="file" class="hidden" accept="image/png, image/jpeg, image/jpg, image/webp" (change)="onImagesSelected($event)" multiple>
