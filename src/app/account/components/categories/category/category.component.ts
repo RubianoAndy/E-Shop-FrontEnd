@@ -72,7 +72,7 @@ export default class CategoryComponent implements OnInit {
 
   createForm(data: any = null) {
     this.form = this.formBuilder.group({
-      name: [data?.name || '', [ Validators.required, Validators.minLength(3), Validators.maxLength(100) ]],
+      name: [data?.name || '', [ Validators.required, Validators.minLength(3), Validators.maxLength(50) ]],
       url: [data?.url || '', [ Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern('^[a-z0-9]+(?:-[a-z0-9]+)*$') ]],
       description: [data?.description || '', [ Validators.required, Validators.minLength(10), Validators.maxLength(500) ]],
       observations: [data?.observations || '', [ Validators.minLength(10), Validators.maxLength(500) ]],
