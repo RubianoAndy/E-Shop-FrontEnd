@@ -97,7 +97,7 @@ export default class ProductComponent implements OnInit {
       stock: [size?.stock ?? '', [Validators.required, Validators.min(1)]],
       price: [size?.price ?? '', [Validators.required, Validators.min(1)]],
       discountPrice: [size?.discountPrice ?? '', [Validators.min(0)]],
-      isActive: [size?.isActive ?? true]
+      activated: [size?.activated ?? true]
     }, { validators: productPriceDiscountValidator() }));
   }
 
